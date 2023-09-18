@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Variables and Probability Distributions &#8212; My Chemistry Book</title>
+    <title>5. Random Variables and Probability Distributions &#8212; My Statistics Book</title>
   
   
   
@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Basics/4ranvar';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Linear Relationships" href="5lin.html" />
+    <link rel="prev" title="4. Probability" href="3prob.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -135,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">My Chemistry Book</p>
+    <p class="title logo__title">My Statistics Book</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -148,7 +150,22 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3prob.html">4. Probability</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -340,17 +357,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-mass-function-pmf">Probability Mass Function (pmf)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binomial-distribution">The Binomial Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">The Poisson Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cummalitive-distibution-function-cdf">The cummalitive distibution function (cdf)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-mass-function-pmf">5.1. Probability Mass Function (pmf)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binomial-distribution">5.2. The Binomial Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">5.3. The Poisson Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">5.4. Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cummalitive-distibution-function-cdf">5.4.1. The cummalitive distibution function (cdf)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poission-approximation-to-the-binomial">The Poission approximation to the Binomial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The Normal Distribution</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-deviation">The Standard Deviation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-normals">Sums of Normals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poission-approximation-to-the-binomial">5.5. The Poission approximation to the Binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">5.6. The Normal Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-deviation">5.6.1. The Standard Deviation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-normals">5.6.2. Sums of Normals</a></li>
 </ul>
 </li>
 </ul>
@@ -365,7 +382,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="random-variables-and-probability-distributions">
-<h1>Random Variables and Probability Distributions<a class="headerlink" href="#random-variables-and-probability-distributions" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">5. </span>Random Variables and Probability Distributions<a class="headerlink" href="#random-variables-and-probability-distributions" title="Permalink to this headline">#</a></h1>
 <p>A random variable is a variable whose possible outcomes are outcomes of a random phenomenon. It is a function that maps a sample space to real numbers. For example:</p>
 <ul>
 <li><p>Toin coss</p>
@@ -375,13 +392,13 @@ document.write(`
 </li>
 </ul>
 <div class="section" id="probability-mass-function-pmf">
-<h2>Probability Mass Function (pmf)<a class="headerlink" href="#probability-mass-function-pmf" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1. </span>Probability Mass Function (pmf)<a class="headerlink" href="#probability-mass-function-pmf" title="Permalink to this headline">#</a></h2>
 <p>When the random variable can take on only discrete (countable) values, the distribution of the random variable is described by a probability mass function denoted <span class="math notranslate nohighlight">\(p(x)\)</span>. That is:
 $<span class="math notranslate nohighlight">\(p(x)=P(X=x)\)</span>$</p>
 <p>For any mass function, <span class="math notranslate nohighlight">\(\sum_x p(x) = 1\)</span></p>
 </div>
 <div class="section" id="the-binomial-distribution">
-<h2>The Binomial Distribution<a class="headerlink" href="#the-binomial-distribution" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.2. </span>The Binomial Distribution<a class="headerlink" href="#the-binomial-distribution" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Sequence of independent trials with two possible outcomes.</p></li>
 <li><p>The two even are complementary events.</p></li>
@@ -444,7 +461,7 @@ P(X \leq 2) = P(X=0) + P(X=1) + P(X=2)
 <p>So, <span class="math notranslate nohighlight">\(P(X \leq 2) = 0.0523\)</span></p>
 </div>
 <div class="section" id="the-poisson-distribution">
-<h2>The Poisson Distribution<a class="headerlink" href="#the-poisson-distribution" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.3. </span>The Poisson Distribution<a class="headerlink" href="#the-poisson-distribution" title="Permalink to this headline">#</a></h2>
 <p>This distribution is used for events that are discrete and occur over time.</p>
 <p>We denote the mean number events over some duration <span class="math notranslate nohighlight">\(T\)</span> as <span class="math notranslate nohighlight">\(\lambda\)</span>. The Poisson distribution with mean <span class="math notranslate nohighlight">\(\lambda\)</span> is denoted <span class="math notranslate nohighlight">\(P_o(\lambda)\)</span>. If <span class="math notranslate nohighlight">\(X \sim P_o(\lambda)\)</span> then <span class="math notranslate nohighlight">\(P(X=x) = \frac{\lambda^xe^{-x}}{x!}\)</span> gives the probability of <span class="math notranslate nohighlight">\(x\)</span> occurences of the vent over a time interval of length <span class="math notranslate nohighlight">\(T\)</span></p>
 <p><strong>Example</strong>
@@ -473,10 +490,10 @@ A waiter drops on average 2.4 dishes per hour. During an hour, what is the chanc
 </ul>
 </div>
 <div class="section" id="tables">
-<h2>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.4. </span>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">#</a></h2>
 <p>Often the calculations are long and hard. Tables with precalculate values exist.</p>
 <div class="section" id="the-cummalitive-distibution-function-cdf">
-<h3>The cummalitive distibution function (cdf)<a class="headerlink" href="#the-cummalitive-distibution-function-cdf" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.4.1. </span>The cummalitive distibution function (cdf)<a class="headerlink" href="#the-cummalitive-distibution-function-cdf" title="Permalink to this headline">#</a></h3>
 <p>The cdf gives the probability of being less than or rqual to a given value:</p>
 <div class="math notranslate nohighlight">
 \[F(x) = P(X\leq x) = \sum_{k=0}^xp(k)\]</div>
@@ -486,25 +503,25 @@ $<span class="math notranslate nohighlight">\(p(x)= P(X=x) = P(X \leq x) -P(X\le
 </div>
 </div>
 <div class="section" id="the-poission-approximation-to-the-binomial">
-<h2>The Poission approximation to the Binomial<a class="headerlink" href="#the-poission-approximation-to-the-binomial" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.5. </span>The Poission approximation to the Binomial<a class="headerlink" href="#the-poission-approximation-to-the-binomial" title="Permalink to this headline">#</a></h2>
 <p>If <span class="math notranslate nohighlight">\(X \sim B(n,p) \)</span>, then provided that <span class="math notranslate nohighlight">\(n\)</span> is reasonably large (<span class="math notranslate nohighlight">\(&gt;30\)</span>) and <span class="math notranslate nohighlight">\(p\)</span> is comparativley small, so that thair product <span class="math notranslate nohighlight">\(np\)</span> is “moderate” in size (<span class="math notranslate nohighlight">\(\leq 7\)</span>) than approximately <span class="math notranslate nohighlight">\(X \sim P_o(np)\)</span></p>
 </div>
 <div class="section" id="the-normal-distribution">
-<h2>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.6. </span>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
 <p>This distribution works for continous distibution. It depends on two paramters: mean (<span class="math notranslate nohighlight">\(\mu\)</span>) and variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>). The distibution is denoted <span class="math notranslate nohighlight">\(N(\mu,\sigma^2)\)</span>.</p>
 <p>For normal distibution, a pmf is not appropraite, and we use a probability density function (pdf). The curve formed for this density function is “bell-shaped”. A normal distibutiuon centerd and symmetric about zero is denoted <span class="math notranslate nohighlight">\(N(0,1)\)</span> and looks as following:</p>
-<p><img alt="Alt text" src="Basics/stat/Basics/image-1.png" /></p>
+<p><img alt="Alt text" src="image-1.png" /></p>
 <p>The area under two points on the curve is probabilit of the event occuring between those two points, hence the area under the whole curve is 1.</p>
 <p>Tables exist for finding these probabilties, and the number in the table would be the are under the curve to the left of the value.</p>
 <p>If we are not dealing with a standard normal distibution (<span class="math notranslate nohighlight">\(N(0,1)\)</span>) we can standardize it by defining <span class="math notranslate nohighlight">\(Z = \frac{X-\mu}{\sigma}\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> will follow a standardised normal distribution (<span class="math notranslate nohighlight">\(Z \sim N(0,1)\)</span>). Doing this allows for using the table for <span class="math notranslate nohighlight">\(Z\)</span>.</p>
 <p>For example:</p>
 <p>Say we are given a distribtuion <span class="math notranslate nohighlight">\(N(400,50^2)\)</span>. We define <span class="math notranslate nohighlight">\(Z = \frac{X-400}{50}\)</span>. If we were to examine when <span class="math notranslate nohighlight">\(X&lt;360\)</span>, we will examine when <span class="math notranslate nohighlight">\(Z&lt;-0.8\)</span>. Now we can check a table to see what the are under a Normal probability density function is to the left of <span class="math notranslate nohighlight">\(-0.8\)</span>.</p>
 <div class="section" id="the-standard-deviation">
-<h3>The Standard Deviation<a class="headerlink" href="#the-standard-deviation" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.6.1. </span>The Standard Deviation<a class="headerlink" href="#the-standard-deviation" title="Permalink to this headline">#</a></h3>
 <p>As a general rule of thumb, in normal distibutions, about 68% of the area under the density curve is within one standard deviation of the mean, 95% within two standard deviations, and 99% within three standard deviations.</p>
 </div>
 <div class="section" id="sums-of-normals">
-<h3>Sums of Normals<a class="headerlink" href="#sums-of-normals" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.6.2. </span>Sums of Normals<a class="headerlink" href="#sums-of-normals" title="Permalink to this headline">#</a></h3>
 <p>If</p>
 <div class="math notranslate nohighlight">
 \[X \sim N(\mu_X,\sigma_X^2)\]</div>
@@ -548,6 +565,24 @@ $<span class="math notranslate nohighlight">\(p(x)= P(X=x) = P(X \leq x) -P(X\le
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="3prob.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Probability</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5lin.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Linear Relationships</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -566,17 +601,17 @@ $<span class="math notranslate nohighlight">\(p(x)= P(X=x) = P(X \leq x) -P(X\le
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-mass-function-pmf">Probability Mass Function (pmf)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binomial-distribution">The Binomial Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">The Poisson Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cummalitive-distibution-function-cdf">The cummalitive distibution function (cdf)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-mass-function-pmf">5.1. Probability Mass Function (pmf)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binomial-distribution">5.2. The Binomial Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">5.3. The Poisson Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">5.4. Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cummalitive-distibution-function-cdf">5.4.1. The cummalitive distibution function (cdf)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poission-approximation-to-the-binomial">The Poission approximation to the Binomial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The Normal Distribution</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-deviation">The Standard Deviation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-normals">Sums of Normals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poission-approximation-to-the-binomial">5.5. The Poission approximation to the Binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">5.6. The Normal Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-deviation">5.6.1. The Standard Deviation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-normals">5.6.2. Sums of Normals</a></li>
 </ul>
 </li>
 </ul>

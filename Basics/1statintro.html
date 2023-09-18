@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to Data Analysis &#8212; My Chemistry Book</title>
+    <title>1. Introduction to Data Analysis &#8212; My Statistics Book</title>
   
   
   
@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Basics/1statintro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Sampling" href="2sampling.html" />
+    <link rel="prev" title="Welcome!" href="../0intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -135,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">My Chemistry Book</p>
+    <p class="title logo__title">My Statistics Book</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -148,7 +150,22 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -340,13 +357,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Data Analysis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-data">Types of Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurment-scales">Measurment Scales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-representations">Graphical Representations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Introduction to Data Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-data">1.1. Types of Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurment-scales">1.2. Measurment Scales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-representations">1.3. Graphical Representations</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-statistics">Representative statistics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-statistics">2. Representative statistics</a></li>
 </ul>
 
             </nav>
@@ -360,10 +377,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-data-analysis">
-<h1>Introduction to Data Analysis<a class="headerlink" href="#introduction-to-data-analysis" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">1. </span>Introduction to Data Analysis<a class="headerlink" href="#introduction-to-data-analysis" title="Permalink to this headline">#</a></h1>
 <p>Statistics is about analysis of numbers. We refer to what we study as <em>data</em>.</p>
 <div class="section" id="types-of-data">
-<h2>Types of Data<a class="headerlink" href="#types-of-data" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.1. </span>Types of Data<a class="headerlink" href="#types-of-data" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Qualitative Data:
 Not inherently numerical, for example, Gender, or eye color.
@@ -375,12 +392,12 @@ Continous data is also numerical in nature, however, all possible values are att
 </ul>
 </div>
 <div class="section" id="measurment-scales">
-<h2>Measurment Scales<a class="headerlink" href="#measurment-scales" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.2. </span>Measurment Scales<a class="headerlink" href="#measurment-scales" title="Permalink to this headline">#</a></h2>
 <p>When talking about numerical data, we can have <em>nominal</em> and <em>ordinal</em> scales. Put simply, with an <em>ordinal</em> scale the order of the numbers matter i.e. 1 is better than 2 which is better than 2 etc.
 A nominal sale is one which the numbers dont matter. For example a student ID is rather arbitrary, the numbers chosen for student don’t have an meaning other than being unique for each student - their relative order does not matter.</p>
 </div>
 <div class="section" id="graphical-representations">
-<h2>Graphical Representations<a class="headerlink" href="#graphical-representations" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.3. </span>Graphical Representations<a class="headerlink" href="#graphical-representations" title="Permalink to this headline">#</a></h2>
 <p>Data visualization helps display data in meaningful ways, if the correct representation is chosen. The following graphical representations exist:</p>
 <p>See <a class="reference external" href="https://www150.statcan.gc.ca/n1/edu/power-pouvoir/ch9/5214821-eng.htm">https://www150.statcan.gc.ca/n1/edu/power-pouvoir/ch9/5214821-eng.htm</a> for visuals.</p>
 <ul>
@@ -415,7 +432,7 @@ This is like a lin chart, but the data is cumalitive.</p></li>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="representative-statistics">
-<h1>Representative statistics<a class="headerlink" href="#representative-statistics" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">2. </span>Representative statistics<a class="headerlink" href="#representative-statistics" title="Permalink to this headline">#</a></h1>
 <p>This the basics. No need for too many words.</p>
 <ul>
 <li><p>Datum Notation:
@@ -475,6 +492,24 @@ Denoted <span class="math notranslate nohighlight">\(s\)</span> and is the posit
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../0intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome!</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2sampling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Sampling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -493,13 +528,13 @@ Denoted <span class="math notranslate nohighlight">\(s\)</span> and is the posit
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Data Analysis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-data">Types of Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurment-scales">Measurment Scales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-representations">Graphical Representations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Introduction to Data Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-data">1.1. Types of Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurment-scales">1.2. Measurment Scales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-representations">1.3. Graphical Representations</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-statistics">Representative statistics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-statistics">2. Representative statistics</a></li>
 </ul>
 
   </nav></div>

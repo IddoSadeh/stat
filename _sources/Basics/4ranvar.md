@@ -164,7 +164,7 @@ This distribution works for continous distibution. It depends on two paramters: 
 
 For normal distibution, a pmf is not appropraite, and we use a probability density function (pdf). The curve formed for this density function is "bell-shaped". A normal distibutiuon centerd and symmetric about zero is denoted $N(0,1)$ and looks as following:
 
-![Alt text](stat/Basics/image-1.png)
+![Alt text](/image-1.png)
 
 The area under two points on the curve is probabilit of the event occuring between those two points, hence the area under the whole curve is 1.
 

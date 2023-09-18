@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Probability &#8212; My Chemistry Book</title>
+    <title>4. Probability &#8212; My Statistics Book</title>
   
   
   
@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Basics/3prob';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Random Variables and Probability Distributions" href="4ranvar.html" />
+    <link rel="prev" title="3. Sampling" href="2sampling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -135,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">My Chemistry Book</p>
+    <p class="title logo__title">My Statistics Book</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -148,7 +150,22 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -340,8 +357,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinations">Combinations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinations">4.1. Combinations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2. Probability</a></li>
 </ul>
             </nav>
         </div>
@@ -354,7 +371,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="probability">
-<h1>Probability<a class="headerlink" href="#probability" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4. </span>Probability<a class="headerlink" href="#probability" title="Permalink to this headline">#</a></h1>
 <p>Qunatifiyng uncertainity is done by measuring probability.</p>
 <ul class="simple">
 <li><p>Events will be noted will a captial letter.
@@ -363,7 +380,7 @@ Say we define and event as <span class="math notranslate nohighlight">\(A\)</spa
 <li><p>If there are <span class="math notranslate nohighlight">\(n\)</span> equally likely possibile outcomes for an event <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(A\)</span> occurs <span class="math notranslate nohighlight">\(r\)</span> times than the probability is <span class="math notranslate nohighlight">\(P(A) = \frac{r}{n}\)</span>.</p></li>
 </ul>
 <div class="section" id="combinations">
-<h2>Combinations<a class="headerlink" href="#combinations" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.1. </span>Combinations<a class="headerlink" href="#combinations" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p>If there are <span class="math notranslate nohighlight">\(m\)</span> ways in which <span class="math notranslate nohighlight">\(A\)</span> can be chosen, and <span class="math notranslate nohighlight">\(n\)</span> ways in which <span class="math notranslate nohighlight">\(B\)</span> can be chosen, there are <span class="math notranslate nohighlight">\(mn\)</span> ways in which <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> can be chosen together.</p></li>
 <li><p>The number of ways that <span class="math notranslate nohighlight">\(n\)</span> distinct objects can be arranged in order is <span class="math notranslate nohighlight">\(n!\)</span>. We say there are <span class="math notranslate nohighlight">\(n!\)</span> permutations of <span class="math notranslate nohighlight">\(n\)</span> distinct objects.</p></li>
@@ -381,7 +398,7 @@ Sometimes this is denoted as <span class="math notranslate nohighlight">\(^nP_r\
 </ul>
 </div>
 <div class="section" id="id1">
-<h2>Probability<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2. </span>Probability<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p>Union:</p>
 <p>Let <span class="math notranslate nohighlight">\(A \cup B\)</span> denote the event that at least one of <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span> occurs.</p>
@@ -472,6 +489,24 @@ Suppose 60% of a company’s computer chips are made by one factory (A say), wit
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="2sampling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Sampling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4ranvar.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Random Variables and Probability Distributions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -490,8 +525,8 @@ Suppose 60% of a company’s computer chips are made by one factory (A say), wit
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinations">Combinations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinations">4.1. Combinations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2. Probability</a></li>
 </ul>
   </nav></div>
 

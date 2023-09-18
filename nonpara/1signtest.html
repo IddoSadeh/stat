@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; My Chemistry Book</title>
+    <title>8. The Sign Test &#8212; My Statistics Book</title>
   
   
   
@@ -59,9 +59,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'nonpara/1signtest';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Rank Sum Test" href="2ranksumtest.html" />
+    <link rel="prev" title="7. Inference" href="../Basics/6inf.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -133,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">My Chemistry Book</p>
+    <p class="title logo__title">My Statistics Book</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -146,7 +150,22 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Basics/1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Basics/2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2ranksumtest.html">9. Rank Sum Test</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -328,7 +347,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>The Sign Test</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -337,9 +356,13 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">8.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-background">8.2. Theoretical Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-performing-the-sign-test">8.3. Steps for Performing the Sign Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-and-solution">8.4. Example and Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-notes">8.5. text notes</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -350,7 +373,138 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-sign-test">
+<h1><span class="section-number">8. </span>The Sign Test<a class="headerlink" href="#the-sign-test" title="Permalink to this headline">#</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">8.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>The Sign Test is a non-parametric test used to test the median of a distribution. It is particularly useful when the assumptions of normality are not met.</p>
+<p>it is:</p>
+<ul class="simple">
+<li><p>for populations that are distribution free</p></li>
+<li><p>for testing the median of the population</p></li>
+<li><p>the data needs o be independant</p></li>
+<li><p>the test statistic is based on signs only (+/-)</p></li>
+</ul>
+</div>
+<div class="section" id="theoretical-background">
+<h2><span class="section-number">8.2. </span>Theoretical Background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">#</a></h2>
+<p>The Sign Test is based on the median <span class="math notranslate nohighlight">\( \tilde{x} \)</span> of a dataset. Given a sample <span class="math notranslate nohighlight">\( x_1, x_2, \ldots, x_n \)</span>, the test investigates whether the median is equal to a specified value <span class="math notranslate nohighlight">\( \tilde{x}_0 \)</span>.</p>
+<p><strong>Null Hypothesis (<span class="math notranslate nohighlight">\( H_0 \)</span>)</strong>:<br />
+<span class="math notranslate nohighlight">\(
+H_0: \tilde{x} = \tilde{x}_0
+\)</span></p>
+<p><strong>Alternative Hypothesis (<span class="math notranslate nohighlight">\( H_a \)</span>)</strong>:<br />
+<span class="math notranslate nohighlight">\(
+H_a: \tilde{x} \neq \tilde{x}_0
+\)</span></p>
+</div>
+<div class="section" id="steps-for-performing-the-sign-test">
+<h2><span class="section-number">8.3. </span>Steps for Performing the Sign Test<a class="headerlink" href="#steps-for-performing-the-sign-test" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Calculate the Differences</strong>:<br />
+Calculate <span class="math notranslate nohighlight">\( d_i = x_i - \tilde{x}_0 \)</span> for each observation <span class="math notranslate nohighlight">\( x_i \)</span>.</p></li>
+<li><p><strong>Count the Signs</strong>:<br />
+Count the number of positive (<span class="math notranslate nohighlight">\( n_+ \)</span>) and negative (<span class="math notranslate nohighlight">\( n_- \)</span>) differences.</p></li>
+<li><p><strong>Calculate the Test Statistic</strong>:<br />
+The test statistic <span class="math notranslate nohighlight">\( S \)</span> is the smaller of <span class="math notranslate nohighlight">\( n_+ \)</span> and <span class="math notranslate nohighlight">\( n_- \)</span>.</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(
+S = \min(n_+, n_-)
+\)</span></p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Calculate the p-value</strong>:<br />
+The p-value is calculated using the binomial distribution:</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(
+p = 2 \times \text{Binomial PMF}(k \leq S; n, 0.5)
+\)</span></p>
+</div>
+<div class="section" id="example-and-solution">
+<h2><span class="section-number">8.4. </span>Example and Solution<a class="headerlink" href="#example-and-solution" title="Permalink to this headline">#</a></h2>
+<p><strong>Example Question</strong>:<br />
+Suppose we have a sample of exam scores: <span class="math notranslate nohighlight">\( [50, 55, 53, 61, 58] \)</span> and we want to test if the median score is 55.</p>
+<ol class="arabic simple">
+<li><p><strong>Calculate the Differences</strong>:<br />
+<span class="math notranslate nohighlight">\( d = [50-55, 55-55, 53-55, 61-55, 58-55] = [-5, 0, -2, 6, 3] \)</span></p></li>
+<li><p><strong>Count the Signs</strong>:<br />
+<span class="math notranslate nohighlight">\( n_+ = 2, n_- = 2 \)</span></p></li>
+<li><p><strong>Calculate the Test Statistic</strong>:<br />
+<span class="math notranslate nohighlight">\( S = \min(2, 2) = 2 \)</span></p></li>
+<li><p><strong>Calculate the p-value</strong>:<br />
+<span class="math notranslate nohighlight">\( p = 2 \times \text{Binomial PMF}(k \leq 2; 4, 0.5) = 2 \times (0.0625 + 0.25 + 0.375) = 1.375 \)</span></p></li>
+</ol>
+<p>Since the p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that the median is not significantly different from 55.</p>
+</div>
+<div class="section" id="text-notes">
+<h2><span class="section-number">8.5. </span>text notes<a class="headerlink" href="#text-notes" title="Permalink to this headline">#</a></h2>
+<p>The median of a (random variable) r.v. <span class="math notranslate nohighlight">\(X\)</span> is the point <span class="math notranslate nohighlight">\(\theta\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+P(X&gt;\theta)=P(X&lt;\theta) \text {. }
+\]</div>
+<p>The median is a measure of the location of the distribution of <span class="math notranslate nohighlight">\(X\)</span>. If we have an i.i.d. sample <span class="math notranslate nohighlight">\(x_{1}, \ldots, x_{n}\)</span> from <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(\theta\)</span> is the median of <span class="math notranslate nohighlight">\(X\)</span> we would expect roughly equal amounts of the data to lie above and below <span class="math notranslate nohighlight">\(\theta\)</span>. Suppose we calculate the value <span class="math notranslate nohighlight">\(\theta-x_{i}\)</span> for each <span class="math notranslate nohighlight">\(i=1, \ldots, n\)</span> and record the sign of each value. Count the number of positives (+’s) and call this number <span class="math notranslate nohighlight">\(t\)</span>. Under the null hypothesis</p>
+<div class="math notranslate nohighlight">
+\[
+H_{0} \text { : The median of } X \text { is } \theta \text {, }
+\]</div>
+<p>we would have that</p>
+<div class="math notranslate nohighlight">
+\[
+t \sim B\left(n, \frac{1}{2}\right)
+\]</div>
+<p>regardless of the underlying distribution of <span class="math notranslate nohighlight">\(X\)</span>. If <span class="math notranslate nohighlight">\(t\)</span> is too large or too small with respect to this distribution, we would reject <span class="math notranslate nohighlight">\(H_{0}\)</span>. If there are any values equal to the median proposed in <span class="math notranslate nohighlight">\(H_{0}\)</span>, we can omit these and reduce <span class="math notranslate nohighlight">\(n\)</span> accordingly.</p>
+<p>Now, under <span class="math notranslate nohighlight">\(H_{0}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+E(t) &amp; =\frac{n}{2}, \\
+\operatorname{Var}(t) &amp; =n \frac{1}{2} \frac{1}{2}=\frac{n}{4} .
+\end{aligned}
+\end{split}\]</div>
+<p>For large values of <span class="math notranslate nohighlight">\(n\)</span>, we can use the Normal approximation to the Binomial (equivalently, the Central Limit Theorem) and compare</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{t-\frac{n}{2}}{\sqrt{\frac{n}{4}}}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(N(0,1)\)</span>. For <span class="math notranslate nohighlight">\(n&lt;20\)</span>, it is better to use a continuity correction, adding <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> to the numerator for the left hand critical region, subtracting <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> for the right hand tail region. Better still is to get the Binomial probabilities from software.</p>
+<p>Example 1 The following data are the weight gains (in <span class="math notranslate nohighlight">\(g\)</span> ) of mice over a month obtained using a new feeding regime: 20, 42, 18, 21, 22, 35, 19, 18, 26, 20, 21, 32, 22, 20, 24. A previous feeding method produces a weight gain over the same period with median <span class="math notranslate nohighlight">\(25 \mathrm{~g}\)</span>. To test whether the new method produces the same median weight gain compared to the alternative that it produces less, we test</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp; H_{0}: \quad \theta=25 \text { against } \\
+&amp; H_{1}: \quad \theta&lt;25 .
+\end{aligned}
+\end{split}\]</div>
+<p>We subtract 25 from each of the data values, and record whether the outcome is <span class="math notranslate nohighlight">\(a+\)</span> or <span class="math notranslate nohighlight">\(a-\)</span>. We observe the sequence</p>
+<div class="math notranslate nohighlight">
+\[
+-+---+--+--+---
+\]</div>
+<p>and see <span class="math notranslate nohighlight">\(t=4\)</span>. We then compare</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{4+\frac{1}{2}-\frac{15}{2}}{\sqrt{\frac{15}{4}}}=-1.55
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(N(0,1)\)</span>; if <span class="math notranslate nohighlight">\(Z \sim N(0,1)\)</span> then (from <span class="math notranslate nohighlight">\(R\)</span> or otherwise) we have</p>
+<div class="math notranslate nohighlight">
+\[
+P(Z \leq-1.55)=0.06 \text {. }
+\]</div>
+<p>Therefore we would not reject the null hypothesis <span class="math notranslate nohighlight">\(H_{0}\)</span> at the <span class="math notranslate nohighlight">\(5 \%\)</span> level, noting that there is some evidence against <span class="math notranslate nohighlight">\(H_{0}\)</span>, the value of the test statistic being close to significant. The p-value of 0.06 gives some weak evidence against the underlying median weight gain of the new diet being <span class="math notranslate nohighlight">\(25 \mathrm{~g}\)</span>.</p>
+<p>It would be possible to calculate the relevant Binomial probability directly in this case; verify that if <span class="math notranslate nohighlight">\(X \sim B\left(15, \frac{1}{2}\right)\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp; P(X \leq 2) \bumpeq 0.003 \\
+&amp; P(X=3) \bumpeq 0.014 \\
+&amp; P(X=4) \bumpeq 0.042
+\end{aligned}
+\end{split}\]</div>
+<p>hence <span class="math notranslate nohighlight">\(P(X \leq 4)=0.059\)</span>, which demonstrates that the Normal approximation (with the continuity correction) is very good here.</p>
+<p>The sign test can be extended to paired data and is then analogous to the paired t test, although the latter requires an assumption of Normality for the within-pair differences. To use the sign test on a sample of pairs <span class="math notranslate nohighlight">\(\left(x_{1}, y_{1}\right),\left(x_{2}, y_{2}\right), \ldots,\left(x_{n}, y_{n}\right)\)</span> we find the signs of the differences <span class="math notranslate nohighlight">\(x_{i}-y_{i}\)</span> for <span class="math notranslate nohighlight">\(i=1, \ldots, n\)</span>. We then count up the number of positives, and compare the total to <span class="math notranslate nohighlight">\(B\left(n, \frac{1}{2}\right)\)</span> in either a one or two-sided test. We come later to test for matched pair data that is usually preferable to the sign test.</p>
+</div>
+</div>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -382,6 +536,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../Basics/6inf.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Inference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2ranksumtest.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Rank Sum Test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -399,9 +571,13 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">8.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-background">8.2. Theoretical Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-performing-the-sign-test">8.3. Steps for Performing the Sign Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-and-solution">8.4. Example and Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-notes">8.5. text notes</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

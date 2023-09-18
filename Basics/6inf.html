@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inference &#8212; My Chemistry Book</title>
+    <title>7. Inference &#8212; My Statistics Book</title>
   
   
   
@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Basics/6inf';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. The Sign Test" href="../nonpara/1signtest.html" />
+    <link rel="prev" title="6. Linear Relationships" href="5lin.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -135,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">My Chemistry Book</p>
+    <p class="title logo__title">My Statistics Book</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -148,7 +150,22 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -340,10 +357,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The Normal Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-estimation-and-confidence-intervals">Point Estimation and Confidence Intervals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">The Central Limit Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">7.1. The Normal Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-estimation-and-confidence-intervals">7.2. Point Estimation and Confidence Intervals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">7.3. Hypothesis Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">7.4. The Central Limit Theorem</a></li>
 </ul>
             </nav>
         </div>
@@ -356,10 +373,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="inference">
-<h1>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">7. </span>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">#</a></h1>
 <p>Inference is the art of making deductions using statistics.</p>
 <div class="section" id="the-normal-distribution">
-<h2>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.1. </span>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
 <p>The probability density function for a distribution of the form <span class="math notranslate nohighlight">\(N(\mu,\sigma^2)\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}\]</div>
@@ -367,7 +384,7 @@ document.write(`
 <p>The region with in two standard deviations of the mean is called the <strong>95% confidence interval</strong>. This means that given a normal distribution, we are 95% confident a value from the data was within the region defined by the 95% confidence interval.</p>
 </div>
 <div class="section" id="point-estimation-and-confidence-intervals">
-<h2>Point Estimation and Confidence Intervals<a class="headerlink" href="#point-estimation-and-confidence-intervals" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.2. </span>Point Estimation and Confidence Intervals<a class="headerlink" href="#point-estimation-and-confidence-intervals" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p>The mean <span class="math notranslate nohighlight">\(\mu\)</span> can be estiamted as the sample mean <span class="math notranslate nohighlight">\(\bar{x}\)</span>.</p>
 <p>The sample mean is given by the following equation: $<span class="math notranslate nohighlight">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i \)</span>$</p>
@@ -415,7 +432,7 @@ document.write(`
 </ul>
 </div>
 <div class="section" id="hypothesis-testing">
-<h2>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.3. </span>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">#</a></h2>
 <p><span class="math notranslate nohighlight">\(H_0\)</span> - nuul hypothesis.</p>
 <p><span class="math notranslate nohighlight">\(H_1\)</span> - alternative hypothesis.</p>
 <p>It is hard to prove a hypothesis true, but we may prove it is false without a doubt.</p>
@@ -475,7 +492,7 @@ based on samples of equal size where the data must be treated in pairs.</p>
 </ul>
 </div>
 <div class="section" id="the-central-limit-theorem">
-<h2>The Central Limit Theorem<a class="headerlink" href="#the-central-limit-theorem" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.4. </span>The Central Limit Theorem<a class="headerlink" href="#the-central-limit-theorem" title="Permalink to this headline">#</a></h2>
 <p>his Chapter is concerned with statistical inference about data that are assumed to be from a Normal distribution. Hence a histogram of any data set appropriate for the methods described should, at least approximately, resemble the familiar “bell—shape” of the Normal density function.</p>
 <p>The central limit theorem states the provided a sample size <span class="math notranslate nohighlight">\(n\)</span> is reasonably large (30 or so should be adequete), the distribution of a sample mean is always Normal:</p>
 <div class="math notranslate nohighlight">
@@ -517,6 +534,24 @@ based on samples of equal size where the data must be treated in pairs.</p>
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="5lin.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Linear Relationships</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../nonpara/1signtest.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>The Sign Test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -535,10 +570,10 @@ based on samples of equal size where the data must be treated in pairs.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The Normal Distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-estimation-and-confidence-intervals">Point Estimation and Confidence Intervals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">The Central Limit Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">7.1. The Normal Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-estimation-and-confidence-intervals">7.2. Point Estimation and Confidence Intervals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">7.3. Hypothesis Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">7.4. The Central Limit Theorem</a></li>
 </ul>
   </nav></div>
 
