@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rank Sum Test &#8212; My Chemistry Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nonpara/2ranksumtest';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Chemistry Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnonpara/2ranksumtest.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/nonpara/2ranksumtest.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Rank Sum Test</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="rank-sum-test">
+<h1>Rank Sum Test<a class="headerlink" href="#rank-sum-test" title="Permalink to this headline">#</a></h1>
+<p>This test is for two-sample problems, and is a test for difference in location in the corresponding distributions. We have two samples, <span class="math notranslate nohighlight">\(x_{1}, \ldots, x_{m}\)</span> from distribution <span class="math notranslate nohighlight">\(F_{X}\)</span> and <span class="math notranslate nohighlight">\(y_{1}, \ldots, y_{n}\)</span> from <span class="math notranslate nohighlight">\(F_{Y}\)</span>. Our null hypothesis is <span class="math notranslate nohighlight">\(H_{0}: F_{X}=F_{Y}\)</span>. We form the combined sample of size <span class="math notranslate nohighlight">\(n+m\)</span> and rank it, giving the smallest number rank 1, the largest rank <span class="math notranslate nohighlight">\(n+m\)</span>. Find</p>
+<div class="math notranslate nohighlight">
+\[
+W_{X}=\sum_{i=1}^{m} R_{i}^{X},
+\]</div>
+<p>where the <span class="math notranslate nohighlight">\(R_{i}^{X}\)</span> are the ranks of the <span class="math notranslate nohighlight">\(X\)</span> observations in the combined sample. Assuming no ties and the null hypothesis, <span class="math notranslate nohighlight">\(W_{X}\)</span> is the sum of <span class="math notranslate nohighlight">\(m\)</span> integers chosen at random (without replacement) from the numbers <span class="math notranslate nohighlight">\(1,2, \ldots, n+m\)</span>. If the <span class="math notranslate nohighlight">\(y_{i}\)</span> ‘s are on average larger than <span class="math notranslate nohighlight">\(x_{i}\)</span> ‘s then <span class="math notranslate nohighlight">\(W_{X}\)</span> will appear to be smaller than would have been expected under <span class="math notranslate nohighlight">\(H_{0}\)</span>, and vice versa if the reverse situation holds.</p>
+<p>Remark 1 We could just as easily use</p>
+<div class="math notranslate nohighlight">
+\[
+W_{Y}:=\sum_{i=1}^{n} R_{i}^{Y},
+\]</div>
+<p>the sum of the ranks of the <span class="math notranslate nohighlight">\(y_{i}\)</span> ‘s, but as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+W_{X}+W_{Y} &amp; =1+2+\cdots+(n+m) \\
+&amp; =\frac{1}{2}(n+m)(n+m+1)
+\end{aligned}
+\end{split}\]</div>
+<p>is a constant, the two statistics are equivalent for our purposes.</p>
+<p>An important application of this test is to situations where we are testing for slippage, meaning that the two distributions are identical except that one is shifted by some constant <span class="math notranslate nohighlight">\(\theta\)</span>. So we have, say, <span class="math notranslate nohighlight">\(F_{Y}(x)=F_{X}(x-\theta)\)</span>. In this case we are testing <span class="math notranslate nohighlight">\(H_{0}: \theta=0\)</span> against one of several possible alternatives incorporating the cases when <span class="math notranslate nohighlight">\(\theta&gt;0\)</span> (in which case we reject <span class="math notranslate nohighlight">\(H_{0}\)</span> if <span class="math notranslate nohighlight">\(W_{X}\)</span> is too small), <span class="math notranslate nohighlight">\(\theta&lt;0\)</span> (reject if <span class="math notranslate nohighlight">\(W_{X}\)</span> is too large) and <span class="math notranslate nohighlight">\(\theta \neq 0\)</span> (reject if <span class="math notranslate nohighlight">\(W_{X}\)</span> is too large or too small).</p>
+<p>Under <span class="math notranslate nohighlight">\(H_{0}\)</span>, the distribution of <span class="math notranslate nohighlight">\(W_{X}\)</span> can be found in various ways:</p>
+<ol class="arabic simple">
+<li><p>We can enumerate the possibilities. There are <span class="math notranslate nohighlight">\(\left(\begin{array}{c}n+m \\ n\end{array}\right)\)</span> ways of ordering the combined sample, each equally likely under <span class="math notranslate nohighlight">\(H_{0}\)</span>. We could therefore find the probabilities for each of the possible values of <span class="math notranslate nohighlight">\(W_{X}\)</span> under <span class="math notranslate nohighlight">\(H_{0}\)</span>. 2. Tables of critical values exist (see Neave, p.53 for example, though these tables are for <span class="math notranslate nohighlight">\(\left.U:=\min \left(W_{X}-\frac{1}{2} m(m+1), W_{Y}-\frac{1}{2} n(n+1)\right)\right)\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are reasonably large, then under <span class="math notranslate nohighlight">\(H_{0}\)</span> approximately</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+W_{X} \sim N\left(\frac{1}{2} n(n+m+1), \frac{1}{12} m n(m+n+1)\right) .
+\]</div>
+<p>If there are ties - two observations with the same value - we can use average ranks in the calculation of the test statistic <span class="math notranslate nohighlight">\(W_{X}\)</span>. Strictly, we ought to adjust the distribution under <span class="math notranslate nohighlight">\(H_{0}\)</span> accordingly, as although the mean does not change, <span class="math notranslate nohighlight">\(\operatorname{Var}\left(W_{X}\right)\)</span> is slightly reduced in the presence of ties. Some software packages make such an adjustment. Failure to adjust makes the test slightly more conservative in that it fails to reject <span class="math notranslate nohighlight">\(H_{0}\)</span> more often than it should.</p>
+<p>Example 2 Consider the case when <span class="math notranslate nohighlight">\(m=3\)</span> and <span class="math notranslate nohighlight">\(n=5\)</span>. There are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left(\begin{array}{l}
+8 \\
+3
+\end{array}\right)=\frac{8 !}{3 ! 5 !}=56
+\end{split}\]</div>
+<p>possible sequences of the <span class="math notranslate nohighlight">\(x_{i}\)</span> ‘s and <span class="math notranslate nohighlight">\(y_{i}\)</span> ‘s, each defining a sequence of ranks. So, for example, in the sequence <span class="math notranslate nohighlight">\((x, y, x, x, y, y, y, y)\)</span> the sum of the ranks of the <span class="math notranslate nohighlight">\(X\)</span> values is <span class="math notranslate nohighlight">\(1+3+4=8\)</span> (and the sum of the <span class="math notranslate nohighlight">\(Y\)</span> value ranks is 28). Under the null hypothesis, each the 56 possible sequences are equally likely, and hence we can enumerate the possible values of <span class="math notranslate nohighlight">\(W_{X}\)</span> :</p>
+<p>\begin{tabular}{c|c}
+<span class="math notranslate nohighlight">\(X\)</span> ranks &amp; <span class="math notranslate nohighlight">\(W_{X}\)</span> \
+\hline <span class="math notranslate nohighlight">\(1,2,3\)</span> &amp; 6 \
+<span class="math notranslate nohighlight">\(1,2,4\)</span> &amp; 7 \
+<span class="math notranslate nohighlight">\(1,3,4\)</span> &amp; 8 \
+<span class="math notranslate nohighlight">\(1,2,5\)</span> &amp; 8 \
+<span class="math notranslate nohighlight">\(2,3,4\)</span> &amp; 9 \
+<span class="math notranslate nohighlight">\(1,2,6\)</span> &amp; 9 \
+<span class="math notranslate nohighlight">\(1,3,5\)</span> &amp; 9 \
+<span class="math notranslate nohighlight">\(\vdots\)</span> &amp; <span class="math notranslate nohighlight">\(\vdots\)</span>
+\end{tabular}</p>
+<p>The probability distribution of the <span class="math notranslate nohighlight">\(W_{X}\)</span> values can now be found, and is as follows:</p>
+<p>\begin{tabular}{c|cccccc}
+<span class="math notranslate nohighlight">\(W_{X}\)</span> &amp; 6 &amp; 7 &amp; 8 &amp; 9 &amp; 10 &amp; <span class="math notranslate nohighlight">\(\cdots\)</span> \
+\hline Probability &amp; <span class="math notranslate nohighlight">\(\frac{1}{56}\)</span> &amp; <span class="math notranslate nohighlight">\(\frac{1}{56}\)</span> &amp; <span class="math notranslate nohighlight">\(\frac{2}{56}\)</span> &amp; <span class="math notranslate nohighlight">\(\frac{3}{56}\)</span> &amp; <span class="math notranslate nohighlight">\(\frac{4}{56}\)</span> &amp; <span class="math notranslate nohighlight">\(\cdots\)</span>
+\end{tabular}</p>
+<p>To test for no difference in the locations of <span class="math notranslate nohighlight">\(F_{X}\)</span> and <span class="math notranslate nohighlight">\(F_{Y}\)</span> against the alternative of a shift to the left in <span class="math notranslate nohighlight">\(F_{X}\)</span>, we would have a critical region including small values of <span class="math notranslate nohighlight">\(W_{X}\)</span>. Taking <span class="math notranslate nohighlight">\(W_{X}=6,7,8\)</span> as the critical region would define a test with significance level <span class="math notranslate nohighlight">\(\alpha=\frac{4}{56}\)</span>. For a two-sided test, a critical region of <span class="math notranslate nohighlight">\(\{6,7,20,21\}\)</span> would have significance level <span class="math notranslate nohighlight">\(\alpha=\frac{4}{56}\)</span>.</p>
+<p>Example 3 A married couple often play a computer game “Diamond Wonderland”, and they differ as to which, if either of them, is the better at the game. A random sample of five scores from the husband <span class="math notranslate nohighlight">\((X)\)</span> and four from the wife <span class="math notranslate nohighlight">\((Y)\)</span> are given below, rounded to the nearest thousand.</p>
+<p>\begin{tabular}{c|c}
+<span class="math notranslate nohighlight">\(X\)</span> &amp; <span class="math notranslate nohighlight">\(Y\)</span> \
+\hline 5 &amp; 9 \
+7 &amp; 11 \
+13 &amp; 10 \
+8 &amp; 17 \
+4 &amp;
+\end{tabular}</p>
+<p>The null hypothesis is that the two sets of scores come from the same distribution, <span class="math notranslate nohighlight">\(H_{0}: F_{X}=F_{Y}\)</span>, and the alternative is <span class="math notranslate nohighlight">\(H_{A}: F_{X}(x)=F_{Y}(x-\theta)\)</span> for some <span class="math notranslate nohighlight">\(\theta \neq 0\)</span>, so that either the husband or wife being better are viable alternatives to the null. We can replace the data with their rankings as follows</p>
+<p>\begin{tabular}{c|c}
+<span class="math notranslate nohighlight">\(R_{X}\)</span> &amp; <span class="math notranslate nohighlight">\(R_{Y}\)</span> \
+\hline 2 &amp; 5 \
+3 &amp; 7 \
+8 &amp; 6 \
+4 &amp; 9 \
+1 &amp;
+\end{tabular}</p>
+<p>and note that <span class="math notranslate nohighlight">\(W_{X}=18\)</span>. Is this value consistent with the null hypothesis? There are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left(\begin{array}{l}
+9 \\
+5
+\end{array}\right)=126
+\end{split}\]</div>
+<p>ways the husband’s five scores could appear in the nine, all equally likely under the null hypothesis; we observe the arrangement <span class="math notranslate nohighlight">\((x, x, x, x, y, y, y, x, y)\)</span> here. The value of <span class="math notranslate nohighlight">\(W_{X}\)</span> can be as low as 15 (the arrangement <span class="math notranslate nohighlight">\((x, x, x, x, x, y, y, y, y)\)</span> ) and as high as 35 (when the husband’s scores are the five highest values). In fact there are seven arrangements with <span class="math notranslate nohighlight">\(W_{X} \leq 18\)</span>. As we are taking a two-sided alternative, the upper tail must also be considered - the values of <span class="math notranslate nohighlight">\(W_{X} \geq 32\)</span>, and by symmetry there are seven such arrangements. So there are 14 out of the 126 possible arrangements at least as inconsistent with the null hypothesis as the one actually observed. Collectively these have probabability 0.111 under <span class="math notranslate nohighlight">\(H_{0}\)</span>, this being the <span class="math notranslate nohighlight">\(p\)</span>-value of the statistic. Therefore there is only weak evidence against the null hypothesis that the scores of the husband and wife follow the same distribution.</p>
+<p>Remark 2 If ties had occurred in the data above, we assign the average of the ranks that would have been assigned had the tied values been different. For instance, in the above example suppose the data been as follows:</p>
+<p>\begin{tabular}{c|c}
+<span class="math notranslate nohighlight">\(X\)</span> &amp; <span class="math notranslate nohighlight">\(Y\)</span> \
+\hline 5 &amp; 8 \
+7 &amp; 11 \
+13 &amp; 10 \
+8 &amp; 17 \
+4 &amp;
+\end{tabular}</p>
+<p>Now the lowest score of the wife ties with a score of her husband. We note these observations had ranks 4 and 5 originally so now are jointly ranked 4 , and we can simply assign each rank 4.5:</p>
+<p>\begin{tabular}{c|c}
+<span class="math notranslate nohighlight">\(R_{X}\)</span> &amp; <span class="math notranslate nohighlight">\(R_{Y}\)</span> \
+\hline 2 &amp; 4.5 \
+3 &amp; 7 \
+8 &amp; 6 \
+4.5 &amp; 9 \
+1 &amp;
+\end{tabular}</p>
+<p>We can then proceed as before, although the sampling distribution of <span class="math notranslate nohighlight">\(W_{X}\)</span> changes slightly due to the tie. If there are many ties though the test may perform poorly, something to keep in mind when using the procedure.</p>
+<p>Remark 3 Here, as in most other nonparametric tests, it is often not possible to construct a test with a specific, exact significance level <span class="math notranslate nohighlight">\(\alpha\)</span>. This is because the test statistic is a discrete random variable. Remark 4 The rank sum test is often misused. Under the null hypothesis, the distributions underlying the two data sets must be such that <span class="math notranslate nohighlight">\(W_{X}\)</span> and <span class="math notranslate nohighlight">\(W_{Y}\)</span> have the same distribution when the sample sizes are equal. Two distributions <span class="math notranslate nohighlight">\(F_{X}\)</span> and <span class="math notranslate nohighlight">\(F_{Y}\)</span> could have the same mean (or median) and yet provide different distributions for <span class="math notranslate nohighlight">\(W_{X}\)</span> and <span class="math notranslate nohighlight">\(W_{Y}\)</span>.</p>
+<p>The R command wilcox.test can be used to peform both this test and the signed rank test that follows. Somewhat superior, particular when there are ties in the data, is the function wilcox.exact in the exactRankTests package.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nonpara"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
