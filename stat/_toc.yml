@@ -2,21 +2,21 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: 0intro
 parts:
 - caption: Basics
   numbered: True
   chapters:
-  - file: stat\Basics\1statintro.md
-  - file: stat\Basics\2sampling.md
-  - file: stat\Basics\3prob.md
-  - file: stat\Basics\4ranvar.md
-  - file: stat\Basics\5lin.md
-  - file: stat\Basics\6inf.md
+  - file: Basics/1statintro.md
+  - file: Basics/2sampling.md
+  - file: Basics/3prob.md
+  - file: Basics/4ranvar.md
+  - file: Basics/5lin.md
+  - file: Basics/6inf.md
 - caption: Nonparametric Methods
   numbered: True
   chapters:
-  - file: stat\nonpara\1signtest.md
-  - file: stat\nonpara\2ranksumtest.md
-  - file: stat\nonpara\3kruskaltest.md
-  - file: stat\nonpara\4permtest.md
+  - file: nonpara/1signtest.md
+  - file: nonpara/2ranksumtest.md
+  - file: nonpara/3kruskaltest.md
+  - file: nonpara/4permtest.md

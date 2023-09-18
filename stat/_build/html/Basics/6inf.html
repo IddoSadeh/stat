@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7. Inference &#8212; My Statistics Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Basics/6inf';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. The Sign Test" href="../nonpara/1signtest.html" />
+    <link rel="prev" title="6. Linear Relationships" href="5lin.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Statistics Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FBasics/6inf.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Basics/6inf.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Inference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">7.1. The Normal Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-estimation-and-confidence-intervals">7.2. Point Estimation and Confidence Intervals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">7.3. Hypothesis Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">7.4. The Central Limit Theorem</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="inference">
+<h1><span class="section-number">7. </span>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">#</a></h1>
+<p>Inference is the art of making deductions using statistics.</p>
+<div class="section" id="the-normal-distribution">
+<h2><span class="section-number">7.1. </span>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
+<p>The probability density function for a distribution of the form <span class="math notranslate nohighlight">\(N(\mu,\sigma^2)\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}\]</div>
+<p>As a general rule of thumb, in normal distibutions, about 68% of the area under the density curve is within one standard deviation of the mean, 95% within two standard deviations, and 99% within three standard deviations.</p>
+<p>The region with in two standard deviations of the mean is called the <strong>95% confidence interval</strong>. This means that given a normal distribution, we are 95% confident a value from the data was within the region defined by the 95% confidence interval.</p>
+</div>
+<div class="section" id="point-estimation-and-confidence-intervals">
+<h2><span class="section-number">7.2. </span>Point Estimation and Confidence Intervals<a class="headerlink" href="#point-estimation-and-confidence-intervals" title="Permalink to this headline">#</a></h2>
+<ul>
+<li><p>The mean <span class="math notranslate nohighlight">\(\mu\)</span> can be estiamted as the sample mean <span class="math notranslate nohighlight">\(\bar{x}\)</span>.</p>
+<p>The sample mean is given by the following equation: $<span class="math notranslate nohighlight">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i \)</span>$</p>
+<p>If we opt for estimating the mean with the sample mean, then we define <span class="math notranslate nohighlight">\(\bar{x} \sim N(\mu,\frac{\sigma^2}{n})\)</span>. This reminds us that the sampl mean varies from sample to sample.</p>
+</li>
+<li><p>We can estimate the variance <span class="math notranslate nohighlight">\(\sigma^2\)</span> for a sample with the following equation: $<span class="math notranslate nohighlight">\(s_a^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2\)</span>$</p>
+<p>Recall: $<span class="math notranslate nohighlight">\(\sum_{i=1}^n(x_i-\bar{x})^2= \sum_{i=1}^n x_i-n\bar{x}^2\)</span>$</p>
+</li>
+<li><p>Confidence intervals for <span class="math notranslate nohighlight">\(\sigma^2\)</span> can be calculated with the help of the the chi-sqaured distrubtion:$<span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^n(x-\bar{x})^2}{\chi_{n-1}^2(1-\alpha /2)} &lt; \sigma^2 &lt; \frac{\sum_{i=1}^n(x-\bar{x})^2}{\chi_{n-1}^2(\alpha /2)} \)</span><span class="math notranslate nohighlight">\(
+  Where \)</span>n<span class="math notranslate nohighlight">\( is the sample size, and \)</span>\alpha/2<span class="math notranslate nohighlight">\( and \)</span>1-\alpha/2<span class="math notranslate nohighlight">\( are the percentile points for the \)</span>\chi^2$ distribution.</p>
+<p>The tables for the Chi-squared distribution tend to be of the percentile points. That is, you provide a probability (or percentile) and table tells you the value on the horizontal axis such that the area under to the curve to the left of that point is the probability you chose. i.e. if <span class="math notranslate nohighlight">\(Y\sim\chi^2_6\)</span>, then tables tell us that <span class="math notranslate nohighlight">\(P(Y&lt;2.753)=0.40\)</span> so we would callue the value 2.753 the 40 percentile point of the given distribution. Hence <span class="math notranslate nohighlight">\(\chi^2_6(0.40)=2.753\)</span>.</p>
+</li>
+<li><p>The assumption that the variable $<span class="math notranslate nohighlight">\(\frac{\bar{x}-\mu}{s_a/\sqrt{n}}\)</span><span class="math notranslate nohighlight">\( takes the standard Normal distribution is not enitrely accurate when the sample size \)</span>n$ is less than 20.</p>
+<p>So when asked to find an unkown in the variable, we can use the t distribtution tables to look up the solution. The t table lookup is similat to the chi squared lookup in the following ways:</p>
+<ul class="simple">
+<li><p>The degrees of freedom are 1 less than the sample size.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(\alpha\)</span> value in <span class="math notranslate nohighlight">\(t_n(\alpha)\)</span> is the percentile point for which we want to find the area underneath the curve left of the result.</p></li>
+</ul>
+<p>For example:</p>
+<p>The duration of time nine students in a hall of residence revised for an examination had an average of 19.0 hours, the standard deviation being 2.7. Assuming an underlying Normal distribution, to find a <span class="math notranslate nohighlight">\(95 \%\)</span> confidence interval for the mean amount of time spent revising, determine</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\bar{x}-\mu}{s_{a} / \sqrt{n}}=\frac{19-\mu}{2.7 / \sqrt{9}}
+    \]</div>
+<p>and compare this to the <span class="math notranslate nohighlight">\(t_{8}\)</span> distribution. Now the upper and lower percentiles required here are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{aligned}
+    &amp; t_{8}(0.025)=-2.306 \\
+    &amp; t_{8}(0.975)=2.306
+    \end{aligned}
+    \end{split}\]</div>
+<p>(note the symmetry), hence</p>
+<div class="math notranslate nohighlight">
+\[
+    -2.306&lt;\frac{\bar{x}-\mu}{s_{a} / \sqrt{9}}&lt;2.306
+    \]</div>
+<p>with probability 0.95. Rearranging, we find</p>
+<div class="math notranslate nohighlight">
+\[
+    16.925&lt;\mu&lt;21.075
+    \]</div>
+<p>is the required interval.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="hypothesis-testing">
+<h2><span class="section-number">7.3. </span>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">#</a></h2>
+<p><span class="math notranslate nohighlight">\(H_0\)</span> - nuul hypothesis.</p>
+<p><span class="math notranslate nohighlight">\(H_1\)</span> - alternative hypothesis.</p>
+<p>It is hard to prove a hypothesis true, but we may prove it is false without a doubt.</p>
+<p><span class="math notranslate nohighlight">\(H_0\)</span> is assumed to be true unless the evidence points against it.</p>
+<p>When assesing the evidence in favour of <span class="math notranslate nohighlight">\(H_0\)</span> being true, there are two types of errors:</p>
+<ul class="simple">
+<li><p>type 1 error - we reject <span class="math notranslate nohighlight">\(H_0\)</span> when it is true. We denote the probability of this event as <span class="math notranslate nohighlight">\(/alpha\)</span>. This error is equivalent of convicting an innocent defendant in trial.</p></li>
+<li><p>type 2 error -the accepatnce of <span class="math notranslate nohighlight">\(H_0\)</span> when it is false.  We denote the probability of this event as <span class="math notranslate nohighlight">\(/beta\)</span>. This error is equivalent of acquitting a guilty defendant in trial.</p></li>
+<li><p>the <strong>size</strong> of the test is the probability of type 1 error.</p></li>
+<li><p>the <strong>power</strong> of the test is one minus the probability of a type 2 error.</p></li>
+<li><p>The value of <span class="math notranslate nohighlight">\(\alpha\)</span> chosen for a test is called the <strong>significance</strong> level. Often chosen at <span class="math notranslate nohighlight">\(0.05\)</span>, which means we would expect to reject <span class="math notranslate nohighlight">\(H_0\)</span> when it is true about one in twenty times.</p></li>
+<li><p>In other words, if the null hypothesis is true, and we repeatedly took many samples and calculated the test statistic each time, about 5% of those test statistics would fall in the critical region just by chance. These would be instances where we would incorrectly reject the null hypothesis, assuming it is actually true.</p></li>
+</ul>
+<p>The outcome of a hypothesis test that is often stated is the <strong>p value</strong>. The p value is ht eporbability of observing a test statistic as least as inconsistent with the <span class="math notranslate nohighlight">\(H_0\)</span> observed.</p>
+<p>When testing a hypohtesis about the mean of a Normal distribution, if the variance is unkown and the sample size if fairly small (&lt;25), the <strong>t test</strong> should be used. The t-test is done by estimating the variance as: $<span class="math notranslate nohighlight">\(S_A^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i-x\bar{x})^2\)</span>$</p>
+<p>and then use the t distribution on n-1 degrees of freedom rather than the standard normal.  In other word, if <span class="math notranslate nohighlight">\(H_0: \mu_x=\mu\)</span> is true than $<span class="math notranslate nohighlight">\(\frac{\bar{x}-\mu}{s_a/\sqrt{n}}\sim t_{n-1}\)</span>$</p>
+<p>To summarize the steps to perform a t-test:</p>
+<ol class="arabic simple">
+<li><p>Calculate the mean of the sample <span class="math notranslate nohighlight">\(\bar{x}\)</span>. 2. Find the adjusted sample variance <span class="math notranslate nohighlight">\(s_{a}^{2}\)</span> and its square root, the adjusted standard deviation <span class="math notranslate nohighlight">\(s_{a}\)</span>.</p></li>
+<li><p>Work out the value of $<span class="math notranslate nohighlight">\(
+\frac{\bar{x}-\mu_{0}}{s_{a} / \sqrt{n}}\)</span><span class="math notranslate nohighlight">\( Call its value \)</span>t$, say.</p></li>
+<li><p>We must compare the value of <span class="math notranslate nohighlight">\(t\)</span> with the <span class="math notranslate nohighlight">\(t\)</span> distribution on <span class="math notranslate nohighlight">\(n-1\)</span> degrees of freedom. If the null hypothesis is true, <span class="math notranslate nohighlight">\(t\)</span> should be consistent with <span class="math notranslate nohighlight">\(t_{n-1}\)</span>. Otherwise, the value of <span class="math notranslate nohighlight">\(t\)</span> is likely to be too large or too small, depending what the alternative hypothesis <span class="math notranslate nohighlight">\(H_{1}\)</span> suggests. Find your set of tables of the <span class="math notranslate nohighlight">\(t\)</span> distribution, and locate the line giving the percentile points for the case with <span class="math notranslate nohighlight">\(n-1\)</span> degrees of freedom.</p></li>
+<li><p>Decide what the critical region of the test should be for the given alternative hypothesis and chosen significance level. Is it values of <span class="math notranslate nohighlight">\(t\)</span> too large, too small or both that comprise the rejection zone for <span class="math notranslate nohighlight">\(H_{0}\)</span> ? That is, decide whether the critical region is one- or two-sided, and find the region for your test using the tables.</p></li>
+<li><p>Decide whether the value of <span class="math notranslate nohighlight">\(t\)</span> you have calculated lies in or out of the critical region. If it lies inside the critical region, you must reject <span class="math notranslate nohighlight">\(H_{0}\)</span>. Otherwise, the null hypothesis is accepted.</p></li>
+</ol>
+<p>Often it is necessary to compare the sample values from two populations. In this case, unless otherwise stated, the two samples are assumed to be independant of one another and we denote the sample sizes and means as <span class="math notranslate nohighlight">\(n_X\)</span>, <span class="math notranslate nohighlight">\(n_Y\)</span>, <span class="math notranslate nohighlight">\(\bar{x}\)</span>, and <span class="math notranslate nohighlight">\(\bar{y}\)</span> respectivley.</p>
+<ul>
+<li><p>In this case, if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, with $<span class="math notranslate nohighlight">\(X \sim N(\mu_X,\sigma_X^2)\)</span><span class="math notranslate nohighlight">\( \)</span><span class="math notranslate nohighlight">\(Y \sim N(\mu_Y,\sigma_Y^2)\)</span><span class="math notranslate nohighlight">\( Then \)</span><span class="math notranslate nohighlight">\(X-Y \sim N(\mu_X-\mu_Y,\sigma_X^2+\sigma_Y^2)\)</span><span class="math notranslate nohighlight">\(
+and the sample means follow: \)</span><span class="math notranslate nohighlight">\(\bar{x}-\bar{y} \sim N(\mu_X-\mu_Y,\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}\)</span>$</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\sigma_{X}^{2}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{Y}^{2}\)</span> are unknown, as will usually be the case, and furthermore if</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(n_{X}\)</span> and <span class="math notranslate nohighlight">\(n_{Y}\)</span> are small (less than twenty, as a rule of thumb) and</p></li>
+<li><p>it is reasonable to assume that <span class="math notranslate nohighlight">\(\sigma_{X}^{2}=\sigma_{Y}^{2}=\sigma^{2}\)</span> (say)</p></li>
+</ol>
+<p>Then here, as in the case for inferences about a single Normal mean, results can be drawn on comparison of a suitable statistic with an appropriate <span class="math notranslate nohighlight">\(t\)</span> distribution. If <span class="math notranslate nohighlight">\(n=n_{X}+n_{Y}\)</span> is the total sample size, then $<span class="math notranslate nohighlight">\(\frac{(\bar{x}-\bar{y})-\left(\mu_{X}-\mu_{Y}\right)}{\sqrt{\frac{s_{p}^{2}}{n_{X}}+\frac{s_{p}^{2}}{n_{Y}}}} \sim t_{n-2}\)</span><span class="math notranslate nohighlight">\( in which \)</span><span class="math notranslate nohighlight">\( s_{p}^{2}:=\frac{\left(n_{X}-1\right) s_{a, X}^{2}+\left(n_{Y}-1\right) s_{a, Y}^{2}}{\left(n_{X}-1\right)+\left(n_{Y}-1\right)}\)</span><span class="math notranslate nohighlight">\( is the pooled estimate of the unknown variance \)</span>\sigma^{2}$, i.e., the weighted mean of the two sample estimates.</p>
+</li>
+</ul>
+<p>Sometimes we are interested in making inference about two population means
+based on samples of equal size where the data must be treated in pairs.</p>
+<ul>
+<li><p>In this case, we assume there are <span class="math notranslate nohighlight">\(n\)</span> pairs of observations, <span class="math notranslate nohighlight">\(\left(x_{1}, y_{1}\right), \ldots,\left(x_{n}, y_{n}\right)\)</span>, and we are interested in the difference in the underlying population means, <span class="math notranslate nohighlight">\(\mu_{X}-\mu_{Y}\)</span>. We calculate the <span class="math notranslate nohighlight">\(n\)</span> differences <span class="math notranslate nohighlight">\(d_{i}=x_{i}-y_{i}\)</span>, and find the mean difference <span class="math notranslate nohighlight">\(\bar{d}\)</span>. As the differences might reasonably take a Normal distribution (at least approximately by the CLT if <span class="math notranslate nohighlight">\(n\)</span> is reasonably large even when <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> themselves are not Normal), inference is based on</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\bar{d}-\left(\mu_{X}-\mu_{Y}\right)}{s_{d} / \sqrt{n}} \sim t_{n-1},
+    \]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+    s_{d}^{2}:=\frac{1}{n-1} \sum_{i=1}^{n}\left(d_{i}-\bar{d}\right)^{2} .
+    \]</div>
+<p>Hence, for example, a <span class="math notranslate nohighlight">\(100(1-\alpha) \%\)</span> confidence interval for <span class="math notranslate nohighlight">\(\mu_{X}-\mu_{Y}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+    \bar{d} \pm t_{n-1}(\alpha / 2) \frac{s_{d}}{\sqrt{n}} .
+    \]</div>
+</li>
+</ul>
+</div>
+<div class="section" id="the-central-limit-theorem">
+<h2><span class="section-number">7.4. </span>The Central Limit Theorem<a class="headerlink" href="#the-central-limit-theorem" title="Permalink to this headline">#</a></h2>
+<p>his Chapter is concerned with statistical inference about data that are assumed to be from a Normal distribution. Hence a histogram of any data set appropriate for the methods described should, at least approximately, resemble the familiar “bell—shape” of the Normal density function.</p>
+<p>The central limit theorem states the provided a sample size <span class="math notranslate nohighlight">\(n\)</span> is reasonably large (30 or so should be adequete), the distribution of a sample mean is always Normal:</p>
+<div class="math notranslate nohighlight">
+\[\bar{x} \sim N(\mu,\frac{\sigma^2}{n}\]</div>
+<p>and hence:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\bar{x}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="5lin.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Linear Relationships</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../nonpara/1signtest.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>The Sign Test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">7.1. The Normal Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-estimation-and-confidence-intervals">7.2. Point Estimation and Confidence Intervals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">7.3. Hypothesis Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">7.4. The Central Limit Theorem</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

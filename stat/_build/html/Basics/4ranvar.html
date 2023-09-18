@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Random Variables and Probability Distributions &#8212; My Statistics Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Basics/4ranvar';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Linear Relationships" href="5lin.html" />
+    <link rel="prev" title="4. Probability" href="3prob.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Statistics Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3prob.html">4. Probability</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FBasics/4ranvar.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Basics/4ranvar.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Random Variables and Probability Distributions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-mass-function-pmf">5.1. Probability Mass Function (pmf)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binomial-distribution">5.2. The Binomial Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">5.3. The Poisson Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">5.4. Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cummalitive-distibution-function-cdf">5.4.1. The cummalitive distibution function (cdf)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poission-approximation-to-the-binomial">5.5. The Poission approximation to the Binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">5.6. The Normal Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-deviation">5.6.1. The Standard Deviation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-normals">5.6.2. Sums of Normals</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="random-variables-and-probability-distributions">
+<h1><span class="section-number">5. </span>Random Variables and Probability Distributions<a class="headerlink" href="#random-variables-and-probability-distributions" title="Permalink to this headline">#</a></h1>
+<p>A random variable is a variable whose possible outcomes are outcomes of a random phenomenon. It is a function that maps a sample space to real numbers. For example:</p>
+<ul>
+<li><p>Toin coss</p>
+<p>The sample space for a coing toss is <span class="math notranslate nohighlight">\(S=\{H,T\}\)</span> so we can define a random variable <span class="math notranslate nohighlight">\(X\)</span> as: $<span class="math notranslate nohighlight">\(X= \begin{cases}1 &amp; \text { if } H \\ 0 &amp; \text { if } T .\end{cases}\)</span><span class="math notranslate nohighlight">\(
+  In this case \)</span>P(X=1)=P(H)$.</p>
+<p>If we toss two coins than the sample space is <span class="math notranslate nohighlight">\(S=\{\{H,H\} ,\{H,T\} , \{T,H\} , \{T,T\}\}\)</span>. If we define the random vairable as the number of heads recorded we get: $<span class="math notranslate nohighlight">\( \begin{aligned}&amp; P(X=0)=\frac{1}{4} \\&amp; P(X=1)=\frac{1}{2} \\&amp; P(X=2)=\frac{1}{4} .\end{aligned}\)</span>$</p>
+</li>
+</ul>
+<div class="section" id="probability-mass-function-pmf">
+<h2><span class="section-number">5.1. </span>Probability Mass Function (pmf)<a class="headerlink" href="#probability-mass-function-pmf" title="Permalink to this headline">#</a></h2>
+<p>When the random variable can take on only discrete (countable) values, the distribution of the random variable is described by a probability mass function denoted <span class="math notranslate nohighlight">\(p(x)\)</span>. That is:
+$<span class="math notranslate nohighlight">\(p(x)=P(X=x)\)</span>$</p>
+<p>For any mass function, <span class="math notranslate nohighlight">\(\sum_x p(x) = 1\)</span></p>
+</div>
+<div class="section" id="the-binomial-distribution">
+<h2><span class="section-number">5.2. </span>The Binomial Distribution<a class="headerlink" href="#the-binomial-distribution" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Sequence of independent trials with two possible outcomes.</p></li>
+<li><p>The two even are complementary events.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(P(k \text{ success in } n \text{ trails}) = {n \choose k}p^kq^{n-k}\)</span>
+where <span class="math notranslate nohighlight">\(p\)</span> is the probability of the event occuring (success) and <span class="math notranslate nohighlight">\(k\)</span> is th probability of the event not occuring (failure).</p>
+<p>The above equation defines the Binomial distribution with n trials and the probability of a single successs being p. This is denoted <span class="math notranslate nohighlight">\(B(n,p)\)</span> for short.</p>
+<p>Often the symbol <span class="math notranslate nohighlight">\(\sim\)</span> is used for shorthand: is distibuted as, hence <span class="math notranslate nohighlight">\(X \sim B(n,p)\)</span> is read as “X is a random variable distributed as a binomial distribution with n trials and the probability of success p.”</p>
+<p>Example Questions:</p>
+<p><strong>Exercise 1</strong> The probability of a missile hitting a warship on a single shot is
+0.6, and three hits are required to put the warship out of action. If a salvo
+of six missiles are fired at the warship, what is the probability of putting the
+ship out of action?</p>
+<p><strong>Exercise 2</strong> A batch of galvanised washers are guaranteed to be 2% defective,
+at most. Assuming this assertion is correct, in a sample of ten what is the
+probability of observing at least two defectives?</p>
+<p><strong>Exercise 3</strong> You are told that nine out of ten doctors will prescribe a drug.
+Assuming this is true, if you choose four doctors at random, what is the
+probability that no more than two of these will prescribe the drug?</p>
+<p>To solve these problems, we can use the binomial probability formula, which is:</p>
+<p><span class="math notranslate nohighlight">\(
+P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{(n-k)}
+\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(P(X = k)\)</span> is the probability of <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> trials, <span class="math notranslate nohighlight">\(p\)</span> is the probability of success on a single trial, and <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> is the binomial coefficient, often read as “n choose k.”</p>
+<p><strong>Exercise 1 Solution</strong></p>
+<p>In this case, <span class="math notranslate nohighlight">\(n = 6\)</span> (the number of missiles), <span class="math notranslate nohighlight">\(p = 0.6\)</span> (the probability of a hit), and we want to find the probability of getting at least 3 hits.</p>
+<p><span class="math notranslate nohighlight">\(
+P(X \geq 3) = 1 - [P(X=0) + P(X=1) + P(X=2)]
+\)</span></p>
+<p>Calculating each term:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(X=0) = \binom{6}{0} \times 0.6^0 \times 0.4^6 = 1 \times 1 \times 0.004096 = 0.004096\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(X=1) = \binom{6}{1} \times 0.6^1 \times 0.4^5 = 6 \times 0.6 \times 0.01024 = 0.036864\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(X=2) = \binom{6}{2} \times 0.6^2 \times 0.4^4 = 15 \times 0.36 \times 0.0256 = 0.13824\)</span></p></li>
+</ul>
+<p>Adding these up: <span class="math notranslate nohighlight">\(0.004096 + 0.036864 + 0.13824 = 0.1792\)</span></p>
+<p>Finally, <span class="math notranslate nohighlight">\(P(X \geq 3) = 1 - 0.1792 = 0.8208\)</span></p>
+<p><strong>Exercise 2 Solution</strong></p>
+<p>Here, <span class="math notranslate nohighlight">\(n = 10\)</span>, <span class="math notranslate nohighlight">\(p = 0.02\)</span>, and we want to find <span class="math notranslate nohighlight">\(P(X \geq 2)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(
+P(X \geq 2) = 1 - [P(X=0) + P(X=1)]
+\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(X=0) = \binom{10}{0} \times 0.02^0 \times 0.98^{10} = 1 \times 1 \times 0.817072 = 0.817072\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(X=1) = \binom{10}{1} \times 0.02^1 \times 0.98^9 = 10 \times 0.02 \times 0.8342 = 0.167\)</span></p></li>
+</ul>
+<p>Adding these up: <span class="math notranslate nohighlight">\(0.817072 + 0.167 = 0.984072\)</span></p>
+<p>Finally, <span class="math notranslate nohighlight">\(P(X \geq 2) = 1 - 0.984072 = 0.015928\)</span></p>
+<p><strong>Exercise 3 Solution</strong></p>
+<p>Here, <span class="math notranslate nohighlight">\(n = 4\)</span>, <span class="math notranslate nohighlight">\(p = 0.9\)</span>, and we want to find <span class="math notranslate nohighlight">\(P(X \leq 2)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(
+P(X \leq 2) = P(X=0) + P(X=1) + P(X=2)
+\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(X=0) = \binom{4}{0} \times 0.9^0 \times 0.1^4 = 1 \times 1 \times 0.0001 = 0.0001\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(X=1) = \binom{4}{1} \times 0.9^1 \times 0.1^3 = 4 \times 0.9 \times 0.001 = 0.0036\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(X=2) = \binom{4}{2} \times 0.9^2 \times 0.1^2 = 6 \times 0.81 \times 0.01 = 0.0486\)</span></p></li>
+</ul>
+<p>Adding these up: <span class="math notranslate nohighlight">\(0.0001 + 0.0036 + 0.0486 = 0.0523\)</span></p>
+<p>So, <span class="math notranslate nohighlight">\(P(X \leq 2) = 0.0523\)</span></p>
+</div>
+<div class="section" id="the-poisson-distribution">
+<h2><span class="section-number">5.3. </span>The Poisson Distribution<a class="headerlink" href="#the-poisson-distribution" title="Permalink to this headline">#</a></h2>
+<p>This distribution is used for events that are discrete and occur over time.</p>
+<p>We denote the mean number events over some duration <span class="math notranslate nohighlight">\(T\)</span> as <span class="math notranslate nohighlight">\(\lambda\)</span>. The Poisson distribution with mean <span class="math notranslate nohighlight">\(\lambda\)</span> is denoted <span class="math notranslate nohighlight">\(P_o(\lambda)\)</span>. If <span class="math notranslate nohighlight">\(X \sim P_o(\lambda)\)</span> then <span class="math notranslate nohighlight">\(P(X=x) = \frac{\lambda^xe^{-x}}{x!}\)</span> gives the probability of <span class="math notranslate nohighlight">\(x\)</span> occurences of the vent over a time interval of length <span class="math notranslate nohighlight">\(T\)</span></p>
+<p><strong>Example</strong>
+A waiter drops on average 2.4 dishes per hour. During an hour, what is the chance that he breaks (a) at most four dishes and (b) exactly four dishes, assuming a Poisson distribution for the breakages?</p>
+<p><strong>Solution</strong></p>
+<p>In this case, <span class="math notranslate nohighlight">\( \lambda = 2.4 \)</span> dishes per hour.</p>
+<ul>
+<li><p>(a) At most four dishes</p>
+<p>To find the probability that the waiter breaks at most four dishes, we sum the probabilities of breaking 0, 1, 2, 3, or 4 dishes:</p>
+<p><span class="math notranslate nohighlight">\(
+  P(X \leq 4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4)
+  \)</span></p>
+<p>Calculating each term:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( P(X=0) = \frac{2.4^0 \times e^{-2.4}}{0!} = \frac{1 \times e^{-2.4}}{1} \approx 0.0902 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( P(X=1) = \frac{2.4^1 \times e^{-2.4}}{1!} = 2.4 \times e^{-2.4} \approx 0.2165 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( P(X=2) = \frac{2.4^2 \times e^{-2.4}}{2!} = 1.2 \times e^{-2.4} \approx 0.2598 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( P(X=3) = \frac{2.4^3 \times e^{-2.4}}{3!} = 0.4 \times e^{-2.4} \approx 0.1039 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( P(X=4) = \frac{2.4^4 \times e^{-2.4}}{4!} = 0.1 \times e^{-2.4} \approx 0.0250 \)</span></p></li>
+</ul>
+<p>Adding these up: <span class="math notranslate nohighlight">\( 0.0902 + 0.2165 + 0.2598 + 0.1039 + 0.0250 \approx 0.6954 \)</span></p>
+</li>
+<li><p>(b) Exactly four dishes</p>
+<p>The probability of breaking exactly four dishes is <span class="math notranslate nohighlight">\( P(X=4) \)</span>, which we already calculated as approximately <span class="math notranslate nohighlight">\( 0.0250 \)</span>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="tables">
+<h2><span class="section-number">5.4. </span>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">#</a></h2>
+<p>Often the calculations are long and hard. Tables with precalculate values exist.</p>
+<div class="section" id="the-cummalitive-distibution-function-cdf">
+<h3><span class="section-number">5.4.1. </span>The cummalitive distibution function (cdf)<a class="headerlink" href="#the-cummalitive-distibution-function-cdf" title="Permalink to this headline">#</a></h3>
+<p>The cdf gives the probability of being less than or rqual to a given value:</p>
+<div class="math notranslate nohighlight">
+\[F(x) = P(X\leq x) = \sum_{k=0}^xp(k)\]</div>
+<p>This can be useful when looking for <span class="math notranslate nohighlight">\(p(x)\)</span>:
+$<span class="math notranslate nohighlight">\(p(x)= P(X=x) = P(X \leq x) -P(X\leq x-1) = F(x)-F(x-1)\)</span>$</p>
+<p>In short, say you are looking <span class="math notranslate nohighlight">\(p(x)\)</span>, you can find <span class="math notranslate nohighlight">\(F(x)\)</span> and <span class="math notranslate nohighlight">\(F(x-1)\)</span> in a table, and <span class="math notranslate nohighlight">\(p(x) =F(x)-F(x-1)\)</span>.</p>
+</div>
+</div>
+<div class="section" id="the-poission-approximation-to-the-binomial">
+<h2><span class="section-number">5.5. </span>The Poission approximation to the Binomial<a class="headerlink" href="#the-poission-approximation-to-the-binomial" title="Permalink to this headline">#</a></h2>
+<p>If <span class="math notranslate nohighlight">\(X \sim B(n,p) \)</span>, then provided that <span class="math notranslate nohighlight">\(n\)</span> is reasonably large (<span class="math notranslate nohighlight">\(&gt;30\)</span>) and <span class="math notranslate nohighlight">\(p\)</span> is comparativley small, so that thair product <span class="math notranslate nohighlight">\(np\)</span> is “moderate” in size (<span class="math notranslate nohighlight">\(\leq 7\)</span>) than approximately <span class="math notranslate nohighlight">\(X \sim P_o(np)\)</span></p>
+</div>
+<div class="section" id="the-normal-distribution">
+<h2><span class="section-number">5.6. </span>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
+<p>This distribution works for continous distibution. It depends on two paramters: mean (<span class="math notranslate nohighlight">\(\mu\)</span>) and variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>). The distibution is denoted <span class="math notranslate nohighlight">\(N(\mu,\sigma^2)\)</span>.</p>
+<p>For normal distibution, a pmf is not appropraite, and we use a probability density function (pdf). The curve formed for this density function is “bell-shaped”. A normal distibutiuon centerd and symmetric about zero is denoted <span class="math notranslate nohighlight">\(N(0,1)\)</span> and looks as following:</p>
+<p><img alt="Alt text" src="image-1.png" /></p>
+<p>The area under two points on the curve is probabilit of the event occuring between those two points, hence the area under the whole curve is 1.</p>
+<p>Tables exist for finding these probabilties, and the number in the table would be the are under the curve to the left of the value.</p>
+<p>If we are not dealing with a standard normal distibution (<span class="math notranslate nohighlight">\(N(0,1)\)</span>) we can standardize it by defining <span class="math notranslate nohighlight">\(Z = \frac{X-\mu}{\sigma}\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> will follow a standardised normal distribution (<span class="math notranslate nohighlight">\(Z \sim N(0,1)\)</span>). Doing this allows for using the table for <span class="math notranslate nohighlight">\(Z\)</span>.</p>
+<p>For example:</p>
+<p>Say we are given a distribtuion <span class="math notranslate nohighlight">\(N(400,50^2)\)</span>. We define <span class="math notranslate nohighlight">\(Z = \frac{X-400}{50}\)</span>. If we were to examine when <span class="math notranslate nohighlight">\(X&lt;360\)</span>, we will examine when <span class="math notranslate nohighlight">\(Z&lt;-0.8\)</span>. Now we can check a table to see what the are under a Normal probability density function is to the left of <span class="math notranslate nohighlight">\(-0.8\)</span>.</p>
+<div class="section" id="the-standard-deviation">
+<h3><span class="section-number">5.6.1. </span>The Standard Deviation<a class="headerlink" href="#the-standard-deviation" title="Permalink to this headline">#</a></h3>
+<p>As a general rule of thumb, in normal distibutions, about 68% of the area under the density curve is within one standard deviation of the mean, 95% within two standard deviations, and 99% within three standard deviations.</p>
+</div>
+<div class="section" id="sums-of-normals">
+<h3><span class="section-number">5.6.2. </span>Sums of Normals<a class="headerlink" href="#sums-of-normals" title="Permalink to this headline">#</a></h3>
+<p>If</p>
+<div class="math notranslate nohighlight">
+\[X \sim N(\mu_X,\sigma_X^2)\]</div>
+<div class="math notranslate nohighlight">
+\[Y \sim N(\mu_Y,\sigma_Y^2)\]</div>
+<p>are two independant Normal variabls then:</p>
+<div class="math notranslate nohighlight">
+\[X+Y \sim N(\mu_X+\mu_Y,\sigma_X^2+\sigma_Y^2)\]</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3prob.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Probability</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5lin.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Linear Relationships</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-mass-function-pmf">5.1. Probability Mass Function (pmf)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binomial-distribution">5.2. The Binomial Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">5.3. The Poisson Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">5.4. Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cummalitive-distibution-function-cdf">5.4.1. The cummalitive distibution function (cdf)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poission-approximation-to-the-binomial">5.5. The Poission approximation to the Binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">5.6. The Normal Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-deviation">5.6.1. The Standard Deviation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-normals">5.6.2. Sums of Normals</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
