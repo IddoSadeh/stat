@@ -164,6 +164,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/3kruskaltest.html">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/4permtest.html">11. Permutation Tests</a></li>
 </ul>
 
     </div>
@@ -386,8 +388,8 @@ document.write(`
 <p>A random variable is a variable whose possible outcomes are outcomes of a random phenomenon. It is a function that maps a sample space to real numbers. For example:</p>
 <ul>
 <li><p>Toin coss</p>
-<p>The sample space for a coing toss is <span class="math notranslate nohighlight">\(S=\{H,T\}\)</span> so we can define a random variable <span class="math notranslate nohighlight">\(X\)</span> as: $<span class="math notranslate nohighlight">\(X= \begin{cases}1 &amp; \text { if } H \\ 0 &amp; \text { if } T .\end{cases}\)</span><span class="math notranslate nohighlight">\(
-  In this case \)</span>P(X=1)=P(H)$.</p>
+<p>The sample space for a coing toss is <span class="math notranslate nohighlight">\(S=\{H,T\}\)</span> so we can define a random variable <span class="math notranslate nohighlight">\(X\)</span> as: $<span class="math notranslate nohighlight">\(X= \begin{cases}1 &amp; \text { if } H \\ 0 &amp; \text { if } T .\end{cases}\)</span>$</p>
+<p>In this case <span class="math notranslate nohighlight">\(P(X=1)=P(H)\)</span>.</p>
 <p>If we toss two coins than the sample space is <span class="math notranslate nohighlight">\(S=\{\{H,H\} ,\{H,T\} , \{T,H\} , \{T,T\}\}\)</span>. If we define the random vairable as the number of heads recorded we get: $<span class="math notranslate nohighlight">\( \begin{aligned}&amp; P(X=0)=\frac{1}{4} \\&amp; P(X=1)=\frac{1}{2} \\&amp; P(X=2)=\frac{1}{4} .\end{aligned}\)</span>$</p>
 </li>
 </ul>
@@ -510,7 +512,7 @@ $<span class="math notranslate nohighlight">\(p(x)= P(X=x) = P(X \leq x) -P(X\le
 <h2><span class="section-number">5.6. </span>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
 <p>This distribution works for continous distibution. It depends on two paramters: mean (<span class="math notranslate nohighlight">\(\mu\)</span>) and variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>). The distibution is denoted <span class="math notranslate nohighlight">\(N(\mu,\sigma^2)\)</span>.</p>
 <p>For normal distibution, a pmf is not appropraite, and we use a probability density function (pdf). The curve formed for this density function is “bell-shaped”. A normal distibutiuon centerd and symmetric about zero is denoted <span class="math notranslate nohighlight">\(N(0,1)\)</span> and looks as following:</p>
-<p><img alt="Alt text" src="image-1.png" /></p>
+<p><img alt="Alt text" src="../_images/image-1.png" /></p>
 <p>The area under two points on the curve is probabilit of the event occuring between those two points, hence the area under the whole curve is 1.</p>
 <p>Tables exist for finding these probabilties, and the number in the table would be the are under the curve to the left of the value.</p>
 <p>If we are not dealing with a standard normal distibution (<span class="math notranslate nohighlight">\(N(0,1)\)</span>) we can standardize it by defining <span class="math notranslate nohighlight">\(Z = \frac{X-\mu}{\sigma}\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> will follow a standardised normal distribution (<span class="math notranslate nohighlight">\(Z \sim N(0,1)\)</span>). Doing this allows for using the table for <span class="math notranslate nohighlight">\(Z\)</span>.</p>

@@ -4,7 +4,7 @@ When a statistical study is down on a population, this is called taking a *censu
 ## Variance
 Unlike the previous chapter, the variance for a sample is calculated differntly. It is sometimes called the quantity or the adjusted variance:
 
-    $s_a^2 = \frac{1}{n-1}\Sigma_{i=1}^{n}(x_i-\bar{x})^2$
+$$s_a^2 = \frac{1}{n-1}\Sigma_{i=1}^{n}(x_i-\bar{x})^2$$
 
 ## Types of Sampling
 

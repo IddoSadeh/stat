@@ -5,6 +5,7 @@ A random variable is a variable whose possible outcomes are outcomes of a random
 - Toin coss
 
     The sample space for a coing toss is $S=\{H,T\}$ so we can define a random variable $X$ as: $$X= \begin{cases}1 & \text { if } H \\ 0 & \text { if } T .\end{cases}$$
+    
     In this case $P(X=1)=P(H)$.
 
     If we toss two coins than the sample space is $S=\{\{H,H\} ,\{H,T\} , \{T,H\} , \{T,T\}\}$. If we define the random vairable as the number of heads recorded we get: $$ \begin{aligned}& P(X=0)=\frac{1}{4} \\& P(X=1)=\frac{1}{2} \\& P(X=2)=\frac{1}{4} .\end{aligned}$$
@@ -164,7 +165,7 @@ This distribution works for continous distibution. It depends on two paramters: 
 
 For normal distibution, a pmf is not appropraite, and we use a probability density function (pdf). The curve formed for this density function is "bell-shaped". A normal distibutiuon centerd and symmetric about zero is denoted $N(0,1)$ and looks as following:
 
-![Alt text](/image-1.png)
+![Alt text](../Basics/image-1.png)
 
 The area under two points on the curve is probabilit of the event occuring between those two points, hence the area under the whole curve is 1.
 

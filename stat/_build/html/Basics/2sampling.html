@@ -59,6 +59,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Basics/2sampling';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -162,6 +164,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/3kruskaltest.html">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/4permtest.html">11. Permutation Tests</a></li>
 </ul>
 
     </div>
@@ -374,9 +378,8 @@ document.write(`
 <div class="section" id="variance">
 <h2><span class="section-number">3.1. </span>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h2>
 <p>Unlike the previous chapter, the variance for a sample is calculated differntly. It is sometimes called the quantity or the adjusted variance:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$s_a^2 = \frac{1}{n-1}\Sigma_{i=1}^{n}(x_i-\bar{x})^2$
-</pre></div>
-</div>
+<div class="math notranslate nohighlight">
+\[s_a^2 = \frac{1}{n-1}\Sigma_{i=1}^{n}(x_i-\bar{x})^2\]</div>
 </div>
 <div class="section" id="types-of-sampling">
 <h2><span class="section-number">3.2. </span>Types of Sampling<a class="headerlink" href="#types-of-sampling" title="Permalink to this headline">#</a></h2>
