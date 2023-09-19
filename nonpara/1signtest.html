@@ -369,6 +369,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.3.5. Conclusion</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-test-activity-sheet">8.4. Sign Test Activity Sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-and-answers">8.4.1. Questions and Answers</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -468,6 +472,130 @@ Z = \frac{4 + \frac{1}{2} - \frac{15}{2}}{\sqrt{\frac{15}{4}}} = \frac{4.5 - 7.5
 <p>This should closely mirror the calculations and conclusions in the original example.</p>
 </div>
 </div>
+<div class="section" id="sign-test-activity-sheet">
+<h2><span class="section-number">8.4. </span>Sign Test Activity Sheet<a class="headerlink" href="#sign-test-activity-sheet" title="Permalink to this headline">#</a></h2>
+<p>Suppose a school wants to test the effectiveness of a new teaching method for improving math scores. They randomly select 12 pairs of similar classes. One class in each pair uses the new teaching method, while the other sticks to the traditional method. After a semester, they compare the average improvement in test scores for each pair. A “+” indicates that the class with the new method showed greater improvement, and a “-” indicates the opposite.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class pair</p></th>
+<th class="head"><p>Outcome</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>+</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="questions-and-answers">
+<h3><span class="section-number">8.4.1. </span>Questions and Answers<a class="headerlink" href="#questions-and-answers" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Purpose of the Study</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What was the aim of this study?</p></li>
+<li><p><strong>Answer</strong>: The study aimed to assess the effectiveness of a new teaching method on improving math scores.</p></li>
+</ul>
+</li>
+<li><p><strong>Type of Study</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What type of study is this?</p></li>
+<li><p><strong>Answer</strong>: This is an experimental study.</p></li>
+</ul>
+</li>
+<li><p><strong>Null Hypothesis</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What would be your null hypothesis based on the given data?</p></li>
+<li><p><strong>Answer</strong>: The null hypothesis states that there is no difference in the improvement of math scores between the new and traditional teaching methods.</p></li>
+</ul>
+</li>
+<li><p><strong>Expected Value of Test Statistic</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What would be the expected value of your test statistic under the null hypothesis?</p></li>
+<li><p><strong>Answer</strong>: Under the null hypothesis, the expected value <span class="math notranslate nohighlight">\( E[T] \)</span> would be <span class="math notranslate nohighlight">\( \frac{12}{2} = 6 \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>One-sided or Two-sided Test</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Would you choose a one-sided or two-sided test?</p></li>
+<li><p><strong>Answer</strong>: A two-sided test is probably most appropriate here, as it’s not clear whether the new method could perform worse or better than the traditional method.</p></li>
+</ul>
+</li>
+<li><p><strong>Inconsistency with Null Hypothesis</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How many outcomes could be at least as inconsistent with the null hypothesis as the one observed?</p></li>
+<li><p><strong>Answer</strong>: There are 24 possibilities that are as inconsistent or more inconsistent with the null hypothesis. This includes 12 possibilities with one “-” and 11 “+”, and 12 with one “+” and 11 “-“.</p></li>
+</ul>
+</li>
+<li><p><strong>Sampling Distribution</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Can you sketch the sampling distribution for the test statistic under the null hypothesis?</p></li>
+<li><p><strong>Answer</strong>: The sampling distribution under <span class="math notranslate nohighlight">\( H_0 \)</span> would follow a binomial distribution <span class="math notranslate nohighlight">\( B(12, \frac{1}{2}) \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Computing the p-value</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How would you compute the p-value for this test, assuming a two-sided alternative?</p></li>
+<li><p><strong>Answer</strong>: In this example, we have 12 pairs, and 8 of them showed that the new teaching method is better (“+”). If the null hypothesis is true—that is, if the new teaching method has no effect—then each pair has a 50% chance of showing a “+” and a 50% chance of showing a “-“.</p></li>
+</ul>
+<p>The test statistic follows a binomial distribution <span class="math notranslate nohighlight">\( B(12, \frac{1}{2}) \)</span>. To find the p-value, we sum the probabilities of observing 8 or more “+” and 4 or fewer “-“.</p>
+<p>Using the binomial probability formula <span class="math notranslate nohighlight">\( P(x) = \binom{n}{x} \times p^x \times (1-p)^{(n-x)} \)</span>, where <span class="math notranslate nohighlight">\( \binom{n}{x} \)</span> is the number of combinations of <span class="math notranslate nohighlight">\( n \)</span> items taken <span class="math notranslate nohighlight">\( x \)</span> at a time, <span class="math notranslate nohighlight">\( p \)</span> is the probability of a single success, and <span class="math notranslate nohighlight">\( n \)</span> is the number of trials, we get:</p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times \left( \sum_{x=8}^{12} \binom{12}{x} \times 0.5^x \times 0.5^{(12-x)} \right)
+ \)</span></p>
+<p>Calculating this gives:</p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times \left( \binom{12}{8} \times 0.5^8 \times 0.5^4 + \binom{12}{9} \times 0.5^9 \times 0.5^3 + \binom{12}{10} \times 0.5^{10} \times 0.5^2 + \binom{12}{11} \times 0.5^{11} \times 0.5^1 + \binom{12}{12} \times 0.5^{12} \times 0.5^0 \right)
+ \)</span></p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times \left( 0.1208 + 0.0537 + 0.0164 + 0.0029 + 0.0002 \right)
+ \)</span></p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times 0.1940 = 0.3880
+ \)</span></p>
+<p>The p-value is approximately 0.388, which is not significant at the 0.05 level. Therefore, we fail to reject the null hypothesis.</p>
+</li>
+<li><p><strong>R Notes</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How would you perform this test in R?</p></li>
+<li><p><strong>Answer</strong>: You can use the <code class="docutils literal notranslate"><span class="pre">binom.test()</span></code> function in R. For this data, you would use <code class="docutils literal notranslate"><span class="pre">binom.test(8,</span> <span class="pre">12)</span></code> for a two-sided test. To perform a one-sided test assuming the new method is better, you would use <code class="docutils literal notranslate"><span class="pre">binom.test(8,</span> <span class="pre">12,</span> <span class="pre">alternative</span> <span class="pre">=</span> <span class="pre">&quot;greater&quot;)</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -545,6 +673,10 @@ Z = \frac{4 + \frac{1}{2} - \frac{15}{2}}{\sqrt{\frac{15}{4}}} = \frac{4.5 - 7.5
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-determine-the-test-statistic">8.3.3. Step 3: Determine the Test Statistic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-find-the-p-value">8.3.4. Step 4: Find the p-value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.3.5. Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-test-activity-sheet">8.4. Sign Test Activity Sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-and-answers">8.4.1. Questions and Answers</a></li>
 </ul>
 </li>
 </ul>
