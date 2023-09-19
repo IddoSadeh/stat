@@ -1,155 +1,106 @@
 # The Sign Test
 
 
-## Introduction
+The Sign Test serves as a non-parametric statistical method for evaluating the median of a given data set. This test is especially beneficial when the data doesn't follow a normal distribution. 
 
-The Sign Test is a non-parametric test used to test the median of a distribution. It is particularly useful when the assumptions of normality are not met. 
+The test is applicable:
+- To data sets that don't require a specific distribution
+- For assessing the median value of the data set
+- When the data points are not dependent on each other
+- The test statistic relies solely on the signs (positive/negative)
 
-it is:
-- for populations that are distribution free
-- for testing the median of the population
-- the data needs o be independant
-- the test statistic is based on signs only (+/-)
+## How to Conduct the Sign Test
 
-## Theoretical Background
+1. **Compute the Difference**:  
+   For each data point $ x_i $, find $ d_i = x_i - \hat{x}_0 $.
 
-The Sign Test is based on the median $ \tilde{x} $ of a dataset. Given a sample $ x_1, x_2, \ldots, x_n $, the test investigates whether the median is equal to a specified value $ \tilde{x}_0 $.
+2. **Tally the Signs**:  
+   Count the occurrences of positive ($ n_+ $) and negative ($ n_- $) differences.
 
-**Null Hypothesis ($ H_0 $)**:  
-$
-H_0: \tilde{x} = \tilde{x}_0
-$
-
-**Alternative Hypothesis ($ H_a $)**:  
-$
-H_a: \tilde{x} \neq \tilde{x}_0
-$
-
-
-
-## Steps for Performing the Sign Test
-
-1. **Calculate the Differences**:  
-   Calculate $ d_i = x_i - \tilde{x}_0 $ for each observation $ x_i $.
-
-2. **Count the Signs**:  
-   Count the number of positive ($ n_+ $) and negative ($ n_- $) differences.
-
-3. **Calculate the Test Statistic**:  
-   The test statistic $ S $ is the smaller of $ n_+ $ and $ n_- $.
+3. **Determine the Test Statistic**:  
+   The test statistic $ S $ is the lesser of $ n_+ $ and $ n_- $.
 
 $
 S = \min(n_+, n_-)
 $
 
-4. **Calculate the p-value**:  
-   The p-value is calculated using the binomial distribution:
+4. **Find the p-value**:  
+   Utilize the binomial distribution to calculate the p-value:
 
 $
 p = 2 \times \text{Binomial PMF}(k \leq S; n, 0.5)
 $
 
+## Additional Information
 
+The median of a random variable $ X $ is the value $ \theta $ where the probabilities of $ X $ being greater or less than $ \theta $ are equal:
 
-## Example and Solution
+$
+P(X > \theta) = P(X < \theta)
+$
 
-**Example Question**:  
-Suppose we have a sample of exam scores: $ [50, 55, 53, 61, 58] $ and we want to test if the median score is 55.
+When you have an independent and identically distributed (i.i.d.) sample from $ X $, and $ \theta $ is its median, you'd expect roughly half of the data to be above $ \theta $ and half below. If you calculate $ \theta - x_i $ for each $ i $ and note the sign, you can count the number of positive signs and label this $ t $. Under the null hypothesis that the median is $ \theta $, $ t $ would follow a binomial distribution with parameters $ n $ and $ \frac{1}{2} $.
 
-1. **Calculate the Differences**:  
-   $ d = [50-55, 55-55, 53-55, 61-55, 58-55] = [-5, 0, -2, 6, 3] $
+For large sample sizes, you can use the Normal approximation to the Binomial distribution for comparison. For smaller sample sizes, it's advisable to use software to get the exact Binomial probabilities.
 
-2. **Count the Signs**:  
-   $ n_+ = 2, n_- = 2 $
-
-3. **Calculate the Test Statistic**:  
-   $ S = \min(2, 2) = 2 $
-
-4. **Calculate the p-value**:  
-   $ p = 2 \times \text{Binomial PMF}(k \leq 2; 4, 0.5) = 2 \times (0.0625 + 0.25 + 0.375) = 1.375 $
-
-Since the p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that the median is not significantly different from 55.
+## Example
 
 
 
-## text notes
 
-The median of a (random variable) r.v. $X$ is the point $\theta$ such that
+We have weight gains of mice over a month with a new feeding regimen: $[20, 42, 18, 21, 22, 35, 19, 18, 26, 20, 21, 32, 22, 20, 24]$.
 
-$$
-P(X>\theta)=P(X<\theta) \text {. }
-$$
+The prior feeding method had a median weight gain of $25g$.
 
-The median is a measure of the location of the distribution of $X$. If we have an i.i.d. sample $x_{1}, \ldots, x_{n}$ from $X$, and $\theta$ is the median of $X$ we would expect roughly equal amounts of the data to lie above and below $\theta$. Suppose we calculate the value $\theta-x_{i}$ for each $i=1, \ldots, n$ and record the sign of each value. Count the number of positives (+'s) and call this number $t$. Under the null hypothesis
+We want to test the following hypotheses:
 
-$$
-H_{0} \text { : The median of } X \text { is } \theta \text {, }
-$$
+$
+H_0: \theta = 25 \quad \text{(null hypothesis)}
+$
+$
+H_1: \theta < 25 \quad \text{(alternative hypothesis)}
+$
 
-we would have that
+### Step 1: Compute the Difference
 
-$$
-t \sim B\left(n, \frac{1}{2}\right)
-$$
+We subtract $25$ from each data value:
 
-regardless of the underlying distribution of $X$. If $t$ is too large or too small with respect to this distribution, we would reject $H_{0}$. If there are any values equal to the median proposed in $H_{0}$, we can omit these and reduce $n$ accordingly.
+$
+d_i = x_i - 25
+$
 
-Now, under $H_{0}$,
+The differences are $[-5, 17, -7, -4, -3, 10, -6, -7, 1, -5, -4, 7, -3, -5, -1]$.
 
-$$
-\begin{aligned}
-E(t) & =\frac{n}{2}, \\
-\operatorname{Var}(t) & =n \frac{1}{2} \frac{1}{2}=\frac{n}{4} .
-\end{aligned}
-$$
+### Step 2: Tally the Signs
 
-For large values of $n$, we can use the Normal approximation to the Binomial (equivalently, the Central Limit Theorem) and compare
+We note the signs of each difference:
 
-$$
-\frac{t-\frac{n}{2}}{\sqrt{\frac{n}{4}}}
-$$
-
-with $N(0,1)$. For $n<20$, it is better to use a continuity correction, adding $\frac{1}{2}$ to the numerator for the left hand critical region, subtracting $\frac{1}{2}$ for the right hand tail region. Better still is to get the Binomial probabilities from software.
-
-Example 1 The following data are the weight gains (in $g$ ) of mice over a month obtained using a new feeding regime: 20, 42, 18, 21, 22, 35, 19, 18, 26, 20, 21, 32, 22, 20, 24. A previous feeding method produces a weight gain over the same period with median $25 \mathrm{~g}$. To test whether the new method produces the same median weight gain compared to the alternative that it produces less, we test
-
-$$
-\begin{aligned}
-& H_{0}: \quad \theta=25 \text { against } \\
-& H_{1}: \quad \theta<25 .
-\end{aligned}
-$$
-
-We subtract 25 from each of the data values, and record whether the outcome is $a+$ or $a-$. We observe the sequence
-
-$$
+$
 -+---+--+--+---
-$$
+$
 
-and see $t=4$. We then compare
+We find $n_+ = 4$ (number of positive differences) and $n_- = 11$ (number of negative differences).
 
-$$
-\frac{4+\frac{1}{2}-\frac{15}{2}}{\sqrt{\frac{15}{4}}}=-1.55
-$$
+### Step 3: Determine the Test Statistic
 
-with $N(0,1)$; if $Z \sim N(0,1)$ then (from $R$ or otherwise) we have
+The test statistic $S$ is the lesser of $n_+$ and $n_-$:
 
-$$
-P(Z \leq-1.55)=0.06 \text {. }
-$$
+$
+S = \min(4, 11) = 4
+$
 
-Therefore we would not reject the null hypothesis $H_{0}$ at the $5 \%$ level, noting that there is some evidence against $H_{0}$, the value of the test statistic being close to significant. The p-value of 0.06 gives some weak evidence against the underlying median weight gain of the new diet being $25 \mathrm{~g}$.
+### Step 4: Find the p-value
 
-It would be possible to calculate the relevant Binomial probability directly in this case; verify that if $X \sim B\left(15, \frac{1}{2}\right)$ then
+For small sample sizes like $n=15$, we can use the binomial distribution to find the p-value. However, in this example, we'll use the Normal approximation with a continuity correction, as done in the original example:
 
-$$
-\begin{aligned}
-& P(X \leq 2) \bumpeq 0.003 \\
-& P(X=3) \bumpeq 0.014 \\
-& P(X=4) \bumpeq 0.042
-\end{aligned}
-$$
+$
+Z = \frac{4 + \frac{1}{2} - \frac{15}{2}}{\sqrt{\frac{15}{4}}} = \frac{4.5 - 7.5}{\sqrt{3.75}} = \frac{-3}{\sqrt{3.75}} = -1.55
+$
 
-hence $P(X \leq 4)=0.059$, which demonstrates that the Normal approximation (with the continuity correction) is very good here.
+Using a standard Normal distribution table or software, we find $P(Z \leq -1.55) = 0.06$.
 
-The sign test can be extended to paired data and is then analogous to the paired t test, although the latter requires an assumption of Normality for the within-pair differences. To use the sign test on a sample of pairs $\left(x_{1}, y_{1}\right),\left(x_{2}, y_{2}\right), \ldots,\left(x_{n}, y_{n}\right)$ we find the signs of the differences $x_{i}-y_{i}$ for $i=1, \ldots, n$. We then count up the number of positives, and compare the total to $B\left(n, \frac{1}{2}\right)$ in either a one or two-sided test. We come later to test for matched pair data that is usually preferable to the sign test.
+### Conclusion
+
+Since the p-value of $0.06$ is greater than the significance level of $0.05$, we fail to reject the null hypothesis $H_0$. This suggests that there is weak evidence against the null hypothesis, and we cannot conclude that the new feeding regimen leads to a different median weight gain.
+
+This should closely mirror the calculations and conclusions in the original example.

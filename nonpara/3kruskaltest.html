@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; My Statistics Book</title>
+    <title>10. Kruskal-Wallis Test &#8212; My Statistics Book</title>
   
   
   
@@ -59,10 +59,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'nonpara/3kruskaltest';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="4permtest.html" />
+    <link rel="next" title="11. Permutation Tests" href="4permtest.html" />
     <link rel="prev" title="9. Rank Sum Test" href="2ranksumtest.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -159,9 +161,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Basics/6inf.html">7. Inference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1signtest.html">8. The Sign Test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4permtest.html">11. Permutation Tests</a></li>
 </ul>
 
     </div>
@@ -345,7 +349,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Kruskal-Wallis Test</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -354,9 +358,27 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-distribution-a-quick-recap">10.1. Chi-Squared Distribution: A Quick Recap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-test">10.2. Constructing the Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">10.3. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">10.3.1. Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-rank-the-data">10.3.2. Step 1: Rank the Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-calculate-the-average-ranks-for-each-group">10.3.3. Step 2: Calculate the Average Ranks for Each Group</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-calculate-the-overall-average-rank">10.3.4. Step 3: Calculate the Overall Average Rank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-the-test-statistic-h">10.3.5. Step 4: Calculate the Test Statistic <span class="math notranslate nohighlight">\(H\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compare-h-to-the-chi-squared-distribution">10.3.6. Step 5: Compare <span class="math notranslate nohighlight">\(H\)</span> to the Chi-Squared Distribution</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kruskal-wallis-test-activity-sheet">10.4. Kruskal-Wallis Test Activity Sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-and-answers">10.4.1. Questions and Answers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-test-activity-sheet">10.5. Sign Test Activity Sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">10.5.1. Questions and Answers</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
@@ -367,7 +389,435 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  
+  <div class="tex2jax_ignore mathjax_ignore section" id="kruskal-wallis-test">
+<h1><span class="section-number">10. </span>Kruskal-Wallis Test<a class="headerlink" href="#kruskal-wallis-test" title="Permalink to this headline">#</a></h1>
+<p>When you’re dealing with data from more than two groups, the Kruskal-Wallis test serves as a nonparametric alternative to traditional Analysis of Variance (ANOVA). This test is particularly useful in two main scenarios:</p>
+<ol class="arabic simple">
+<li><p>When you have samples from three or more different populations.</p></li>
+<li><p>When the data are outcomes from an experiment involving multiple groups.</p></li>
+</ol>
+<div class="section" id="chi-squared-distribution-a-quick-recap">
+<h2><span class="section-number">10.1. </span>Chi-Squared Distribution: A Quick Recap<a class="headerlink" href="#chi-squared-distribution-a-quick-recap" title="Permalink to this headline">#</a></h2>
+<p>The Chi-squared distribution is crucial for the Kruskal-Wallis test. It’s defined by its degrees of freedom (<span class="math notranslate nohighlight">\(n\)</span>). If <span class="math notranslate nohighlight">\(X\)</span> follows a Chi-squared distribution with <span class="math notranslate nohighlight">\(n\)</span> degrees of freedom, it’s expressed as <span class="math notranslate nohighlight">\(X \sim \chi^2_n\)</span>.</p>
+</div>
+<div class="section" id="constructing-the-test">
+<h2><span class="section-number">10.2. </span>Constructing the Test<a class="headerlink" href="#constructing-the-test" title="Permalink to this headline">#</a></h2>
+<p>Assume we have <span class="math notranslate nohighlight">\(g\)</span> groups with sample sizes <span class="math notranslate nohighlight">\(n_1, n_2, \ldots, n_g\)</span>. The total number of observations is <span class="math notranslate nohighlight">\(n = \sum_{i=1}^{g} n_i\)</span>. The test involves ranking all the observations from 1 (lowest) to <span class="math notranslate nohighlight">\(n\)</span> (highest). The average rank across all groups is <span class="math notranslate nohighlight">\(\bar{R}\)</span>, and the average ranks within each group are <span class="math notranslate nohighlight">\(\bar{R}_1, \bar{R}_2, \ldots, \bar{R}_g\)</span>.</p>
+<p>The test statistic <span class="math notranslate nohighlight">\(H\)</span> is calculated as:</p>
+<p><span class="math notranslate nohighlight">\(
+H = \frac{12 \sum_{i=1}^{g} n_i (\bar{R}_i - \bar{R})^2}{n(n+1)}
+\)</span></p>
+<p>Under <span class="math notranslate nohighlight">\(H_0\)</span>, <span class="math notranslate nohighlight">\(H\)</span> follows a Chi-squared distribution with <span class="math notranslate nohighlight">\(g-1\)</span> degrees of freedom. A large <span class="math notranslate nohighlight">\(H\)</span> value suggests that it’s unlikely all groups come from the same distribution, leading us to reject <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+</div>
+<div class="section" id="example">
+<h2><span class="section-number">10.3. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p>Imagine a scenario where a company wants to evaluate the effectiveness of four different training programs (A, B, C, and D) on employee productivity. Each program is administered to five employees, and their productivity scores are measured afterward. The scores are as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>40</p></td>
+<td><p>55</p></td>
+<td><p>35</p></td>
+<td><p>42</p></td>
+</tr>
+<tr class="row-odd"><td><p>45</p></td>
+<td><p>53</p></td>
+<td><p>38</p></td>
+<td><p>39</p></td>
+</tr>
+<tr class="row-even"><td><p>38</p></td>
+<td><p>50</p></td>
+<td><p>37</p></td>
+<td><p>36</p></td>
+</tr>
+<tr class="row-odd"><td><p>41</p></td>
+<td><p>52</p></td>
+<td><p>40</p></td>
+<td><p>44</p></td>
+</tr>
+<tr class="row-even"><td><p>39</p></td>
+<td><p>54</p></td>
+<td><p>36</p></td>
+<td><p>43</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Kruskal-Wallis test aims to assess the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span>, which posits that all groups come from identical distributions. The alternative hypothesis <span class="math notranslate nohighlight">\(H_A\)</span> suggests that at least one group comes from a different distribution.</p>
+<div class="section" id="data">
+<h3><span class="section-number">10.3.1. </span>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h3>
+<p>Here are the productivity scores for each group:</p>
+<ul class="simple">
+<li><p>Group A: 40, 45, 38, 41, 39</p></li>
+<li><p>Group B: 55, 53, 50, 52, 54</p></li>
+<li><p>Group C: 35, 38, 37, 40, 36</p></li>
+<li><p>Group D: 42, 39, 36, 44, 43</p></li>
+</ul>
+</div>
+<div class="section" id="step-1-rank-the-data">
+<h3><span class="section-number">10.3.2. </span>Step 1: Rank the Data<a class="headerlink" href="#step-1-rank-the-data" title="Permalink to this headline">#</a></h3>
+<p>First, we rank all the observations from the lowest to the highest, regardless of which group they belong to. If there are ties, we take the average rank for those tied values.</p>
+<p>Here are the ranks:</p>
+<ul class="simple">
+<li><p>Group A: 9, 13, 6, 10, 8  (Sum = 46)</p></li>
+<li><p>Group B: 20, 19, 16, 18, 17  (Sum = 90)</p></li>
+<li><p>Group C: 1, 5, 4, 7, 3  (Sum = 20)</p></li>
+<li><p>Group D: 11, 12, 2, 14, 15  (Sum = 54)</p></li>
+</ul>
+</div>
+<div class="section" id="step-2-calculate-the-average-ranks-for-each-group">
+<h3><span class="section-number">10.3.3. </span>Step 2: Calculate the Average Ranks for Each Group<a class="headerlink" href="#step-2-calculate-the-average-ranks-for-each-group" title="Permalink to this headline">#</a></h3>
+<p>Next, we calculate the average rank for each group:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bar{R}_A = 46 / 5 = 9.2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{R}_B = 90 / 5 = 18\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{R}_C = 20 / 5 = 4\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{R}_D = 54 / 5 = 10.8\)</span></p></li>
+</ul>
+</div>
+<div class="section" id="step-3-calculate-the-overall-average-rank">
+<h3><span class="section-number">10.3.4. </span>Step 3: Calculate the Overall Average Rank<a class="headerlink" href="#step-3-calculate-the-overall-average-rank" title="Permalink to this headline">#</a></h3>
+<p>The overall average rank <span class="math notranslate nohighlight">\(\bar{R}\)</span> is the average of all the ranks:</p>
+<p><span class="math notranslate nohighlight">\(
+\bar{R} = \frac{1 + 2 + \ldots + 20}{20} = \frac{210}{20} = 10.5
+\)</span></p>
+</div>
+<div class="section" id="step-4-calculate-the-test-statistic-h">
+<h3><span class="section-number">10.3.5. </span>Step 4: Calculate the Test Statistic <span class="math notranslate nohighlight">\(H\)</span><a class="headerlink" href="#step-4-calculate-the-test-statistic-h" title="Permalink to this headline">#</a></h3>
+<p>The test statistic <span class="math notranslate nohighlight">\(H\)</span> is calculated using the formula:</p>
+<p><span class="math notranslate nohighlight">\(
+H = \frac{12 \sum_{i=1}^{g} n_i (\bar{R}_i - \bar{R})^2}{n(n+1)}
+\)</span></p>
+<p>For our example:</p>
+<p><span class="math notranslate nohighlight">\(
+H = \frac{12 [(5 \times (9.2 - 10.5)^2) + (5 \times (18 - 10.5)^2) + (5 \times (4 - 10.5)^2) + (5 \times (10.8 - 10.5)^2)]}{20 \times 21}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+H = \frac{12 [(5 \times 1.69) + (5 \times 56.25) + (5 \times 42.25) + (5 \times 0.09)]}{420}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+H = \frac{12 [8.45 + 281.25 + 211.25 + 0.45]}{420}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+H = \frac{12 \times 501.4}{420}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+H = \frac{6016.8}{420}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+H = 14.33
+\)</span></p>
+</div>
+<div class="section" id="step-5-compare-h-to-the-chi-squared-distribution">
+<h3><span class="section-number">10.3.6. </span>Step 5: Compare <span class="math notranslate nohighlight">\(H\)</span> to the Chi-Squared Distribution<a class="headerlink" href="#step-5-compare-h-to-the-chi-squared-distribution" title="Permalink to this headline">#</a></h3>
+<p>Using the chi-squared distribution with 3 degrees of freedom, we find that the p-value is approximately <span class="math notranslate nohighlight">\(0.0025\)</span>, as calculated in R with the code <code class="docutils literal notranslate"><span class="pre">pchisq(14.33,</span> <span class="pre">df=3,</span> <span class="pre">lower.tail=FALSE)</span></code>.</p>
+<p>Given that this p-value is well below the commonly used significance level of <span class="math notranslate nohighlight">\(0.05\)</span>, we have strong evidence to reject the null hypothesis. This suggests that at least one of the training programs has a statistically significant different impact on productivity compared to the others.</p>
+<p>Certainly! Below is a Markdown-compatible activity sheet for practicing the Kruskal-Wallis test, using a different example. This example focuses on the effectiveness of three different types of exercise programs (Cardio, Strength, and Yoga) on weight loss. The numbers represent the weight loss in pounds for each participant after a month in the program.</p>
+</div>
+</div>
+<div class="section" id="kruskal-wallis-test-activity-sheet">
+<h2><span class="section-number">10.4. </span>Kruskal-Wallis Test Activity Sheet<a class="headerlink" href="#kruskal-wallis-test-activity-sheet" title="Permalink to this headline">#</a></h2>
+<p>The data below shows the weight loss for participants in three different exercise programs: Cardio, Strength, and Yoga.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cardio</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>8</p></th>
+<th class="head"><p>10</p></th>
+<th class="head"><p>12</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Strength</p></td>
+<td><p>3</p></td>
+<td><p>5</p></td>
+<td><p>7</p></td>
+<td><p>9</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>Yoga</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>6</p></td>
+<td><p>8</p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="questions-and-answers">
+<h3><span class="section-number">10.4.1. </span>Questions and Answers<a class="headerlink" href="#questions-and-answers" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Purpose of the Study</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What is the objective of this study?</p></li>
+<li><p><strong>Answer</strong>: The study aims to assess the effectiveness of three different types of exercise programs on weight loss.</p></li>
+</ul>
+</li>
+<li><p><strong>Null Hypothesis</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What would be your null hypothesis for these data?</p></li>
+<li><p><strong>Answer</strong>: The null hypothesis would state that the distribution of weight loss is the same for all three exercise programs.</p></li>
+</ul>
+</li>
+<li><p><strong>Appropriate Tests</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Which tests from your introductory course could be appropriate here? What reservations might you have?</p></li>
+<li><p><strong>Answer</strong>: One might consider using an ANOVA test. However, the data set is small, and we cannot assume that the data are normally distributed, which is an assumption for ANOVA.</p></li>
+</ul>
+</li>
+<li><p><strong>Ranking the Data</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Rank the entire data set in order.</p></li>
+<li><p><strong>Answer</strong>:</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Observation:</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>7</p></th>
+<th class="head"><p>8</p></th>
+<th class="head"><p>8</p></th>
+<th class="head"><p>9</p></th>
+<th class="head"><p>10</p></th>
+<th class="head"><p>10</p></th>
+<th class="head"><p>11</p></th>
+<th class="head"><p>12</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Group:</p></td>
+<td><p>Y</p></td>
+<td><p>S</p></td>
+<td><p>C</p></td>
+<td><p>Y</p></td>
+<td><p>S</p></td>
+<td><p>C</p></td>
+<td><p>Y</p></td>
+<td><p>S</p></td>
+<td><p>C</p></td>
+<td><p>Y</p></td>
+<td><p>S</p></td>
+<td><p>C</p></td>
+<td><p>Y</p></td>
+<td><p>S</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rank:</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3.5</p></td>
+<td><p>3.5</p></td>
+<td><p>5</p></td>
+<td><p>6.5</p></td>
+<td><p>6.5</p></td>
+<td><p>8</p></td>
+<td><p>9.5</p></td>
+<td><p>9.5</p></td>
+<td><p>11</p></td>
+<td><p>12.5</p></td>
+<td><p>12.5</p></td>
+<td><p>14</p></td>
+<td><p>15</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Overall Mean Rank</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What is the overall mean rank <span class="math notranslate nohighlight">\( \bar{R} \)</span>?</p></li>
+<li><p><strong>Answer</strong>: <span class="math notranslate nohighlight">\( \bar{R} = \frac{120}{15} = 8 \)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Mean Rankings Within Groups</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What are the mean rankings within each group?</p></li>
+<li><p><strong>Answer</strong>: <span class="math notranslate nohighlight">\( \bar{R}_{\text{Cardio}} = 9.2, \bar{R}_{\text{Strength}} = 8.2, \bar{R}_{\text{Yoga}} = 6.8 \)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Variation in Group Ranking</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Compute the variation in group ranking.</p></li>
+<li><p><strong>Answer</strong>: <span class="math notranslate nohighlight">\( 5((9.2 - 8)^2 + (8.2 - 8)^2 + (6.8 - 8)^2) = 30 \)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Test Statistic</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Why does the above look promising as a test statistic?</p></li>
+<li><p><strong>Answer</strong>: The statistic measures the variance of the within-group rankings. Under the null hypothesis, we would expect this variance to be small.</p></li>
+</ul>
+</li>
+<li><p><strong>Compute <span class="math notranslate nohighlight">\( H \)</span></strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Compute the test statistic <span class="math notranslate nohighlight">\( H \)</span>.</p></li>
+<li><p><strong>Answer</strong>: <span class="math notranslate nohighlight">\( H = \frac{12 \times 30}{15 \times 16} = 1.5 \)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Type of Test</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Would this be a one or two-tailed test?</p></li>
+<li><p><strong>Answer</strong>: One-tailed, as small values are consistent with the null hypothesis.</p></li>
+</ul>
+</li>
+<li><p><strong>p-value</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How would you find the p-value for the test?</p></li>
+<li><p><strong>Answer</strong>: We would use the chi-squared distribution with 2 degrees of freedom to find the probability that a <span class="math notranslate nohighlight">\( \chi^2 \)</span> variable exceeds 1.5. The p-value would be around 0.47.</p></li>
+</ul>
+</li>
+<li><p><strong>Conclusions</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What would you conclude about the hypothesis of interest?</p></li>
+<li><p><strong>Answer</strong>: The p-value is not sufficiently small to reject the null hypothesis. Therefore, we do not have enough evidence to say that one exercise program is more effective than the others.</p></li>
+</ul>
+</li>
+<li><p><strong>R Notes</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How would you perform this test in R?</p></li>
+<li><p><strong>Answer</strong>: You can use the <code class="docutils literal notranslate"><span class="pre">kruskal.test()</span></code> function in R to perform the Kruskal-Wallis test. Input the data as a list or data frame and run the function to get the test statistic and p-value.</p></li>
+</ul>
+</li>
+</ol>
+<p>Certainly! Let’s consider a different scenario and apply the Sign Test to it.</p>
+</div>
+</div>
+<div class="section" id="sign-test-activity-sheet">
+<h2><span class="section-number">10.5. </span>Sign Test Activity Sheet<a class="headerlink" href="#sign-test-activity-sheet" title="Permalink to this headline">#</a></h2>
+<p>Suppose a school wants to test the effectiveness of a new teaching method for improving math scores. They randomly select 12 pairs of similar classes. One class in each pair uses the new teaching method, while the other sticks to the traditional method. After a semester, they compare the average improvement in test scores for each pair. A “+” indicates that the class with the new method showed greater improvement, and a “-” indicates the opposite.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class pair</p></th>
+<th class="head"><p>Outcome</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>+</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>+</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id1">
+<h3><span class="section-number">10.5.1. </span>Questions and Answers<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Purpose of the Study</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What was the aim of this study?</p></li>
+<li><p><strong>Answer</strong>: The study aimed to assess the effectiveness of a new teaching method on improving math scores.</p></li>
+</ul>
+</li>
+<li><p><strong>Type of Study</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What type of study is this?</p></li>
+<li><p><strong>Answer</strong>: This is an experimental study.</p></li>
+</ul>
+</li>
+<li><p><strong>Null Hypothesis</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What would be your null hypothesis based on the given data?</p></li>
+<li><p><strong>Answer</strong>: The null hypothesis states that there is no difference in the improvement of math scores between the new and traditional teaching methods.</p></li>
+</ul>
+</li>
+<li><p><strong>Expected Value of Test Statistic</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: What would be the expected value of your test statistic under the null hypothesis?</p></li>
+<li><p><strong>Answer</strong>: Under the null hypothesis, the expected value <span class="math notranslate nohighlight">\( E[T] \)</span> would be <span class="math notranslate nohighlight">\( \frac{12}{2} = 6 \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>One-sided or Two-sided Test</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Would you choose a one-sided or two-sided test?</p></li>
+<li><p><strong>Answer</strong>: A two-sided test is probably most appropriate here, as it’s not clear whether the new method could perform worse or better than the traditional method.</p></li>
+</ul>
+</li>
+<li><p><strong>Inconsistency with Null Hypothesis</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How many outcomes could be at least as inconsistent with the null hypothesis as the one observed?</p></li>
+<li><p><strong>Answer</strong>: There are 24 possibilities that are as inconsistent or more inconsistent with the null hypothesis. This includes 12 possibilities with one “-” and 11 “+”, and 12 with one “+” and 11 “-“.</p></li>
+</ul>
+</li>
+<li><p><strong>Sampling Distribution</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: Can you sketch the sampling distribution for the test statistic under the null hypothesis?</p></li>
+<li><p><strong>Answer</strong>: The sampling distribution under <span class="math notranslate nohighlight">\( H_0 \)</span> would follow a binomial distribution <span class="math notranslate nohighlight">\( B(12, \frac{1}{2}) \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Computing the p-value</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How would you compute the p-value for this test, assuming a two-sided alternative?</p></li>
+<li><p><strong>Answer</strong>: In this example, we have 12 pairs, and 8 of them showed that the new teaching method is better (“+”). If the null hypothesis is true—that is, if the new teaching method has no effect—then each pair has a 50% chance of showing a “+” and a 50% chance of showing a “-“.</p></li>
+</ul>
+<p>The test statistic follows a binomial distribution <span class="math notranslate nohighlight">\( B(12, \frac{1}{2}) \)</span>. To find the p-value, we sum the probabilities of observing 8 or more “+” and 4 or fewer “-“.</p>
+<p>Using the binomial probability formula <span class="math notranslate nohighlight">\( P(x) = \binom{n}{x} \times p^x \times (1-p)^{(n-x)} \)</span>, where <span class="math notranslate nohighlight">\( \binom{n}{x} \)</span> is the number of combinations of <span class="math notranslate nohighlight">\( n \)</span> items taken <span class="math notranslate nohighlight">\( x \)</span> at a time, <span class="math notranslate nohighlight">\( p \)</span> is the probability of a single success, and <span class="math notranslate nohighlight">\( n \)</span> is the number of trials, we get:</p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times \left( \sum_{x=8}^{12} \binom{12}{x} \times 0.5^x \times 0.5^{(12-x)} \right)
+ \)</span></p>
+<p>Calculating this gives:</p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times \left( \binom{12}{8} \times 0.5^8 \times 0.5^4 + \binom{12}{9} \times 0.5^9 \times 0.5^3 + \binom{12}{10} \times 0.5^{10} \times 0.5^2 + \binom{12}{11} \times 0.5^{11} \times 0.5^1 + \binom{12}{12} \times 0.5^{12} \times 0.5^0 \right)
+ \)</span></p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times \left( 0.1208 + 0.0537 + 0.0164 + 0.0029 + 0.0002 \right)
+ \)</span></p>
+<p><span class="math notranslate nohighlight">\(
+ p_{\text{value}} = 2 \times 0.1940 = 0.3880
+ \)</span></p>
+<p>The p-value is approximately 0.388, which is not significant at the 0.05 level. Therefore, we fail to reject the null hypothesis.</p>
+</li>
+<li><p><strong>R Notes</strong></p>
+<ul class="simple">
+<li><p><strong>Question</strong>: How would you perform this test in R?</p></li>
+<li><p><strong>Answer</strong>: You can use the <code class="docutils literal notranslate"><span class="pre">binom.test()</span></code> function in R. For this data, you would use <code class="docutils literal notranslate"><span class="pre">binom.test(8,</span> <span class="pre">12)</span></code> for a two-sided test. To perform a one-sided test assuming the new method is better, you would use <code class="docutils literal notranslate"><span class="pre">binom.test(8,</span> <span class="pre">12,</span> <span class="pre">alternative</span> <span class="pre">=</span> <span class="pre">&quot;greater&quot;)</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -413,7 +863,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Permutation Tests</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -434,9 +884,27 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-distribution-a-quick-recap">10.1. Chi-Squared Distribution: A Quick Recap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-test">10.2. Constructing the Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">10.3. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">10.3.1. Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-rank-the-data">10.3.2. Step 1: Rank the Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-calculate-the-average-ranks-for-each-group">10.3.3. Step 2: Calculate the Average Ranks for Each Group</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-calculate-the-overall-average-rank">10.3.4. Step 3: Calculate the Overall Average Rank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-the-test-statistic-h">10.3.5. Step 4: Calculate the Test Statistic <span class="math notranslate nohighlight">\(H\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compare-h-to-the-chi-squared-distribution">10.3.6. Step 5: Compare <span class="math notranslate nohighlight">\(H\)</span> to the Chi-Squared Distribution</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kruskal-wallis-test-activity-sheet">10.4. Kruskal-Wallis Test Activity Sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-and-answers">10.4.1. Questions and Answers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-test-activity-sheet">10.5. Sign Test Activity Sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">10.5.1. Questions and Answers</a></li>
+</ul>
+</li>
+</ul>
   </nav></div>
 
 </div></div>
