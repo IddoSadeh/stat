@@ -104,3 +104,96 @@ Using a standard Normal distribution table or software, we find $P(Z \leq -1.55)
 Since the p-value of $0.06$ is greater than the significance level of $0.05$, we fail to reject the null hypothesis $H_0$. This suggests that there is weak evidence against the null hypothesis, and we cannot conclude that the new feeding regimen leads to a different median weight gain.
 
 This should closely mirror the calculations and conclusions in the original example.
+
+
+## Sign Test Activity Sheet
+
+Suppose a school wants to test the effectiveness of a new teaching method for improving math scores. They randomly select 12 pairs of similar classes. One class in each pair uses the new teaching method, while the other sticks to the traditional method. After a semester, they compare the average improvement in test scores for each pair. A "+" indicates that the class with the new method showed greater improvement, and a "-" indicates the opposite.
+
+
+| Class pair | Outcome |
+|------------|---------|
+| 1          | +       |
+| 2          | -       |
+| 3          | +       |
+| 4          | -       |
+| 5          | +       |
+| 6          | +       |
+| 7          | -       |
+| 8          | +       |
+| 9          | +       |
+| 10         | -       |
+| 11         | +       |
+| 12         | +       |
+
+
+### Questions and Answers
+
+1. **Purpose of the Study**
+
+    - **Question**: What was the aim of this study?
+    - **Answer**: The study aimed to assess the effectiveness of a new teaching method on improving math scores.
+
+2. **Type of Study**
+
+    - **Question**: What type of study is this?
+    - **Answer**: This is an experimental study.
+
+3. **Null Hypothesis**
+
+    - **Question**: What would be your null hypothesis based on the given data?
+    - **Answer**: The null hypothesis states that there is no difference in the improvement of math scores between the new and traditional teaching methods.
+
+4. **Expected Value of Test Statistic**
+
+    - **Question**: What would be the expected value of your test statistic under the null hypothesis?
+    - **Answer**: Under the null hypothesis, the expected value $ E[T] $ would be $ \frac{12}{2} = 6 $.
+
+5. **One-sided or Two-sided Test**
+
+    - **Question**: Would you choose a one-sided or two-sided test?
+    - **Answer**: A two-sided test is probably most appropriate here, as it's not clear whether the new method could perform worse or better than the traditional method.
+
+6. **Inconsistency with Null Hypothesis**
+
+    - **Question**: How many outcomes could be at least as inconsistent with the null hypothesis as the one observed?
+    - **Answer**: There are 24 possibilities that are as inconsistent or more inconsistent with the null hypothesis. This includes 12 possibilities with one "-" and 11 "+", and 12 with one "+" and 11 "-".
+
+7. **Sampling Distribution**
+
+    - **Question**: Can you sketch the sampling distribution for the test statistic under the null hypothesis?
+    - **Answer**: The sampling distribution under $ H_0 $ would follow a binomial distribution $ B(12, \frac{1}{2}) $.
+
+8. **Computing the p-value**
+
+    - **Question**: How would you compute the p-value for this test, assuming a two-sided alternative?
+    - **Answer**: In this example, we have 12 pairs, and 8 of them showed that the new teaching method is better ("+"). If the null hypothesis is true—that is, if the new teaching method has no effect—then each pair has a 50% chance of showing a "+" and a 50% chance of showing a "-". 
+
+    The test statistic follows a binomial distribution $ B(12, \frac{1}{2}) $. To find the p-value, we sum the probabilities of observing 8 or more "+" and 4 or fewer "-". 
+
+    Using the binomial probability formula $ P(x) = \binom{n}{x} \times p^x \times (1-p)^{(n-x)} $, where $ \binom{n}{x} $ is the number of combinations of $ n $ items taken $ x $ at a time, $ p $ is the probability of a single success, and $ n $ is the number of trials, we get:
+
+    $
+    p_{\text{value}} = 2 \times \left( \sum_{x=8}^{12} \binom{12}{x} \times 0.5^x \times 0.5^{(12-x)} \right)
+    $
+
+    Calculating this gives:
+
+    $
+    p_{\text{value}} = 2 \times \left( \binom{12}{8} \times 0.5^8 \times 0.5^4 + \binom{12}{9} \times 0.5^9 \times 0.5^3 + \binom{12}{10} \times 0.5^{10} \times 0.5^2 + \binom{12}{11} \times 0.5^{11} \times 0.5^1 + \binom{12}{12} \times 0.5^{12} \times 0.5^0 \right)
+    $
+
+    $
+    p_{\text{value}} = 2 \times \left( 0.1208 + 0.0537 + 0.0164 + 0.0029 + 0.0002 \right)
+    $
+
+    $
+    p_{\text{value}} = 2 \times 0.1940 = 0.3880
+    $
+
+    The p-value is approximately 0.388, which is not significant at the 0.05 level. Therefore, we fail to reject the null hypothesis.
+
+9. **R Notes**
+
+    - **Question**: How would you perform this test in R?
+    - **Answer**: You can use the `binom.test()` function in R. For this data, you would use `binom.test(8, 12)` for a two-sided test. To perform a one-sided test assuming the new method is better, you would use `binom.test(8, 12, alternative = "greater")`.
