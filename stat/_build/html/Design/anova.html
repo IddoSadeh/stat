@@ -1,0 +1,1005 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21. ANOVA &#8212; My Statistics Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Design/anova';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="22. Multiple Comparisons" href="mul.html" />
+    <link rel="prev" title="20. Experimental Design and the Analysis of Variance" href="exp.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Statistics Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Basics/1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Basics/2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/3kruskaltest.html">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/4permtest.html">11. Permutation Tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">power</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../power/power.html">12. Power of Hypothesis test</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Goodness-of-Fit</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../goodness/chi.html">13. Chi-Squared Goodness of Fit Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/cont.html">14. Contingency tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/fisch.html">15. Fisher’s Exact Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/dens.html">16. Density curve fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/probplot.html">17. Graphical tests of goodness-of-fit: Probability plots</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bootstrap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/intro.html">18. Bootstrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/hyp.html">19. Bootstrap hypothesis tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Design &amp; ANOVA</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="exp.html">20. Experimental Design and the Analysis of Variance</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. ANOVA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mul.html">22. Multiple Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="two.html">23. Two-way analysis of variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext.html">24. Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R.html">25. ANOVA in R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDesign/anova.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Design/anova.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ANOVA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basic-model">21.1. The basic model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-null-hypothesis">21.1.1. Testing the null hypothesis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unequal-sample-sizes">21.1.2. Unequal sample sizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-sigma-2">21.1.3. Estimating <span class="math notranslate nohighlight">\(\sigma^{2}\)</span></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="anova">
+<h1><span class="section-number">21. </span>ANOVA<a class="headerlink" href="#anova" title="Permalink to this headline">#</a></h1>
+<p>We describe now a statistical technique called ANOVA.</p>
+<p>The aim throughout is to study the relationship of a response variable <span class="math notranslate nohighlight">\(Y\)</span>, say, with explanatory variables that are factors.</p>
+<p>A factor is an explanatory variable that exists at different levels, the levels being controlled by the experimenter. Levels of factors may be either qualitative or quantitative, and the set of factors levels applied to a particular experimental unit may be thought of as treatments in the context of the experiment.</p>
+<p>The approach here involves splitting the variation in the response variable into components that enable judgements to be made about the relationship between the response and the factors. Hence the name: the analysis of variance.</p>
+<p>A simple example illustrates the type of problem under consideration:</p>
+<p>The following data are from a chemical plant and give the yields (in <span class="math notranslate nohighlight">\(\mathrm{kg}\)</span> ) that resulted from trying four different catalysts in a chemical process.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p></p></th>
+<th class="text-left head"><p></p></th>
+<th class="text-left head"><p></p></th>
+<th class="text-left head"><p></p></th>
+<th class="text-left head"><p></p></th>
+<th class="text-left head"><p></p></th>
+<th class="text-left head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Catalyst 1</p></td>
+<td class="text-left"><p>36</p></td>
+<td class="text-left"><p>33</p></td>
+<td class="text-left"><p>35</p></td>
+<td class="text-left"><p>34</p></td>
+<td class="text-left"><p>32</p></td>
+<td class="text-left"><p>34</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Catalyst 2</p></td>
+<td class="text-left"><p>35</p></td>
+<td class="text-left"><p>37</p></td>
+<td class="text-left"><p>36</p></td>
+<td class="text-left"><p>35</p></td>
+<td class="text-left"><p>37</p></td>
+<td class="text-left"><p>36</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Catalyst 3</p></td>
+<td class="text-left"><p>35</p></td>
+<td class="text-left"><p>39</p></td>
+<td class="text-left"><p>37</p></td>
+<td class="text-left"><p>38</p></td>
+<td class="text-left"><p>39</p></td>
+<td class="text-left"><p>38</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Catalyst 4</p></td>
+<td class="text-left"><p>34</p></td>
+<td class="text-left"><p>31</p></td>
+<td class="text-left"><p>35</p></td>
+<td class="text-left"><p>32</p></td>
+<td class="text-left"><p>34</p></td>
+<td class="text-left"><p>33</p></td>
+</tr>
+</tbody>
+</table>
+<p>It is of interest to determine whether the catalyst used affects the yield produced in the process. Here we have one qualitative factor with four levels.</p>
+<p>The response is the amount of yield at each trial. There were six replications at each level of the factor, giving 24 trials in total in the experiment.</p>
+<div class="section" id="the-basic-model">
+<h2><span class="section-number">21.1. </span>The basic model<a class="headerlink" href="#the-basic-model" title="Permalink to this headline">#</a></h2>
+<p>Much of Statistics involves the setting up of “models” to replicate real–world situations of interest. These models will include random variables to describe the inherent randomness in the process under consideration, as well as various parameters which are likely to be unknown and may have to be estimated via the data. The following is a very simple statistical model, but it is important to appreciate its role in the analysis of variance, since without its assumptions the testing of hypotheses will be invalid.</p>
+<p>We require some notation in order to describe the situation. Let us assume that we have <span class="math notranslate nohighlight">\(g\)</span> groups, and <span class="math notranslate nohighlight">\(t\)</span> observations in each. (There is no necessity to enforce equal numbers in each group, but it makes the formulae easier, and in any case nearly always gives a more sensible experiment. We relax this constraint later.) Let <span class="math notranslate nohighlight">\(y_{i j}\)</span> denote the <span class="math notranslate nohighlight">\(j\)</span> th observation in the <span class="math notranslate nohighlight">\(i\)</span> th group (for <span class="math notranslate nohighlight">\(i=1,2, \ldots, g, j=1,2, \ldots, t)\)</span>. The overall mean of these values is obviously</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{y}=\frac{1}{g t} \sum_{i=1}^{g} \sum_{j=1}^{t} y_{i j}
+\]</div>
+<p>The model we must assume in the analysis of variance (ANOVA, for short) can be written as the following:</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i j}=\mu+\alpha_{i}+\varepsilon_{i j}
+\]</div>
+<p>in which</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> is the expected value of <span class="math notranslate nohighlight">\(\bar{y}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{i}\)</span> is the group (or treatment) effect for group <span class="math notranslate nohighlight">\(i, i=1, \ldots, g\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_{i j}\)</span> are independent error variables, assumed to be from the <span class="math notranslate nohighlight">\(N(0, \sigma)\)</span> distribution for some <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>.</p></li>
+</ul>
+<p>We will let <span class="math notranslate nohighlight">\(\bar{y}_{i}\)</span>. denote the sample mean in the <span class="math notranslate nohighlight">\(i\)</span> th group. Then since <span class="math notranslate nohighlight">\(\bar{y}\)</span> is the mean of the group means, we have</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{g}\left(\bar{y}_{i}-\bar{y}\right)=0
+\]</div>
+<p>If we replace the sample values with the values predicted by the model in the above, we see that</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{g}\left(\mu+\alpha_{i}-\mu\right)=\sum_{i=1}^{g} \alpha_{i}=0
+\]</div>
+<p>since the error terms have mean zero. Therefore, under the model defined, the group effects are constrained to sum to zero.</p>
+<div class="section" id="testing-the-null-hypothesis">
+<h3><span class="section-number">21.1.1. </span>Testing the null hypothesis<a class="headerlink" href="#testing-the-null-hypothesis" title="Permalink to this headline">#</a></h3>
+<p>Under the model formulated above, the null hypothesis for the equality of the means within the groups can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+H_{0}: \alpha_{1}=\alpha_{2}=\cdots=\alpha_{g}=0
+\]</div>
+<p>In words, all the group effects are zero. Analysis of variance attempts to decide on the plausibility of this statement by comparison of the variation within the groups with the variation between the groups. A description follows.</p>
+<p>Write the difference of an observation from the overall mean as</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i j}-\bar{y}=\left(y_{i j}-\bar{y}_{i}\right)+\left(\bar{y}_{i}-\bar{y}\right) .
+\]</div>
+<p>Take the above equation, square both sides then sum over all <span class="math notranslate nohighlight">\(j\)</span> and all <span class="math notranslate nohighlight">\(i\)</span> (i.e., within the groups, then over the groups) to give</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{g} \sum_{j=1}^{t}\left(y_{i j}-\bar{y}\right)^{2}=\sum_{i=1}^{g} \sum_{j=1}^{t}\left(y_{i j}-\bar{y}_{i}\right)^{2}+\sum_{i=1}^{g} \sum_{j=1}^{t}\left(\bar{y}_{i .}-\bar{y}\right)^{2}  \quad (1)
+\]</div>
+<p>This follows since the cross-product term vanishes, because</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{g} \sum_{j=1}^{t}\left(\bar{y}_{i .}-\bar{y}\right)\left(y_{i j}-\bar{y}_{i .}\right)=\sum_{i=1}^{g}\left(\left(\bar{y}_{i .}-\bar{y}\right) \sum_{j=1}^{t}\left(y_{i j}-\bar{y}_{i .}\right)\right)
+\]</div>
+<p>and the last written sum is just the sum of the observations in the <span class="math notranslate nohighlight">\(i\)</span> th group about their mean <span class="math notranslate nohighlight">\(\bar{y}_{i}\)</span>, and is therefore zero.</p>
+<p>In words, we would write (1) as</p>
+<div class="math notranslate nohighlight">
+\[
+\text { Overall variability }=\text { Within group } \mathrm{SS}+\text { Between group SS, }
+\]</div>
+<p>where “SS” is short for “sum of squares”. If <span class="math notranslate nohighlight">\(H_{0}\)</span> is true, we would expect the within-group variation to be comparable to the between-group variation. If <span class="math notranslate nohighlight">\(H_{0}\)</span> is false, then we would expect the Between group SS to dominate the right hand side of (5.1). We summarize some key results to produce a statistical test, reminding ourselves of a distributional result before we begin.</p>
+<p><strong>Remark 1</strong> <em>If <span class="math notranslate nohighlight">\(x_{1}, x_{2}, \ldots, x_{n}\)</span> are independent observations from a Normal distribution with variance <span class="math notranslate nohighlight">\(\sigma_{X}^{2}\)</span>, and <span class="math notranslate nohighlight">\(\bar{x}\)</span> is their sample mean, then if</em></p>
+<div class="math notranslate nohighlight">
+\[
+s^{2}=\frac{1}{(n-1)} \sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}
+\]</div>
+<p><em>we have that</em></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{(n-1) s^{2}}{\sigma_{X}^{2}} \sim \chi_{n-1}^{2}
+\]</div>
+<p>Let us first consider the Between group SS, namely</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{g} \sum_{j=1}^{t}\left(\bar{y}_{i}-\bar{y}\right)^{2}
+\]</div>
+<p>As the terms in the summation do not depend on <span class="math notranslate nohighlight">\(j\)</span>, we can write the above as</p>
+<div class="math notranslate nohighlight">
+\[
+t \sum_{i=1}^{g}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2}
+\]</div>
+<p>When <span class="math notranslate nohighlight">\(H_{0}\)</span> is true, the model states that both the overall sample mean <span class="math notranslate nohighlight">\(\bar{y}\)</span> and the sample mean within group <span class="math notranslate nohighlight">\(i, \bar{y}_{i}\)</span>, should be random variables with mean <span class="math notranslate nohighlight">\(\mu\)</span>. Further, since the observations are Normally distributed, we have that</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{y}_{i .} \sim N\left(\mu, \frac{\sigma}{\sqrt{t}}\right)
+\]</div>
+<p>under <span class="math notranslate nohighlight">\(H_{0}\)</span>. It follows now from remark 1 above (putting <span class="math notranslate nohighlight">\(n=g, \sigma_{X}^{2}=\sigma^{2} / t\)</span>, <span class="math notranslate nohighlight">\(x_{i}=\bar{y}_{i}\)</span>. and <span class="math notranslate nohighlight">\(\bar{x}=\bar{y}\)</span> in that remark) that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\text { Between group SS }}{\sigma^{2}} \sim \chi_{g-1}^{2}  \quad (2)
+\]</div>
+<p>Turning now to the Within group SS, for fixed <span class="math notranslate nohighlight">\(i, y_{i j} \sim N\left(\mu+\alpha_{i}, \sigma\right)\)</span>. In particular, the observations within each group have the same mean and
+variance. Since <span class="math notranslate nohighlight">\(\bar{y}_{i}\)</span>. is their sample mean, it follows from remark 1 (putting <span class="math notranslate nohighlight">\(\sigma_{X}^{2}=\sigma^{2}, x_{i}=y_{i j}\)</span> and <span class="math notranslate nohighlight">\(\bar{x}=\bar{y}_{i}\)</span>.) that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\sum_{j=1}^{t}\left(y_{i j}-\bar{y}_{i .}\right)^{2}}{\sigma^{2}} \sim \chi_{t-1}^{2}
+\]</div>
+<p>is true for each group. Since the observations in each group are independent of those in any other group, all <span class="math notranslate nohighlight">\(g\)</span> of these Chi-squared variables will be independent of one another. As we know, the sum independent Chi-squared variables is also a Chi-squared variable, with the degrees of freedom adding. Hence we have</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\text { Within group SS }}{\sigma^{2}} \sim \chi_{g(t-1)}^{2} \quad (3)
+\]</div>
+<p>Before stating the result which leads to the test, we state another distributional result.</p>
+<p><strong>Remark 2</strong>
+<em>If <span class="math notranslate nohighlight">\(X \sim \chi_{m}^{2}\)</span> and <span class="math notranslate nohighlight">\(Y \sim \chi_{n}^{2}\)</span> are independent, then</em></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{X / m}{Y / n} \sim F_{m, n}
+\]</div>
+<p><em>In words, the ratio of two independent Chi-squared variables, each divided by their degrees of freedom, has an <span class="math notranslate nohighlight">\(F\)</span> distribution with parameters the respective degrees of freedom dividing the top and bottom variable in the ratio.</em></p>
+<p>Combining (2) and (3) via the above remark, we have that under <span class="math notranslate nohighlight">\(H_{0}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\text { Between group SS/ }(g-1)}{\text { Within group SS } / g(t-1)} \sim F_{g-1, g(t-1)}
+\]</div>
+<p>Now as we know, if <span class="math notranslate nohighlight">\(H_{0}\)</span> is false we would expect the between-group variation to dominate the within-group variation, so would expect the ratio above to be inflated when the underlying group effects differ. Therefore, our critical region will lie in the upper tail of the appropriate <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> distribution.</p>
+<p><strong>Remark 3</strong> <em>The above argument appears quite plausible, until one has a closer look at remark 2. The result follows only when the Chi-squared variables are <strong>independent</strong>. Are the Between group SS and Within group SS statistically independent? It turns out that they are, but no justification has been given for this assumption. A more detailed discussion of results of this sort appears in a more advanced Statistics course.</em></p>
+<p>Having worked out the sums of squares from the data, the results are usually tabulated in a table, called the ANOVA table.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Source</p></th>
+<th class="text-center head"><p>Sum of Squares</p></th>
+<th class="text-center head"><p>d.o.f.</p></th>
+<th class="text-center head"><p>MS</p></th>
+<th class="text-center head"><p>F</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Between</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(t \sum_{i=1}^{g}\left(\bar{y}_{i .}-\bar{y}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(g-1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(t \sum_{i=1}^{g}\left(\bar{y}_{i .}-\bar{y}\right)^{2} /(g-1)\)</span></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Within</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i=1}^{g} \sum_{j=1}^{t}\left(y_{i j}-\bar{y}_{i .}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(g(t-1)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i=1}^{g} \sum_{j=1}^{t}\left(y_{i j}-\bar{y}_{i .}\right)^{2} / g(t-1)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{\text { Between group MS }}{\text { Within group MS }}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Total</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i=1}^{g} \sum_{j=1}^{t}\left(y_{i j}-\bar{y}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(g t-1\)</span></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>In the above “d.o.f.” stands for “degrees of freedom”, and “MS” stands for “mean square”, being the sum of squares divided by its degrees of freedom.</p>
+<p><strong>Remark 4</strong> <em>The Within group SS is sometimes called either the Error SS or the Residual SS, as it gives an indication of experimental variation without the effects of the explanatory variable under consideration.</em></p>
+<p><strong>Example:</strong></p>
+<p>Let us return to our initial example. The group means are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp; \bar{y}_{1 .}=34.00 \\
+&amp; \bar{y}_{2 .}=36.00 \\
+&amp; \bar{y}_{3 .}=37.67 \\
+&amp; \bar{y}_{4 .}=33.17,
+\end{aligned}
+\end{split}\]</div>
+<p>and the overall mean is <span class="math notranslate nohighlight">\(\bar{y}=35.21\)</span>. To find the Between group SS, note</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{4}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2}=12.30
+\]</div>
+<p>is the “variation” in the group means, so</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{4} \sum_{j=1}^{6}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2}=6 \times 12.30=73.80
+\]</div>
+<p>If working by hand, it is easiest to find the Total (corrected) SS, and then the Within group SS by subtraction. The Total SS is</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{4} \sum_{j=1}^{6}\left(y_{i j}-\bar{y}\right)^{2}=109.96
+\]</div>
+<p>and then we find</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{4} \sum_{j=1}^{6}\left(y_{i j}-\bar{y}_{i .}\right)^{2}=109.96-73.80=36.16
+\]</div>
+<p>Presenting the results as an ANOVA table gives the following:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Source</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(S S\)</span></p></th>
+<th class="text-center head"><p>dof</p></th>
+<th class="text-center head"><p>Mean Square</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(F\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Catalyst</p></td>
+<td class="text-center"><p>73.80</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>24.60</p></td>
+<td class="text-center"><p>13.6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Error</p></td>
+<td class="text-center"><p>36.16</p></td>
+<td class="text-center"><p>20</p></td>
+<td class="text-center"><p>1.81</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Total</p></td>
+<td class="text-center"><p>109.96</p></td>
+<td class="text-center"><p>23</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><em>To test the null hypothesis that the catalysts all have the same effect, we look at the mean square ratio, 24.60/1.81 = 13.6. This figure is to be compared with the <span class="math notranslate nohighlight">\(F_{3,20}\)</span> distribution. Now the <span class="math notranslate nohighlight">\(95 \%\)</span> point of this distribution is 3.10, and as 13.6 is greater than this value it lies in the critical region, we must reject the null hypothesis at the 5% level. It would appear that the catalyst present does have an effect on the yield.</em></p>
+</div>
+<div class="section" id="unequal-sample-sizes">
+<h3><span class="section-number">21.1.2. </span>Unequal sample sizes<a class="headerlink" href="#unequal-sample-sizes" title="Permalink to this headline">#</a></h3>
+<p>We hitherto assumed that there were <span class="math notranslate nohighlight">\(t\)</span> observations in each of the <span class="math notranslate nohighlight">\(g\)</span> groups. This is usually a sensible design. However the ideas are the same when group <span class="math notranslate nohighlight">\(i\)</span> contains <span class="math notranslate nohighlight">\(n_{i}\)</span> observations, with</p>
+<div class="math notranslate nohighlight">
+\[
+n=\sum_{i=1}^{g} n_{i}
+\]</div>
+<p>Now</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{y}_{i .}=\frac{1}{n_{i}} \sum_{j=1}^{n_{i}} y_{i j}
+\]</div>
+<p>with the model asserting that</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{y}_{i \cdot} \sim N\left(\mu+\alpha_{i}, \frac{\sigma}{\sqrt{n_{i}}}\right)
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(i=1, \ldots, g\)</span>.</p>
+<p>The total sum of squares is</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{g} \sum_{j=1}^{n_{i}}\left(y_{i j}-\bar{y}\right)^{2}=\sum_{i=1}^{g} \sum_{j=1}^{n_{i}}\left(y_{i j}-\bar{y}_{i .}\right)^{2}+\sum_{i=1}^{g} \sum_{j=1}^{n_{i}}\left(\bar{y}_{i .}-\bar{y}\right)^{2} \quad (4)
+\]</div>
+<p>this following by an identical argument to the equal sample size case.</p>
+<p>As before, we have</p>
+<p>Overall variation <span class="math notranslate nohighlight">\(=\)</span> Within group SS + Between group SS,</p>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+\text { Within group } \mathrm{SS}=\sum_{i=1}^{g} \sum_{j=1}^{n_{i}}\left(y_{i j}-\bar{y}_{i}\right)^{2} \quad (5)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\text { Between group SS } &amp; =\sum_{i=1}^{g} \sum_{j=1}^{n_{i}}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2} \\
+&amp; =\sum_{i=1}^{g} n_{i}\left(\bar{y}_{i}-\bar{y}\right)^{2} .
+\end{aligned} \quad (6)
+\end{split}\]</div>
+<p>These are sometimes called the Error <span class="math notranslate nohighlight">\(S S\)</span> and Treatment <span class="math notranslate nohighlight">\(S S\)</span> respectively.</p>
+<p>The degrees of freedom essentially relates to the number of independent pieces of information in a SS. We deduct one d.o.f. for each parameter estimated.</p>
+<p>The degrees of freedom for the SS are easily derived. For the total SS, the d.o.f. must be</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{g} n_{i}-1=n-1
+\]</div>
+<p>since only <span class="math notranslate nohighlight">\(E(\bar{y})\)</span> is estimated.</p>
+<p>For the Within group SS, the d.o.f. must be</p>
+<div class="math notranslate nohighlight">
+\[
+n-g
+\]</div>
+<p>since each <span class="math notranslate nohighlight">\(E\left(\bar{y}_{i}\right), i=1, \ldots, g\)</span>, is estimated.</p>
+<p>By subtraction, the Between group SS has d.o.f.</p>
+<div class="math notranslate nohighlight">
+\[
+n-1-(n-g)=g-1
+\]</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Source</p></th>
+<th class="text-center head"><p>SS</p></th>
+<th class="text-center head"><p>d.o.f.</p></th>
+<th class="text-center head"><p>MS</p></th>
+<th class="text-center head"><p>F</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Between</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\((6)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(g-1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{(6)}{g-1}\)</span></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Within</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\((5)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(n-g\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{(5)}{n-g}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{(6) /(g-1)}{(5) /(n-g)}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Total</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\((4)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(n-1\)</span></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>The statistic in the final column is compared to the <span class="math notranslate nohighlight">\(F_{g-1, n-g}\)</span> distribution.</p>
+<p><strong>Example:</strong></p>
+<p>A cycling club has four groups using different training programs, labelled <span class="math notranslate nohighlight">\(A, B, C\)</span> and <span class="math notranslate nohighlight">\(D\)</span>. The data below give the times (mins) of each member to ride a loop with a <span class="math notranslate nohighlight">\(7 \%\)</span> uphill gradient:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p><span class="math notranslate nohighlight">\(A\)</span></p></th>
+<th class="text-left head"><p><span class="math notranslate nohighlight">\(B\)</span></p></th>
+<th class="text-left head"><p><span class="math notranslate nohighlight">\(C\)</span></p></th>
+<th class="text-left head"><p><span class="math notranslate nohighlight">\(D\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>84</p></td>
+<td class="text-left"><p>56</p></td>
+<td class="text-left"><p>70</p></td>
+<td class="text-left"><p>47</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>93</p></td>
+<td class="text-left"><p>78</p></td>
+<td class="text-left"><p>59</p></td>
+<td class="text-left"><p>73</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>83</p></td>
+<td class="text-left"><p>56</p></td>
+<td class="text-left"><p>78</p></td>
+<td class="text-left"><p>104</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>61</p></td>
+<td class="text-left"><p>61</p></td>
+<td class="text-left"><p>53</p></td>
+<td class="text-left"><p>71</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>121</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>104</p></td>
+<td class="text-left"><p>69</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>67</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>110</p></td>
+<td class="text-left"><p>99</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>40</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>The group means are</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{y}_{1 .}=84.83, \quad \bar{y}_{2 .}=62.75, \quad \bar{y}_{3 .}=73.43, \quad \bar{y}_{4 .}=77.17 .
+\]</div>
+<p>The ANOVA table is</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Source</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(S S\)</span></p></th>
+<th class="text-center head"><p>d.o.f.</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(M S\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(F\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Between</p></td>
+<td class="text-center"><p>1220</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>407</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Within</p></td>
+<td class="text-center"><p>8868</p></td>
+<td class="text-center"><p>19</p></td>
+<td class="text-center"><p>467</p></td>
+<td class="text-center"><p>0.87</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Total</p></td>
+<td class="text-center"><p>10088</p></td>
+<td class="text-center"><p>22</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>To decide whether to accept the null hypothesis that the mean times under the four training regimes are the same, we compare</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{407}{467}=0.87
+\]</div>
+<p>with the <span class="math notranslate nohighlight">\(F_{3,19}\)</span> distribution. The statistic is far from significant - in fact the p-value here is 0.473. Hence there is no evidence to reject the claim that the regimes have the same mean times.</p>
+</div>
+<div class="section" id="estimating-sigma-2">
+<h3><span class="section-number">21.1.3. </span>Estimating <span class="math notranslate nohighlight">\(\sigma^{2}\)</span><a class="headerlink" href="#estimating-sigma-2" title="Permalink to this headline">#</a></h3>
+<p>Recall it is assumed that observations in each group are Normally distributed with common variance <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>. How can we estimate this parameter?</p>
+<p>Each within-group variance,</p>
+<div class="math notranslate nohighlight">
+\[
+s_{i}^{2}=\frac{1}{n_{i}-1} \sum_{j=1}^{n_{i}}\left(y_{i j}-\bar{y}_{i}\right)^{2}
+\]</div>
+<p>gives an unbiased estimate of <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>, for <span class="math notranslate nohighlight">\(i=1, \ldots, g\)</span>. Analogous to the two sample <span class="math notranslate nohighlight">\(t\)</span> test, it is natural to pool these estimators to find</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+s_{p}^{2} &amp; =\frac{\left(n_{1}-1\right) s_{1}^{2}+\cdots+\left(n_{g}-1\right) s_{g}^{2}}{n-g} \\
+&amp; =\frac{\sum_{i=1}^{g}\left(n_{i}-1\right) s_{i}^{2}}{n-g} \\
+&amp; =\frac{\sum_{i=1}^{g} \sum_{j=1}^{n_{i}}\left(y_{i j}-\bar{y}_{i .}\right)^{2}}{n-g} \\
+&amp; =\text { Within group MS. }
+\end{aligned}
+\end{split}\]</div>
+<p>This is an unbiased estimator of <span class="math notranslate nohighlight">\(\sigma^{2}-\)</span> to show this, we need the fact that the mean of the <span class="math notranslate nohighlight">\(\chi_{n}^{2}\)</span> is <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><strong>Example:</strong></p>
+<p>In the cycling club example, the estimate of <span class="math notranslate nohighlight">\(\sigma^{2}\)</span> is: Within group <span class="math notranslate nohighlight">\(M S=467\)</span>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="exp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Experimental Design and the Analysis of Variance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mul.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Multiple Comparisons</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basic-model">21.1. The basic model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-null-hypothesis">21.1.1. Testing the null hypothesis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unequal-sample-sizes">21.1.2. Unequal sample sizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-sigma-2">21.1.3. Estimating <span class="math notranslate nohighlight">\(\sigma^{2}\)</span></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

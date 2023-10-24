@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>18. Bootstrapping &#8212; My Statistics Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bootstrap/intro';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="19. Bootstrap hypothesis tests" href="hyp.html" />
+    <link rel="prev" title="17. Graphical tests of goodness-of-fit: Probability plots" href="../goodness/probplot.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Statistics Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Basics/1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Basics/2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/3kruskaltest.html">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/4permtest.html">11. Permutation Tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">power</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../power/power.html">12. Power of Hypothesis test</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Goodness-of-Fit</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../goodness/chi.html">13. Chi-Squared Goodness of Fit Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/cont.html">14. Contingency tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/fisch.html">15. Fisher’s Exact Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/dens.html">16. Density curve fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/probplot.html">17. Graphical tests of goodness-of-fit: Probability plots</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bootstrap</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Bootstrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyp.html">19. Bootstrap hypothesis tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Design &amp; ANOVA</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Design/exp.html">20. Experimental Design and the Analysis of Variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/anova.html">21. ANOVA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/mul.html">22. Multiple Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/two.html">23. Two-way analysis of variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/ext.html">24. Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/R.html">25. ANOVA in R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbootstrap/intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/bootstrap/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bootstrapping</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducing-the-bootstrap">18.1. Introducing the bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-the-ebd">18.2. Properties of the EBD</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="bootstrapping">
+<h1><span class="section-number">18. </span>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permalink to this headline">#</a></h1>
+<p>In some situations it is difficult to make assumptions about the sampling distribution of a statistic. In particular, there may be no obvious way to robustly assess the variance of an estimator.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>Prof Statto is concerned about his systolic blood pressure. He has been told by his doctor hypertension is diagnosed when systolic blood pressure reaches <span class="math notranslate nohighlight">\(140 \mathrm{mmHg}\)</span>. Prof. Statto measures his blood pressure eight times in a day, and observes the following measurements:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text { 139, 135, 144, 134, 139, 132, 132, } 137
+\]</div>
+<ul class="simple">
+<li><p>Sonoda et al. (2011) report experiments involving a remarkable labrador dog, named Marine, that apparently has been trained to detect the presence or absence of bowel and prostate cancer in humans. Samples of breath and faeces were taken from a pool of 48 people with confirmed bowel cancer and 258 disease-free controls. In one study, Marine sniffed five breath samples, only one of which was from a cancer patient. To identify the cancerous sample, she was required to sit in front of it and ignore the others. She did this correctly in 33 out of 36 trials. How accurate is Marine?</p></li>
+<li><p>Sniffer dogs in Germany have been trained to detect the presence or absence of lung cancer in humans, including humans without lung cancer but suffering from chronic obstructive pulmonary disease (COPD). The dogs can apparently detect lung cancer in human breath. In part of the study, the dogs were able to detect correctly the absence of cancer 372 times out of 400 subjects who did not have lung cancer. How accurate are these dogs?</p></li>
+</ul>
+<div class="section" id="introducing-the-bootstrap">
+<h2><span class="section-number">18.1. </span>Introducing the bootstrap<a class="headerlink" href="#introducing-the-bootstrap" title="Permalink to this headline">#</a></h2>
+<p>Suppose we have a sample of size <span class="math notranslate nohighlight">\(n\)</span>, which we denote <span class="math notranslate nohighlight">\(S_{n}=\left\{x_{1}, x_{2}, \ldots, x_{n}\right\}\)</span>. For this sample, let <span class="math notranslate nohighlight">\(t\)</span> denote the value of a statistic <span class="math notranslate nohighlight">\(T\)</span> of interest. For instance, <span class="math notranslate nohighlight">\(t\)</span> could be the sample mean, median or variance. We draw <span class="math notranslate nohighlight">\(M\)</span> simple random samples with replacement from <span class="math notranslate nohighlight">\(S_{n}\)</span>. That is, each observation in a bootstrap sample is taken by picking one of <span class="math notranslate nohighlight">\(\left\{x_{1}, x_{2}, \ldots, x_{n}\right\}\)</span> at random, then replacing that observation before selecting the next observation. For each sample selected, the statistic <span class="math notranslate nohighlight">\(t\)</span> is found. In this way a set of <span class="math notranslate nohighlight">\(M\)</span> values of <span class="math notranslate nohighlight">\(T\)</span>
+are drawn, which we denote <span class="math notranslate nohighlight">\(\left\{t_{1}^{*}, t_{2}^{*}, \ldots, t_{M}^{*}\right\}\)</span>. These <span class="math notranslate nohighlight">\(M\)</span> values comprise the empirical bootstrap distribution (EBD) for <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>The empirical bootstrap distribution provides an approximation to the bootstrap distribution, which is the distribution of values of <span class="math notranslate nohighlight">\(T\)</span> that would arise if all possible samples with replacement were taken from <span class="math notranslate nohighlight">\(S_{n}\)</span>. In fact there are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left(\begin{array}{c}
+2 n-1 \\
+n
+\end{array}\right)
+\end{split}\]</div>
+<p>such samples, so it is only feasible to compute the bootstrap distribution for small <span class="math notranslate nohighlight">\(n\)</span>. As long as <span class="math notranslate nohighlight">\(M\)</span> is large, the EBD provides a close approximation to the bootstrap distribution. Computer software can make implementing bootstrapping relatively simple.</p>
+<p><strong>Example:</strong></p>
+<p>Prof Statto is interested in his mean systolic blood pressure. In particular, he wonders whether a 95% confidence interval for the mean would contain the value <span class="math notranslate nohighlight">\(140 \mathrm{mmHg}\)</span>. Based on his data, he considers creating a confidence interval using Normal distribution theory and the <span class="math notranslate nohighlight">\(t\)</span> distribution, but he recognizes that the approach may be unsound if the data are nonNormal due to the small sample size. Instead he opts for bootstrapping, and resamples from his data one hundred times, computing the mean each time as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-right head"><p>1</p></th>
+<th class="text-right head"><p>2</p></th>
+<th class="text-right head"><p>3</p></th>
+<th class="text-right head"><p>4</p></th>
+<th class="text-right head"><p>5</p></th>
+<th class="text-right head"><p>6</p></th>
+<th class="text-right head"><p>7</p></th>
+<th class="text-right head"><p>8</p></th>
+<th class="text-right head"><p>Mean</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>Sample 1:</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>134</p></td>
+<td class="text-right"><p>135</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>139</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>139</p></td>
+<td class="text-right"><p>144</p></td>
+<td class="text-right"><p>135.88</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>Sample 2:</p></td>
+<td class="text-right"><p>139</p></td>
+<td class="text-right"><p>135</p></td>
+<td class="text-right"><p>137</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>135</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>134</p></td>
+<td class="text-right"><p>134.50</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>Sample 100:</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>139</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>144</p></td>
+<td class="text-right"><p>132</p></td>
+<td class="text-right"><p>139</p></td>
+<td class="text-right"><p>135.25</p></td>
+</tr>
+</tbody>
+</table>
+<p>Based on the above, the empirical bootstrap distribution for <span class="math notranslate nohighlight">\(\bar{x}\)</span> is illustrated by
+the histogram below:</p>
+<p><img alt="" src="../_images/Notes06_BloodpressureBootstrapMeansHist.png" /></p>
+<p>The term “bootstrap” was coined by Bradley Efron, to whom the idea is usually attributed. See Efron (1979) for the first paper on bootstrap sampling. The methods we describe here are nonparametric, in that no explicit model is ever assumed for our data. Parametric bootstrapping, where we repeatedly sample from a model, is not discussed, but see Davison and Hinkley (1997) for a fuller description of bootstrapping methods.</p>
+</div>
+<div class="section" id="properties-of-the-ebd">
+<h2><span class="section-number">18.2. </span>Properties of the EBD<a class="headerlink" href="#properties-of-the-ebd" title="Permalink to this headline">#</a></h2>
+<p>Some general properties of the EBD are summarised below:</p>
+<ol class="arabic simple">
+<li><p>The EBD is centred on the sample value <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p>The mean of the EBD is an estimate of the mean of the sampling distribution of <span class="math notranslate nohighlight">\(T\)</span> over the bootstrap distribution.</p></li>
+<li><p>The standard deviation of the EBD estimates the standard deviation of <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\alpha \in(0,1)\)</span>, the <span class="math notranslate nohighlight">\(100 \alpha / 2\)</span> th and <span class="math notranslate nohighlight">\(100(1-\alpha / 2)\)</span> th percentile points of the EBD give a 100(1- <span class="math notranslate nohighlight">\(\alpha) \%\)</span> bootstrap confidence for the parameter estimated by the statistic <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+</ol>
+<p><strong>Example</strong></p>
+<p>Prof Statto finds the average of his 100 bootstrap samples is <span class="math notranslate nohighlight">\(136.56 \mathrm{mmHg}\)</span>, very close to the sample mean of <span class="math notranslate nohighlight">\(136.50 \mathrm{mmHg}\)</span>. The standard deviation of the means is <span class="math notranslate nohighlight">\(1.29 \mathrm{mmHg}\)</span>, which is smaller here than the estimated standard deviation of <span class="math notranslate nohighlight">\(\bar{x}\)</span> that would be found using</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{s}{\sqrt{n}}=\frac{4.11}{\sqrt{8}}=1.45
+\]</div>
+<p>To obtain a 95% bootstrap interval for Prof Statto’s mean blood pressure, he sorts his 100 bootstrap sample means into order. The <span class="math notranslate nohighlight">\(2 \frac{1}{2}\)</span>-percentile is taken as the mean of the second and third smallest values, which is <span class="math notranslate nohighlight">\(134.19 \mathrm{mmHg}\)</span>. Similarly the 971-percentile of the EBD is found by averaging the 97th and 98th in order, which in this case is <span class="math notranslate nohighlight">\(139.06 \mathrm{mmHg}\)</span>. Hence the <span class="math notranslate nohighlight">\(95 \%\)</span> bootstrap interval is <span class="math notranslate nohighlight">\((134.19,139.06)\)</span>. This interval does not contain <span class="math notranslate nohighlight">\(140 \mathrm{mmHg}\)</span>.</p>
+<p>The bootstrap approach is most effective when it is difficult to specify the sampling distribution of the statistic <span class="math notranslate nohighlight">\(T\)</span>. As such, unless we have a very small sample (like in Prof Statto’s case), the bootstrap may not be so useful when <span class="math notranslate nohighlight">\(T\)</span> is the sample mean. For in that case, sampling theory gives good information about the sampling distribution of <span class="math notranslate nohighlight">\(\bar{x}\)</span>, and its variance in particular.</p>
+<p><strong>Remark</strong> <em>When sampling with replacement from a finite population <span class="math notranslate nohighlight">\(S_{n}\)</span> of size <span class="math notranslate nohighlight">\(n\)</span> with mean <span class="math notranslate nohighlight">\(\bar{X}\)</span> and standard deviation <span class="math notranslate nohighlight">\(S\)</span>, the mean <span class="math notranslate nohighlight">\(\bar{x}\)</span> of a sample of size <span class="math notranslate nohighlight">\(n\)</span> is unbiased for <span class="math notranslate nohighlight">\(\bar{X}\)</span>. Moreover, the variance of <span class="math notranslate nohighlight">\(\bar{x}\)</span> is</em></p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\bar{x})=\frac{S^{2}}{n}\left(1-\frac{1}{n}\right) \approx \frac{S^{2}}{n}
+\]</div>
+<p><em>In the case when <span class="math notranslate nohighlight">\(S_{n}\)</span> is itself a random sample from some distribution with variance <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>, then <span class="math notranslate nohighlight">\(S^{2}\)</span> is an unbiased estimator of <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>, and we can conclude that <span class="math notranslate nohighlight">\(S^{2} / n\)</span> would be an unbiased estimator of <span class="math notranslate nohighlight">\(\sigma^{2} / n\)</span>, the variance of <span class="math notranslate nohighlight">\(\bar{X}\)</span>. So when the variation in the sample mean is of interest, there may be no great benefit from using the bootstrap as long as <span class="math notranslate nohighlight">\(n\)</span> is not very small.</em></p>
+<p><strong>Example</strong></p>
+<p>Let us return to the example of the dog Marine, who correctly identified the presence of cancer in five breath samples 33 out of 36 times. A simple model for these data takes each trial as Bernoulli variable (1 for success, 0 for failure) with some unknown probability <span class="math notranslate nohighlight">\(p\)</span> of success. The total
+number of successes would then follow the <span class="math notranslate nohighlight">\(B(36, p)\)</span> distribution, assuming independence between each trial. Inference for a Binomial distribution could make use of the Normal approximation, in that the sample proportion <span class="math notranslate nohighlight">\(\hat{p}\)</span> approximately follows a Normal distribution:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{p} \sim N\left(p, \sqrt{\frac{p(1-p)}{36}}\right)
+\]</div>
+<p>The estimate <span class="math notranslate nohighlight">\(\hat{p}\)</span> may be used to replace <span class="math notranslate nohighlight">\(p\)</span> in the above to construct confidence intervals for <span class="math notranslate nohighlight">\(p\)</span>. We may be uncomfortable using that approach here though, largely since <span class="math notranslate nohighlight">\(p\)</span> is evidently quite close to 1 and the sampling distribution of <span class="math notranslate nohighlight">\(\hat{p}\)</span> must be skewed, as <span class="math notranslate nohighlight">\(p \in(0,1)\)</span>. An alternative approach uses the bootstrap. We can repeatedly sample from the data with replacement, and record the sample proportion for each bootstrap sample.</p>
+<p>Suppose we take 200 samples with replacement from the data set. This provides an EBD for <span class="math notranslate nohighlight">\(\hat{p}\)</span>. We could look at the 5th and 195th values to find a <span class="math notranslate nohighlight">\(95 \%\)</span> bootstrap confidence interval for p. In one such bootstrap procedure, the <span class="math notranslate nohighlight">\(95 \%\)</span> confidence interval was found to be <span class="math notranslate nohighlight">\((0.806,1.00)\)</span>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./bootstrap"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../goodness/probplot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Graphical tests of goodness-of-fit: Probability plots</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hyp.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Bootstrap hypothesis tests</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducing-the-bootstrap">18.1. Introducing the bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-the-ebd">18.2. Properties of the EBD</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

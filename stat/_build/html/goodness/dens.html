@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16. Density curve fitting &#8212; My Statistics Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'goodness/dens';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="17. Graphical tests of goodness-of-fit: Probability plots" href="probplot.html" />
+    <link rel="prev" title="15. Fisher’s Exact Test" href="fisch.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Statistics Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Basics/1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Basics/2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/3kruskaltest.html">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/4permtest.html">11. Permutation Tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">power</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../power/power.html">12. Power of Hypothesis test</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Goodness-of-Fit</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chi.html">13. Chi-Squared Goodness of Fit Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cont.html">14. Contingency tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fisch.html">15. Fisher’s Exact Test</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Density curve fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probplot.html">17. Graphical tests of goodness-of-fit: Probability plots</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bootstrap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/intro.html">18. Bootstrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/hyp.html">19. Bootstrap hypothesis tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Design &amp; ANOVA</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Design/exp.html">20. Experimental Design and the Analysis of Variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/anova.html">21. ANOVA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/mul.html">22. Multiple Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/two.html">23. Two-way analysis of variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/ext.html">24. Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design/R.html">25. ANOVA in R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgoodness/dens.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/goodness/dens.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Density curve fitting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">16.1. Example</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="density-curve-fitting">
+<h1><span class="section-number">16. </span>Density curve fitting<a class="headerlink" href="#density-curve-fitting" title="Permalink to this headline">#</a></h1>
+<p>This is essentially a simple extension of the Chi-squared test we met in the last section, but adapted to test for the fit of more general distributions. We begin with a motivating example.</p>
+<div class="section" id="example">
+<h2><span class="section-number">16.1. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p>Below is a tabulation of the lengths (in seconds) of a thousand telephone calls coming in to an exchange (Hoel, 1984, p.109):</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Duration (secs)</p></th>
+<th class="head"><p>Frequency</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0-100</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>100-200</p></td>
+<td><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>200-300</p></td>
+<td><p>88</p></td>
+</tr>
+<tr class="row-odd"><td><p>300-400</p></td>
+<td><p>180</p></td>
+</tr>
+<tr class="row-even"><td><p>400-500</p></td>
+<td><p>247</p></td>
+</tr>
+<tr class="row-odd"><td><p>500-600</p></td>
+<td><p>260</p></td>
+</tr>
+<tr class="row-even"><td><p>600-700</p></td>
+<td><p>133</p></td>
+</tr>
+<tr class="row-odd"><td><p>700-800</p></td>
+<td><p>42</p></td>
+</tr>
+<tr class="row-even"><td><p>800-900</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>900-1000</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Plotting a histogram of the above data, a Normal model suggests itself. Is this reasonable?</p>
+<p>In treating the data as being Normal one is mentally fitting to the histogram a Normal density curve. That is to say, one is imagining a curve of the form</p>
+<div class="math notranslate nohighlight">
+\[
+c \frac{1}{\sqrt{2 \pi \sigma^{2}}} \exp \left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right)
+\]</div>
+<p>passing through the histogram, for some suitable scaling constant <span class="math notranslate nohighlight">\(c\)</span>. If such a model were reasonable, we recall that good point estimators of the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^{2}\)</span> are the sample mean <span class="math notranslate nohighlight">\(\bar{x}\)</span> and the (adjusted) sample variance <span class="math notranslate nohighlight">\(s^{2}\)</span> respectively. Essentially then the problem reduces to how well the <span class="math notranslate nohighlight">\(N(\bar{x}, s)\)</span> distribution appears to fit the data in hand.</p>
+<p>The Chi-squared test has a role here: we compare the observed counts in each of the sets with the counts expected under the <span class="math notranslate nohighlight">\(N(\bar{x}, s)\)</span> model. The comparison is via the Chi-squared test statistic</p>
+<div class="math notranslate nohighlight">
+\[
+\chi^{2}=\sum_{i=1}^{k} \frac{\left(o_{i}-e_{i}\right)^{2}}{e_{i}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is the number of sets for which we have counts, and <span class="math notranslate nohighlight">\(o_{i}\)</span> and <span class="math notranslate nohighlight">\(e_{i}\)</span> are the observed and expected number respectively in class <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><em>Remark:</em> There is a subtlety here which should not be overlooked: the value of the test statistic above is a function of the choice of sets over which we
+have counts. So if, in our example, we had chosen five sets (say) rather than ten, the test could give different inference.</p>
+<p>Let us return to our example regarding the telephone exchange. Calculations based on the raw data give <span class="math notranslate nohighlight">\(\bar{x}=475\)</span> secs and <span class="math notranslate nohighlight">\(s=151\)</span> secs, so the curve we are fitting to the histogram is of the form</p>
+<div class="math notranslate nohighlight">
+\[
+c \frac{1}{151 \sqrt{2 \pi}} \exp \left(-\frac{1}{2}\left(\frac{x-475}{151}\right)^{2}\right)
+\]</div>
+<p>and since we can work using proportions (and multiply up by 1000 to give expected values), it is not necessary to find the constant <span class="math notranslate nohighlight">\(c\)</span>. To calculate how many observations we would expect in each interval under the null hypothesis that the data are from a Normal distribution, there are two options easily available to us. Label the boundary points <span class="math notranslate nohighlight">\(b_{1}, \ldots, b_{k}\)</span> (here <span class="math notranslate nohighlight">\(b_{1}=100, \ldots, b_{10}= 1000\)</span>), then either</p>
+<ol class="arabic simple">
+<li><p>find <span class="math notranslate nohighlight">\(z_{i}=\left(b_{i}-475\right) / 151\)</span> for each boundary point <span class="math notranslate nohighlight">\(b_{i}\)</span> and then make use of Standard Normal tables, or</p></li>
+<li><p>use the <code>pnorm</code> function in <span class="math notranslate nohighlight">\(\mathrm{R}\)</span> :</p></li>
+</ol>
+<code>
+c2 <-pnorm(c1,mean=475, sd=151, lower.tail=TRUE) 
+</code>
+<p>where <span class="math notranslate nohighlight">\(\mathrm{c} 1=\left(b_{1}, \ldots, b_{10}\right)^{\prime}\)</span>. The expected counts can then be found by subtraction, say via <span class="math notranslate nohighlight">\(\operatorname{diff}(\mathrm{c} 2)\)</span>.</p>
+<p>In both cases the results, once multiplied by 1000 , give</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Expected</p></th>
+<th class="head"><p>Observed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>6.4</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>28.0</p></td>
+<td><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>88.6</p></td>
+<td><p>88</p></td>
+</tr>
+<tr class="row-odd"><td><p>185.5</p></td>
+<td><p>180</p></td>
+</tr>
+<tr class="row-even"><td><p>255.1</p></td>
+<td><p>247</p></td>
+</tr>
+<tr class="row-odd"><td><p>230.3</p></td>
+<td><p>260</p></td>
+</tr>
+<tr class="row-even"><td><p>138.0</p></td>
+<td><p>133</p></td>
+</tr>
+<tr class="row-odd"><td><p>52.3</p></td>
+<td><p>42</p></td>
+</tr>
+<tr class="row-even"><td><p>13.3</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>2.2</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<p>The value of <span class="math notranslate nohighlight">\(\chi^{2}\)</span> computes to 10.4. Now as there are two parameters to be estimated, and ten pairs of frequencies to be compared, the number of degrees of freedom is <span class="math notranslate nohighlight">\(9-2=7\)</span>. Now <span class="math notranslate nohighlight">\(\chi_{7}^{2}(0.95)=14.1\)</span>, so if testing at the <span class="math notranslate nohighlight">\(5 \%\)</span> significance level there is no evidence to reject the hypothesis here that the calls were Normally distributed.</p>
+<p><em>Remark:</em> In general, the number of degrees of freedom in the Chi-squared goodness of fit test is <span class="math notranslate nohighlight">\(k-1-p\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is the number of categories and <span class="math notranslate nohighlight">\(p\)</span> is the number of parameters being estimated. This takes into account the fact that the test is actually apparently favouring the acceptance of the null hypothesis by using the data to estimate the parameters involved.</p>
+<p><em>Remark:</em> How should one estimate the p parameters involved? Strictly the answer to this is not easy to implement: the parameter estimates should maximise the probability density of the data for the given choice of boundaries. In practice, however, this latter point is often overlooked. It has been shown that in most instances the effect this has on the power and significance level of the test is small.</p>
+<p>Further situations akin to the above are handled in a similar fashion. In particular, if we believed our data were from</p>
+<ol class="arabic simple">
+<li><p>the <span class="math notranslate nohighlight">\(B(n, p)\)</span> distribution, then assuming <span class="math notranslate nohighlight">\(n\)</span> was known the test has <span class="math notranslate nohighlight">\(k-\)</span> <span class="math notranslate nohighlight">\(1-1=k-2\)</span> degrees of freedom;</p></li>
+<li><p>the <span class="math notranslate nohighlight">\(P_{o}(\lambda)\)</span> distribution, then the single parameter is estimated by the sample mean and the test has <span class="math notranslate nohighlight">\(k-2\)</span> degrees of freedom. If <span class="math notranslate nohighlight">\(\lambda\)</span> is assumed known in advance, there would be <span class="math notranslate nohighlight">\(k-1\)</span> degrees of freedom.</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./goodness"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fisch.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Fisher’s Exact Test</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="probplot.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Graphical tests of goodness-of-fit: Probability plots</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">16.1. Example</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

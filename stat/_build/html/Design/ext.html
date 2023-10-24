@@ -1,0 +1,1078 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24. Extensions &#8212; My Statistics Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Design/ext';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="25. ANOVA in R" href="R.html" />
+    <link rel="prev" title="23. Two-way analysis of variance" href="two.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Statistics Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Basics/1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Basics/2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/3kruskaltest.html">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/4permtest.html">11. Permutation Tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">power</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../power/power.html">12. Power of Hypothesis test</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Goodness-of-Fit</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../goodness/chi.html">13. Chi-Squared Goodness of Fit Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/cont.html">14. Contingency tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/fisch.html">15. Fisher’s Exact Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/dens.html">16. Density curve fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/probplot.html">17. Graphical tests of goodness-of-fit: Probability plots</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bootstrap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/intro.html">18. Bootstrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/hyp.html">19. Bootstrap hypothesis tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Design &amp; ANOVA</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="exp.html">20. Experimental Design and the Analysis of Variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anova.html">21. ANOVA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mul.html">22. Multiple Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="two.html">23. Two-way analysis of variance</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R.html">25. ANOVA in R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDesign/ext.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Design/ext.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Extensions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-designs">24.1. Nested designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">24.2. Factorial designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designs">24.3. <span class="math notranslate nohighlight">\(2^{2}\)</span> designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-designs">24.4. <span class="math notranslate nohighlight">\(2^{p}\)</span> designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-in-factorial-designs">24.5. Blocking in factorial designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-blocks">24.6. Two blocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fractional-factorial-designs">24.7. Fractional factorial designs</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="extensions">
+<h1><span class="section-number">24. </span>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">#</a></h1>
+<p>In standard designs, each level of each factor appears with all levels of the other factors. When there are more than one replication within each treatment, all interaction and main effects can be studied. Ideally experiments are balanced in that there are equal replications under each treatment. We consider next some special designs, concentrating on features of the designs rather than their analyses.</p>
+<div class="section" id="nested-designs">
+<h2><span class="section-number">24.1. </span>Nested designs<a class="headerlink" href="#nested-designs" title="Permalink to this headline">#</a></h2>
+<p>One way in which a two factor design can appear in different form is via nested factors. In a nested design, the levels of one factor are not identical to the levels of another factors. Such designs are sometimes called hierarchical.</p>
+<p>Suppose for example we have two drugs <span class="math notranslate nohighlight">\(A_{1}\)</span> and <span class="math notranslate nohighlight">\(A_{2}\)</span> one of which is tested in hospitals <span class="math notranslate nohighlight">\(B_{1}, B_{2}\)</span> and <span class="math notranslate nohighlight">\(B_{3}\)</span>, the other in hospitals <span class="math notranslate nohighlight">\(B_{4}, B_{5}\)</span> and <span class="math notranslate nohighlight">\(B_{6}\)</span>, assuming for simplicity there are <span class="math notranslate nohighlight">\(K\)</span> replications in each hospital. The data could be displayed as follows.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Drug <span class="math notranslate nohighlight">\(A_{1}\)</span></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p>Drug <span class="math notranslate nohighlight">\(A_{2}\)</span></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(B_{1}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(B_{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(B_{3}\)</span></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(B_{4}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(B_{5}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(B_{6}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(y_{111}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{121}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{131}\)</span></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{241}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{251}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{261}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(y_{11 K}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{12 K}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{13 K}\)</span></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{24 K}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{25 K}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y_{26 K}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>This is a two-stage nested design. We could compare the effects of the two drugs and possible differences between hospitals using the same drug, but not differences between hospitals using different drugs. For instance, it would not be possible to compare how hospital <span class="math notranslate nohighlight">\(B_{1}\)</span> differs between the two drugs. That is, it is not possible to test for the interaction between drug type and hospital, since each level of the hospital factor does not appear with each level of the drug factor.</p>
+<p>The nesting of factors can be either in the design structure or the treatment structure.</p>
+</div>
+<div class="section" id="factorial-designs">
+<h2><span class="section-number">24.2. </span>Factorial designs<a class="headerlink" href="#factorial-designs" title="Permalink to this headline">#</a></h2>
+<p>A special class of experiments worthy of detailed study arise when each of the factors involved in an ANOVA experiment can take only two possible
+levels. These levels may conveniently be thought of as “low” and “high”, or alternatively “on” and “off”. Such experiments are termed factorial designs, and when data are gathered at each possible combination of levels for the factors, the design is said to be full or complete.</p>
+<p>There are certain advantages to using factorial designs, particularly in contexts where there are many factors that may affect the response. Such situations are commonplace in industrial processes, where numerous different variables could have an impact on the response (say the quality or quantity of the product). Experimentation that involves changing only one factor at once, using what are sometimes referred to as one-factor-at-a-time designs, is suboptimal for various reasons. We outline the key advantages of factorial experiments:</p>
+<ol class="arabic simple">
+<li><p>When the number of factors is even moderately high, it is expedient to use factorial designs as a screening process to identify which main effects and interactions appear to be important. That is, should there be several factors each with many possible levels, it is best to perform some preliminary study with each factor restricted to two levels, in order to clarify the important effects. Based on such a study a more refined experiment, discarding apparently unimportant factors, can lead toward optimal factor settings.</p></li>
+<li><p>It can readily be seen that one-factor-at-a-time designs are inefficient, in that they yield less useful information for the same number of runs compared to a factorial design.</p></li>
+<li><p>When interactions are present, one-factor-at-a-time designs will not detect these effects. This can lead to misleading results, where main effects have been masked due to significant interaction being overlooked.</p></li>
+</ol>
+<p>Notation around this topic has little uniformity, with few textbooks concurring on symbology. Here we opt to denote the factors as <span class="math notranslate nohighlight">\(A, B, C \ldots\)</span> and denote the corresponding levels by either “+” and “-“, or alternatively (1) for the “low” (or “off”) level, and the lower case factor letter for the “high” (or “on”) setting. So for example factor <span class="math notranslate nohighlight">\(A\)</span> has two levels that can be denoted + or -, or (1) and <span class="math notranslate nohighlight">\(a\)</span>. The logic for this dual notation should become apparent.</p>
+<p>When there are <span class="math notranslate nohighlight">\(p\)</span> factors, a factorial design is referred to as a <span class="math notranslate nohighlight">\(2^{p}\)</span> design. The different treatments possible, sometimes called runs, can be denoted
+<span class="math notranslate nohighlight">\(a^{i} b^{j} c^{k} \ldots\)</span> where for instance</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+i=\left\{\begin{array}{lr}
+0 &amp; \text { factor } A \text { low } \\
+1 &amp; \text { factor } A \text { high. }
+\end{array}\right.
+\end{split}\]</div>
+<p>So for example in a <span class="math notranslate nohighlight">\(2^{4}\)</span> factorial experiment, the treatment <span class="math notranslate nohighlight">\(a d\)</span> represents setting factors <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to high, <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> to low.</p>
+<p>In the following we discuss <span class="math notranslate nohighlight">\(2^{2}\)</span> designs, some issues about generalizations, and so-called incomplete and fractional factorial designs. This is a subject on which entire books are devoted, so our treatment is necessarily quite scanty. It should be kept in mind however that the main tool for analysis will be ANOVA, so this chapter draws on material from the previous one.</p>
+</div>
+<div class="section" id="designs">
+<h2><span class="section-number">24.3. </span><span class="math notranslate nohighlight">\(2^{2}\)</span> designs<a class="headerlink" href="#designs" title="Permalink to this headline">#</a></h2>
+<p>Let us start by clarifying further how superior a factorial design will be compared to a one-factor-at-a-time design. Consider a hypothetical situation where we are investigating an industrial chemical reaction. For the sake of the experiment, suppose two factors were of interest, <span class="math notranslate nohighlight">\(A\)</span> (temperature, with two settings) and <span class="math notranslate nohighlight">\(B\)</span> (the presence or absence of a catalyst). In order to obtain some information about these two factors, suppose we performed three runs:</p>
+<p><img alt="" src="../_images/2.jpg" /></p>
+<p>Suppose the symbols in the table represent the amount of yield produced in the corresponding run, so that we could estimate the effect of factor <span class="math notranslate nohighlight">\(A\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+A=a-(1)
+\]</div>
+<p>and estimate the effect of <span class="math notranslate nohighlight">\(B\)</span> via</p>
+<div class="math notranslate nohighlight">
+\[
+B=b-(1)
+\]</div>
+<p>As some experimental error is likely, it would be desirable to replicate each run, so that there would be six trials in total, and averages within treatments used to estimate the effects of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p><strong>Remark 8</strong> <em>Note here we are abusing notation, denoting for instance both the factor <span class="math notranslate nohighlight">\(A\)</span> and the estimate of its effect by the symbol <span class="math notranslate nohighlight">\(A\)</span>. This is commonplace, and we hope not too confusing. It should be kept in mind here that as in all ANOVA studies, the underlying models are over-parameterized, in that it is not possible to estimate how much a factor at a given level changes the mean response. We can only estimate so-called main effects and interactions (more generally functions of parameters known as estimable functions). So for instance although we cannot estimate how much factor A changes the response when <span class="math notranslate nohighlight">\(A\)</span> is + , we can estimate the main effect of <span class="math notranslate nohighlight">\(A\)</span>, this being the mean difference in response between <span class="math notranslate nohighlight">\(A\)</span> being + and -.</em></p>
+<p>Suppose now that the design above is completed as follows:</p>
+<p><img alt="" src="../_images/3.jpg" /></p>
+<p>This experiment has four runs. Now we can estimate the effect of <span class="math notranslate nohighlight">\(A\)</span> when <span class="math notranslate nohighlight">\(B\)</span> is low by <span class="math notranslate nohighlight">\(a-(1)\)</span>, and the effect of <span class="math notranslate nohighlight">\(A\)</span> when <span class="math notranslate nohighlight">\(B\)</span> is high can be estimated by <span class="math notranslate nohighlight">\(a b-b\)</span>. If there is no interaction present, these two estimates should differ only by experimental variation, and their average could estimate the main effect for <span class="math notranslate nohighlight">\(A\)</span>. Similarly for factor <span class="math notranslate nohighlight">\(B\)</span>, we average <span class="math notranslate nohighlight">\(b-(1)\)</span> and <span class="math notranslate nohighlight">\(a b-a\)</span>. The estimates that would be obtained would be as precise as those from the one-factorat-a-time design with duplication, but whereas the latter used six runs, the factorial design requires only four.</p>
+<p>When the factors interact the one-factor-at-a-time design is potentially worthless. For suppose we observed that <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> each gave a better yield than (1). We may conclude that <span class="math notranslate nohighlight">\(a b\)</span> would be the superior setting. This would be faulty reasoning if <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> interact. Moreover it may be found that <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are each little better than (1), but that in fact <span class="math notranslate nohighlight">\(a b\)</span> is greatly better than any of the other settings due to interaction, in which case the one-factor-at-a-time design overlooked the optimal setting.</p>
+<p>Tabulating the four treatment combinations in a <span class="math notranslate nohighlight">\(2^{2}\)</span> design, we have:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(A\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(B\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="p-designs">
+<h2><span class="section-number">24.4. </span><span class="math notranslate nohighlight">\(2^{p}\)</span> designs<a class="headerlink" href="#p-designs" title="Permalink to this headline">#</a></h2>
+<p>In <span class="math notranslate nohighlight">\(2^{3}\)</span> designs there are eight possible treatments. It can be useful to visualize the design with the cube illustrated below:</p>
+<p><img alt="" src="../_images/4.jpg" /></p>
+<p>Tabulation of the treatment combinations for <span class="math notranslate nohighlight">\(2^{3}\)</span> designs gives the following:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(A\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(B\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(C\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a c\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b c\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b c\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<p>An experiment was conducted to assess how descent time (in secs) of a model helicopter depends on wing length, body width and tail length. Let these factors be denoted <span class="math notranslate nohighlight">\(A, B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> respectively, each having two levels low (-) and high <span class="math notranslate nohighlight">\((+)\)</span>. Each treatment had two replications, the data given
+below:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-right head"><p>time 1</p></th>
+<th class="text-right head"><p>time 2</p></th>
+<th class="text-right head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-right"><p>97</p></td>
+<td class="text-right"><p>84</p></td>
+<td class="text-right"><p>181</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td class="text-right"><p>87</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>187</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>104</p></td>
+<td class="text-right"><p>200</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-right"><p>104</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>204</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-right"><p>63</p></td>
+<td class="text-right"><p>66</p></td>
+<td class="text-right"><p>129</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a c\)</span></p></td>
+<td class="text-right"><p>75</p></td>
+<td class="text-right"><p>88</p></td>
+<td class="text-right"><p>163</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b c\)</span></p></td>
+<td class="text-right"><p>72</p></td>
+<td class="text-right"><p>72</p></td>
+<td class="text-right"><p>144</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b c\)</span></p></td>
+<td class="text-right"><p>59</p></td>
+<td class="text-right"><p>81</p></td>
+<td class="text-right"><p>140</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here we have a <span class="math notranslate nohighlight">\(2^{3}\)</span> design, with 2 replications per treatment.</p>
+</div>
+<div class="section" id="blocking-in-factorial-designs">
+<h2><span class="section-number">24.5. </span>Blocking in factorial designs<a class="headerlink" href="#blocking-in-factorial-designs" title="Permalink to this headline">#</a></h2>
+<p>Sometimes it is impossible to perform all the runs of a <span class="math notranslate nohighlight">\(2^{p}\)</span> experiment under exactly the same conditions. Suppose for instance that in a <span class="math notranslate nohighlight">\(2^{3}\)</span> study there is only facility to produce enough raw material to conduct four trials at a time. This means that to perform the complete experiment we need to run two sets of four trials, each material created from separate batches. This leads to confounding - some effect(s) must be impossible to extricate from the block structure.</p>
+</div>
+<div class="section" id="two-blocks">
+<h2><span class="section-number">24.6. </span>Two blocks<a class="headerlink" href="#two-blocks" title="Permalink to this headline">#</a></h2>
+<p>In the case where two blocks are used, one effect will be confounded and this is usually chosen to be the highest order interaction. Whatever the confounded effect, it determines which treatments are applied in each block. We illustrate with examples for <span class="math notranslate nohighlight">\(2^{p}, p=1,2,3\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>In the <span class="math notranslate nohighlight">\(2^{2}\)</span> case, there are only four possible treatments to split into two blocks of two. The table of treatments is</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(A\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(B\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+</tbody>
+</table>
+<p>and the blocks comprise</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Block 1</p></th>
+<th class="text-center head"><p>Block 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Each block contains one observations with <span class="math notranslate nohighlight">\(A\)</span> at + , and one with <span class="math notranslate nohighlight">\(B\)</span> at + . In that way neither of the main effects are confounded by the block structure.</p>
+<p>Example 10 A <span class="math notranslate nohighlight">\(2^{3}\)</span> design can be defined by the main effects as below:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(A\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(B\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(C\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a c\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b c\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b c\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+</tbody>
+</table>
+<p>If using two blocks and wishing to avoid confounding main effects, the blocks are as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Block 1</p></th>
+<th class="text-right head"><p>Block 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(a c\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(b c\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(a b c\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Each factor appears in each block twice at each of its two levels. In this design the three-way interaction effect is confounded by blocking.</p>
+<p>Four blocks Obviously a <span class="math notranslate nohighlight">\(2^{p}\)</span> design can only be split into an even number of blocks, so a design with three blocks is not possible unless some treatments were discarded or repeated. Hence the extension to using two blocks is the use of four blocks. Now there will be three effects confounded by the blocks.</p>
+<p><strong>Example</strong></p>
+<p>Consider a <span class="math notranslate nohighlight">\(2^{4}\)</span> design:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(A\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(B\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(C\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(D\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a c\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b c\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b c\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(d\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a d\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b d\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b d\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(c d\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a c d\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(b c d\)</span></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(a b c d\)</span></p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+<td class="text-center"><p>+</p></td>
+</tr>
+</tbody>
+</table>
+<p>If we require four blocks, the blocking could be chosen as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Block 1</p></th>
+<th class="text-center head"><p>Block 2</p></th>
+<th class="text-center head"><p>Block 3</p></th>
+<th class="text-center head"><p>Block 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(a c\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a b c\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(b c\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(b d\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(d\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a b d\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a d\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(a b c d\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a c d\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(b c d\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(c d\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Each block contains each factor twice at each of its two levels. The highest order interaction is confounded here, along with two two-way interactions (in fact between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span> and also between <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(D\)</span> ).</p>
+<p>Some advanced texts include tables for block designs, prescribing how to create blocking so that only high-order interactions are confounded.</p>
+</div>
+<div class="section" id="fractional-factorial-designs">
+<h2><span class="section-number">24.7. </span>Fractional factorial designs<a class="headerlink" href="#fractional-factorial-designs" title="Permalink to this headline">#</a></h2>
+<p>In practice, once <span class="math notranslate nohighlight">\(p\)</span> becomes large the number of treatments required to perform a full factorial design is prohibitive. For instance, a <span class="math notranslate nohighlight">\(2^{6}\)</span> design requires</p>
+<p>64 treatments, but many of these exist only to assess high-order interactions, some of which may be known to be negligible from past experience or other considerations. Hence the experimenter may choose to apply only half (or a quarter, or an eighth) of the possible treatments.</p>
+<p>In half fractional factorial designs only half of the possible treatments are applied. This is akin to selecting two blocks but discarding one of them. In general then a half fractional design for a <span class="math notranslate nohighlight">\(2^{p}\)</span> design involves <span class="math notranslate nohighlight">\(2^{p-1}\)</span> treatments.</p>
+<p>We illustrate by consideration of a <span class="math notranslate nohighlight">\(2^{3-1}\)</span> design. Suppose the blocking is</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Block 1</p></th>
+<th class="text-right head"><p>Block 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\((1)\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(a b\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(a c\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(b c\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(a b c\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>but only one of the two blocks will be chosen. Suppose block 2 is chosen. The design can be pictured as follows:</p>
+<p><img alt="" src="../_images/5.jpg" /></p>
+<p>More generally, we may opt to use only <span class="math notranslate nohighlight">\(1 / 2^{k}\)</span> of the possible treatments. When <span class="math notranslate nohighlight">\(k=2\)</span>, this corresponds to quarter fractional factorial designs, for instance. In general, fractional factorial designs are denoted <span class="math notranslate nohighlight">\(2^{p-k}\)</span> designs.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="two.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Two-way analysis of variance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="R.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>ANOVA in R</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-designs">24.1. Nested designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">24.2. Factorial designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designs">24.3. <span class="math notranslate nohighlight">\(2^{2}\)</span> designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-designs">24.4. <span class="math notranslate nohighlight">\(2^{p}\)</span> designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-in-factorial-designs">24.5. Blocking in factorial designs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-blocks">24.6. Two blocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fractional-factorial-designs">24.7. Fractional factorial designs</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

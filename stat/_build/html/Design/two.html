@@ -1,0 +1,984 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23. Two-way analysis of variance &#8212; My Statistics Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Design/two';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="24. Extensions" href="ext.html" />
+    <link rel="prev" title="22. Multiple Comparisons" href="mul.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../0intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Statistics Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../0intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Basics/1statintro.html">1. Introduction to Data Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Basics/2sampling.html">3. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/3prob.html">4. Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/4ranvar.html">5. Random Variables and Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/5lin.html">6. Linear Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Basics/6inf.html">7. Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Nonparametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/1signtest.html">8. The Sign Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/2ranksumtest.html">9. Rank Sum Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/3kruskaltest.html">10. Kruskal-Wallis Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonpara/4permtest.html">11. Permutation Tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">power</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../power/power.html">12. Power of Hypothesis test</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Goodness-of-Fit</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../goodness/chi.html">13. Chi-Squared Goodness of Fit Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/cont.html">14. Contingency tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/fisch.html">15. Fisher’s Exact Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/dens.html">16. Density curve fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../goodness/probplot.html">17. Graphical tests of goodness-of-fit: Probability plots</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bootstrap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/intro.html">18. Bootstrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bootstrap/hyp.html">19. Bootstrap hypothesis tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Design &amp; ANOVA</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="exp.html">20. Experimental Design and the Analysis of Variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anova.html">21. ANOVA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mul.html">22. Multiple Comparisons</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Two-way analysis of variance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext.html">24. Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R.html">25. ANOVA in R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDesign/two.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Design/two.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Two-way analysis of variance</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-general-two-way-model">23.1. The general two-way model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-no-interaction-model">23.2. The “no interaction” model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interaction-models">23.3. Interaction models</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="two-way-analysis-of-variance">
+<h1><span class="section-number">23. </span>Two-way analysis of variance<a class="headerlink" href="#two-way-analysis-of-variance" title="Permalink to this headline">#</a></h1>
+<p>The natural extension to the analysis in the previous section is to consider data classified by two variables of interest. Now the rows as well as the columns represent levels of some experimental factor.</p>
+<p>For example, an agricultural experiment to test a variety of wheat might involve measuring the yield obtained in each of three areas in three consecutive years, with perhaps four plots (i.e., replications) in each area. The data might look as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p></p></th>
+<th class="text-center head"><p>Area 1</p></th>
+<th class="text-center head"><p>Area 2</p></th>
+<th class="text-center head"><p>Area 3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Year 1</p></td>
+<td class="text-center"><p>14.2</p></td>
+<td class="text-center"><p>17.2</p></td>
+<td class="text-center"><p>15.3</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p>14.4</p></td>
+<td class="text-center"><p>18.1</p></td>
+<td class="text-center"><p>14.9</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p></p></td>
+<td class="text-center"><p>17.5</p></td>
+<td class="text-center"><p>15.9</p></td>
+<td class="text-center"><p>16.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p>16.8</p></td>
+<td class="text-center"><p>17.2</p></td>
+<td class="text-center"><p>17.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Year 2</p></td>
+<td class="text-center"><p>14.8</p></td>
+<td class="text-center"><p>17.1</p></td>
+<td class="text-center"><p>15.2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p>13.9</p></td>
+<td class="text-center"><p>18.4</p></td>
+<td class="text-center"><p>15.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p></p></td>
+<td class="text-center"><p>15.0</p></td>
+<td class="text-center"><p>19.0</p></td>
+<td class="text-center"><p>14.1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p>16.2</p></td>
+<td class="text-center"><p>17.6</p></td>
+<td class="text-center"><p>16.8</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Year 3</p></td>
+<td class="text-center"><p>13.9</p></td>
+<td class="text-center"><p>18.5</p></td>
+<td class="text-center"><p>15.6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p>14.1</p></td>
+<td class="text-center"><p>18.2</p></td>
+<td class="text-center"><p>14.8</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p></p></td>
+<td class="text-center"><p>15.7</p></td>
+<td class="text-center"><p>17.5</p></td>
+<td class="text-center"><p>14.9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p>16.5</p></td>
+<td class="text-center"><p>19.2</p></td>
+<td class="text-center"><p>16.5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>It would be of interest to test whether the yield appears to vary across the areas, and whether the yield seems to differ from year to year. Further, if there are apparent area and year effects, is there evidence of a so-called interaction between the two? That is, does the area effect appear to differ from year to year?</p>
+<p>The factors involved in a two-way ANOVA model may naturally be thought of as row and column effects, or as two factors <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> with <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(r\)</span> levels respectively (or perhaps more logically <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> levels respectively).</p>
+<div class="section" id="the-general-two-way-model">
+<h2><span class="section-number">23.1. </span>The general two-way model<a class="headerlink" href="#the-general-two-way-model" title="Permalink to this headline">#</a></h2>
+<p>Let our two-way table consist of <span class="math notranslate nohighlight">\(c\)</span> columns and <span class="math notranslate nohighlight">\(r\)</span> rows, with <span class="math notranslate nohighlight">\(m\)</span> replications in each cell. Denote the <span class="math notranslate nohighlight">\(k\)</span> th replicate in the <span class="math notranslate nohighlight">\(j\)</span> th row of the <span class="math notranslate nohighlight">\(i\)</span> th column by <span class="math notranslate nohighlight">\(y_{i j k}\)</span>. Then the general model assumes that</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i j k}=\mu+\alpha_{i}+\beta_{j}+(\alpha \beta)_{i j}+\varepsilon_{i j}
+\]</div>
+<p>in which</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> is the expected value of <span class="math notranslate nohighlight">\(\bar{y}\)</span>, the overall mean across the entire table,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{i}\)</span> is the effect of the <span class="math notranslate nohighlight">\(i\)</span> th column, <span class="math notranslate nohighlight">\(i=1, \ldots, c\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_{j}\)</span> is the effect of the <span class="math notranslate nohighlight">\(j\)</span> th row, <span class="math notranslate nohighlight">\(j=1, \ldots, r\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\((\alpha \beta)_{i j}\)</span> is the row-column interaction effect,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_{i j}\)</span> are independent error variables, assumed to be from the <span class="math notranslate nohighlight">\(N(0, \sigma)\)</span> distribution for some <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>.</p></li>
+</ul>
+<p>A quick rough-and-ready graphical check to see whether or not it looks likely that interaction terms should be included in the model is to plot the cell means for each row (or column, it makes no difference), then join together the means for each column. Intersecting of lines may suggest that there is significant interaction, that is, the differences between the column effects may not be same in each row.</p>
+</div>
+<div class="section" id="the-no-interaction-model">
+<h2><span class="section-number">23.2. </span>The “no interaction” model<a class="headerlink" href="#the-no-interaction-model" title="Permalink to this headline">#</a></h2>
+<p>To begin we will describe in some detail the case where we assume that there is no significant interaction. So the <span class="math notranslate nohighlight">\(i j\)</span> terms <span class="math notranslate nohighlight">\((\alpha \beta)_{i j}\)</span> can be removed from the model. To make the formulae easier, we assume that there is a single replication in each cell, so <span class="math notranslate nohighlight">\(m=1\)</span> in the stated model. In fact in this situation (with only a single replicate per cell) models involving interaction cannot be fitted, being what is called over-parameterized. This means simply that there are more parameters in the model than can be estimated by the data.</p>
+<p>The third subscript on each observation can therefore be dropped in this subsection, and our model can be written</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i j}=\mu+\alpha_{i}+\beta_{j}+\varepsilon_{i j}
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(i=1, \ldots, c, j=1, \ldots, r\)</span>. In a similar fashion to the one-way case, let <span class="math notranslate nohighlight">\(\bar{y}_{i}\)</span>. denote the mean in the <span class="math notranslate nohighlight">\(i\)</span> th column and <span class="math notranslate nohighlight">\(\bar{y}_{. j}\)</span> denote the mean in the <span class="math notranslate nohighlight">\(j\)</span> th row.</p>
+<p><strong>Remark 6</strong> <em>In a similar fashion to the argument given for the one-way case, we have that</em></p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{c} \alpha_{i}=\sum_{j=1}^{r} \beta_{j}=0
+\]</div>
+<p><em>since</em></p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{c}\left(\bar{y}_{i \cdot}-\bar{y}\right)=\sum_{j=1}^{r}\left(\bar{y}_{\cdot j}-\bar{y}\right)=0
+\]</div>
+<p><em>and the result follows on replacing the observed values with the values predicted by the model..</em></p>
+<p>Then we can write</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i j}-\bar{y}=\left(\bar{y}_{i \cdot}-\bar{y}\right)+\left(\bar{y}_{\cdot j}-\bar{y}\right)+\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)
+\]</div>
+<p>Taking the above equation, squaring both sides and then summing over <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(i\)</span>, we have</p>
+<p><span class="math notranslate nohighlight">\(\sum_{i=1}^{c} \sum_{j=1}^{r}\left(y_{i j}-\bar{y}\right)^{2}=\sum_{i=1}^{c} \sum_{j=1}^{r}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2}+\sum_{i=1}^{c} \sum_{j=1}^{r}\left(\bar{y}_{\cdot j}-\bar{y}\right)^{2}+\sum_{i=1}^{c} \sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)^{2}  \quad (7)\)</span></p>
+<p>This follows because all cross–product terms cancel out; for example,</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{c} \sum_{j=1}^{r}\left(\bar{y}_{i \cdot}-\bar{y}\right)\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)=\sum_{i=1}^{c}\left(\left(\bar{y}_{i \cdot}-\bar{y}\right) \sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)\right)
+\]</div>
+<p>and summing the last summation term by term,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right) &amp; =\sum_{j=1}^{r} y_{i j}-r \bar{y}_{i \cdot}-\sum_{j=1}^{r} \bar{y}_{\cdot j}+r \bar{y} \\
+&amp; =r \bar{y}_{i .}-r \bar{y}_{i \cdot}-r \bar{y}+r \bar{y} \\
+&amp; =0
+\end{aligned}
+\end{split}\]</div>
+<p>So we might write (7) in words as</p>
+<div class="math notranslate nohighlight">
+\[
+\text { Total variation }=\text { Column } \mathrm{SS}+\text { Row } \mathrm{SS}+\text { Residual variation }
+\]</div>
+<p>the last term representing the variation in the data after the row and column effects have been accounted for.</p>
+<p>There are now two hypotheses to consider: one for the equality of the column effects, one for the equality of the row effects. We discuss the former, namely the testing of</p>
+<div class="math notranslate nohighlight">
+\[
+H_{0}: \alpha_{1}=\cdots=\alpha_{c}=0
+\]</div>
+<p>Having broken down the sum of squares for the data into components of experimental interpretation, the aim is once again to derive a test for <span class="math notranslate nohighlight">\(H_{0}\)</span> using the ratio of two of the sums. Now in testing <span class="math notranslate nohighlight">\(H_{0}\)</span> it is clear that the Between Columns SS should be considered, namely</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{c} \sum_{j=1}^{r}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2}
+\]</div>
+<p>as it measures the variation between the column means so is likely to be large when <span class="math notranslate nohighlight">\(H_{0}\)</span> is false relative to when it is true.</p>
+<p>Due to the <span class="math notranslate nohighlight">\(y_{i j}\)</span> ‘s being Normally distributed, the mean in the <span class="math notranslate nohighlight">\(i\)</span> th column <span class="math notranslate nohighlight">\(\bar{y}_{i}\)</span>. is also Normally distributed. The model predicts that this mean is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{r} \sum_{j=1}^{r}\left(\mu+\alpha_{i}+\beta_{j}\right)=\mu+\alpha_{i}
+\]</div>
+<p>recalling that <span class="math notranslate nohighlight">\(\sum_{j} \beta_{j}=0\)</span>. However, when <span class="math notranslate nohighlight">\(H_{0}\)</span> is true,</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{y}_{i .} \sim N\left(\mu, \frac{\sigma}{\sqrt{r}}\right)
+\]</div>
+<p>for each column <span class="math notranslate nohighlight">\(i=1, \ldots, c\)</span>, since the standard deviation of the mean <span class="math notranslate nohighlight">\(\bar{y}_{i}\)</span>. is <span class="math notranslate nohighlight">\(\sigma / \sqrt{r}\)</span>. Now by remark 1 (putting <span class="math notranslate nohighlight">\(n=c, x_{i}=\bar{y}_{i}, \sigma_{X}^{2}=\sigma^{2} / r\)</span> and <span class="math notranslate nohighlight">\(\bar{x}=\bar{y}\)</span> ) and summing over the rows <span class="math notranslate nohighlight">\(j=1, \ldots, r\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\sum_{i=1}^{c} \sum_{j=1}^{r}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2}}{\sigma^{2}} \sim \chi_{c-1}^{2} \quad (8)
+\]</div>
+<p>It seems desirable to include the term</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{c} \sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)^{2}
+\]</div>
+<p>in the test, as it measures the variation of the <span class="math notranslate nohighlight">\(y_{i j}\)</span> ‘s with the row and column effects eliminated. The proof that this sum of squares is independent to the first is difficult, as is the fact that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\sum_{i=1}^{c} \sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)^{2}}{\sigma^{2}} \sim \chi_{(r-1)(c-1)}^{2}
+\]</div>
+<p>so both assertions are to be taken as read. Now a test for <span class="math notranslate nohighlight">\(H_{0}\)</span> follows by remark 2 , and is given by the fact that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\sum_{i=1}^{c} \sum_{j=1}^{r}\left(\bar{y}_{i \cdot}-\bar{y}\right)^{2} /(c-1)}{\sum_{i=1}^{c} \sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)^{2} /(r-1)(c-1)} \sim F_{(c-1),(r-1)(c-1)} .
+\]</div>
+<p>Since the variation in the column means would increase if the column effects are not all the same, if <span class="math notranslate nohighlight">\(H_{0}\)</span> is false the numerator in the fraction above will
+be inflated, and so the critical region for the test of the null hypothesis is the upper tail of the appropriate <span class="math notranslate nohighlight">\(F\)</span> distribution.</p>
+<p>A similar test follows from a similar argument for testing for the equality of the row effects, obtained by comparing</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\sum_{i=1}^{c} \sum_{j=1}^{r}\left(\bar{y}_{\cdot j}-\bar{y}\right)^{2} /(r-1)}{\sum_{i=1}^{c} \sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}-\bar{y}_{\cdot j}+\bar{y}\right)^{2} /(r-1)(c-1)}
+\]</div>
+<p>with the <span class="math notranslate nohighlight">\(F_{(r-1),(r-1)(c-1)}\)</span> distribution.</p>
+<p>As in the one-way case, the results from the above are usually expressed in an ANOVA table. The sum of squares in the denominator in the test statistic for each test is often referred to as the Error SS.</p>
+<p><strong>Example</strong></p>
+<p>An experiment was performed by five technicians in each of four different laboratories, the amount of produce (in <span class="math notranslate nohighlight">\(\mathrm{g}\)</span> ) in each case being given in the table below.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Technician</p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+<th class="text-center head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Lab</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>5</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>44</p></td>
+<td class="text-center"><p>46</p></td>
+<td class="text-center"><p>34</p></td>
+<td class="text-center"><p>43</p></td>
+<td class="text-center"><p>38</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>38</p></td>
+<td class="text-center"><p>40</p></td>
+<td class="text-center"><p>36</p></td>
+<td class="text-center"><p>38</p></td>
+<td class="text-center"><p>42</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>3</p></td>
+<td class="text-center"><p>47</p></td>
+<td class="text-center"><p>52</p></td>
+<td class="text-center"><p>44</p></td>
+<td class="text-center"><p>46</p></td>
+<td class="text-center"><p>49</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>36</p></td>
+<td class="text-center"><p>43</p></td>
+<td class="text-center"><p>32</p></td>
+<td class="text-center"><p>33</p></td>
+<td class="text-center"><p>38</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Calculations give the following ANOVA table</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Source</p></th>
+<th class="text-center head"><p>SS</p></th>
+<th class="text-center head"><p>dof</p></th>
+<th class="text-center head"><p>MS</p></th>
+<th class="text-center head"><p>F</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Columns</p></td>
+<td class="text-center"><p>159.70</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>39.92</p></td>
+<td class="text-center"><p>6.70</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Rows</p></td>
+<td class="text-center"><p>347.75</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>115.92</p></td>
+<td class="text-center"><p>19.45</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Error</p></td>
+<td class="text-center"><p>71.50</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>5.96</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Total</p></td>
+<td class="text-center"><p>578.95</p></td>
+<td class="text-center"><p>19</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>To test whether the technicians are the same (i.e., whether the column effects are identical, <span class="math notranslate nohighlight">\(H_{0}: \alpha_{i}=0, i=1, \ldots, 5\)</span> in our notation), from the above table we calculate the column mean square as</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{39.92}{5.96}=6.70
+\]</div>
+<p>We compare this with the <span class="math notranslate nohighlight">\(95 \%\)</span> point on the <span class="math notranslate nohighlight">\(F_{4,12}\)</span> distribution, which is 3.26 . Since <span class="math notranslate nohighlight">\(6.70&gt;3.26\)</span>, we would reject the null hypothesis that the technicians produce the same results, at the <span class="math notranslate nohighlight">\(5 \%\)</span> level.</p>
+<p>Similarly, a test of whether the lab effects are identical tests the null hypothesis <span class="math notranslate nohighlight">\(H_{0}: \beta_{1}=\beta_{2}=\beta_{3}=\beta_{4}\)</span> in our notation. The test statistic is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{4 \times 347.75}{71.50}=19.45
+\]</div>
+<p>and would be consistent with the <span class="math notranslate nohighlight">\(F_{3,12}\)</span> distribution if <span class="math notranslate nohighlight">\(H_{0}\)</span> is true. Since <span class="math notranslate nohighlight">\(F_{3,12}(0.95)=3.49\)</span>, the null hypothesis is rejected at the <span class="math notranslate nohighlight">\(5 \%\)</span> level.</p>
+</div>
+<div class="section" id="interaction-models">
+<h2><span class="section-number">23.3. </span>Interaction models<a class="headerlink" href="#interaction-models" title="Permalink to this headline">#</a></h2>
+<p>Recall that the general model assumes that</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i j k}=\mu+\alpha_{i}+\beta_{j}+(\alpha \beta)_{i j}+\varepsilon_{i j}
+\]</div>
+<p>where the term <span class="math notranslate nohighlight">\((\alpha \beta)_{i j}\)</span> indicates the interaction between factor <span class="math notranslate nohighlight">\(A\)</span> and factor <span class="math notranslate nohighlight">\(B\)</span> when these factors are at levels <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> respectively. Now assuming</p>
+<div class="math notranslate nohighlight">
+\[
+(\alpha \beta)_{i j}=0
+\]</div>
+<p>for all choices of <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> is equivalent to all of the following statements:</p>
+<ol class="arabic simple">
+<li><p>It is defined that there is no interaction between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+<li><p>The effects of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are defined to be additive.</p></li>
+<li><p>The difference between any two levels of <span class="math notranslate nohighlight">\(A\)</span> is the same at all levels of <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+<li><p>The difference between any two levels of <span class="math notranslate nohighlight">\(B\)</span> is the same at all levels of A.</p></li>
+</ol>
+<p>In defining the model the parameters are constrained in the following way:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i} \alpha_{i}=\sum_{j} \beta_{j}=\sum_{i}(\alpha \beta)_{i j}=\sum_{j}(\alpha \beta)_{i j}=0
+\]</div>
+<p>Questions naturally arise in hypothesis testing about which if any of the parameters involved are zero. Note there are parameters here of three types: for factor <span class="math notranslate nohighlight">\(A\)</span>, for factor <span class="math notranslate nohighlight">\(B\)</span> (representing so-called main effects) and for interactions.</p>
+<p>It can be seen that for each <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> the model predicts that <span class="math notranslate nohighlight">\(\bar{y}_{i j .}-\bar{y}_{i . .}-\bar{y}_{\cdot j .}+\bar{y}\)</span> equals</p>
+<div class="math notranslate nohighlight">
+\[
+\mu+\alpha_{i}+\beta_{j}+(\alpha \beta)_{i j}-\left(\mu+\alpha_{i}\right)-\left(\mu+\beta_{j}\right)+\mu=(\alpha \beta)_{i j}
+\]</div>
+<p>So the statistic <span class="math notranslate nohighlight">\(\bar{y}_{i j}-\bar{y}_{i . .}-\bar{y}_{\cdot j .}+\bar{y}\)</span> provides an unbiased estimate of the interaction term <span class="math notranslate nohighlight">\((\alpha \beta)_{i j}\)</span>. As in the additive model case, the statistics <span class="math notranslate nohighlight">\(\bar{y}, \bar{y}_{i .}-\bar{y}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}_{\cdot j} .-\bar{y}\)</span> provide unbiased estimates of <span class="math notranslate nohighlight">\(\mu, \alpha_{i}\)</span> and <span class="math notranslate nohighlight">\(\beta_{j}\)</span> respectively, for all choices of <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>Now it may be sensible to have, for example, <span class="math notranslate nohighlight">\(\beta_{j}=0\)</span> for all <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\((\alpha \beta)_{i j}=\)</span> 0 for all <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. However, a model that sets <span class="math notranslate nohighlight">\(\beta_{j}=0\)</span> for all <span class="math notranslate nohighlight">\(j\)</span> but includes non-zero interaction terms is very unlikely to be sensible, since it would implicitly state that factor <span class="math notranslate nohighlight">\(B\)</span> can have an effect at different levels of <span class="math notranslate nohighlight">\(A\)</span> but that these effects average to zero over the levels of <span class="math notranslate nohighlight">\(A\)</span> chosen in the experiment. Hence there should be a natural hierarchy when assessing models in twoway ANOVA: with very rare exceptions, when interaction terms are included related main effect parameters should also be incorporated. This idea extends when considering multi-way ANOVA.</p>
+<p>Great care should be taken when interpreting main effects in the presence of interaction. When two factors <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> interact, it makes little sense to refer to the “effect of factor <span class="math notranslate nohighlight">\(A\)</span> “. At most one could refer to how <span class="math notranslate nohighlight">\(A\)</span> affects the response on average at a particular level of factor <span class="math notranslate nohighlight">\(B\)</span>. In short, the presence of a non-zero interaction term <span class="math notranslate nohighlight">\((\alpha \beta)_{i j}\)</span> means that both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> affect the response, but not independently.</p>
+<p>In order to test for interaction, we require there to be replication under each set of experimental conditions. Only then can we assess the variation in the response under each set of conditions. Ideally for analysis the experiment is balanced, in the sense that there are equal numbers of replications under each experimental condition, <span class="math notranslate nohighlight">\(m&gt;1\)</span> say. With the <span class="math notranslate nohighlight">\(k\)</span> th replicate in the <span class="math notranslate nohighlight">\(j\)</span> th
+row of the <span class="math notranslate nohighlight">\(i\)</span> th column denoted by <span class="math notranslate nohighlight">\(y_{i j k}\)</span>, the ANOVA table in a balanced twofactor experiment is as below:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Source</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(\mathrm{SS}\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(\mathrm{dof}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Columns</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i, j, k}\left(\bar{y}_{i . .}-\bar{y}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(c-1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Rows</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i, j, k}\left(\bar{y}_{\cdot j \cdot}-\bar{y}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(r-1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Interaction</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i, j, k}\left(\bar{y}_{i j \cdot}-\bar{y}_{i . .}-\bar{y}_{\cdot j .}+\bar{y}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\((r-1)(c-1)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Error</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i, j, k}\left(y_{i j k}-\bar{y}_{i j .}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(r c(m-1)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Total</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\sum_{i, j, k}\left(y_{i j k}-\bar{y}\right)^{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(r c m-1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>The mean squares, as usual, are the sums of squares divided by their degrees of freedom, and averages are over all subscripts suppressed by “.”. F ratios are defined by dividing the corresponding mean square by the Error MS, as earlier.</p>
+<p><strong>Example</strong></p>
+<p>Primer paint is applied to aircraft wings by either dipping or spraying. Three types of primer paint were tested in an experiment that involved three replications under each method of application. After the primer was applied in each case a finishing paint was coated on, and the adhesive force of the primer was measured. The adhesive forces measured are tabulated below:</p>
+<table border="1">
+    <thead>
+        <tr>
+            <th rowspan="2">Primer type</th>
+            <th colspan="2">Application method</th>
+            <th rowspan="2"></th>
+        </tr>
+        <tr>
+            <th>Dipping</th>
+            <th>Spraying</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>4.0, 4.5, 4.3</td>
+            <td>5.4, 4.9, 5.6</td>
+            <td>28.7</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>5.6, 4.9, 5.4</td>
+            <td>5.8, 6.1, 6.3</td>
+            <td>34.1</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>3.8, 3.7, 4.0</td>
+            <td>5.5, 5.0, 5.0</td>
+            <td>27.0</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>40.2</td>
+            <td>49.6</td>
+            <td>89.8</td>
+        </tr>
+    </tbody>
+</table>
+<p>Below is a plot of means for the above data:</p>
+<p><img alt="" src="../_images/1.jpg" /></p>
+<p>The above suggests both application method and primer type affect the response, but there is no interaction between the factors. Using software or otherwise, the ANOVA table for these data can be computed:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Source</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(S S\)</span></p></th>
+<th class="text-center head"><p>dof</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(M S\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(F\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Application method</p></td>
+<td class="text-center"><p>4.909</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>4.909</p></td>
+<td class="text-center"><p>59.70</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Primer type</p></td>
+<td class="text-center"><p>4.581</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2.291</p></td>
+<td class="text-center"><p>27.86</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Interaction</p></td>
+<td class="text-center"><p>0.241</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>0.121</p></td>
+<td class="text-center"><p>1.47</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Error</p></td>
+<td class="text-center"><p>0.987</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>0.0822</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Total</p></td>
+<td class="text-center"><p>10.718</p></td>
+<td class="text-center"><p>17</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Now <span class="math notranslate nohighlight">\(F_{1,12}(0.95)=4.75\)</span> and <span class="math notranslate nohighlight">\(F_{2,12}(0.95)=3.89 ;\)</span> we can see that we would not reject the hypothesis that there is no interaction present between application method and primer type. Moreover we can then reject the null hypothesis that the application method has no affect on adhesive force, and indeed reject the hypothesis that primer type has no affect on adhesive force.</p>
+<p><strong>Remark 7</strong> <em>The models we have discussed in this chapter are what are termed fixed effects models. The column and row effects are all deemed to be fixed, but unknown, constants. Random effects models, on the other hand, are superficially rather similar, but consider the effect of being in a particular column or row to be a random variable. Such models are often somewhat more realistic, but are rather harder to analyze in some respects.</em></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mul.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Multiple Comparisons</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ext.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Extensions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-general-two-way-model">23.1. The general two-way model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-no-interaction-model">23.2. The “no interaction” model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interaction-models">23.3. Interaction models</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Iddo Sadeh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

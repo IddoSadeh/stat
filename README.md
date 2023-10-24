@@ -45,7 +45,19 @@ https://jupyterbook.org/en/stable/start/publish.html
 
 -  every time i make changes, do the following:
 
-To update your online book, make changes to your book’s content on the main branch of your repository, re-build your book with <code>jupyter-book build cplusplus/</code> and then use <code>ghp-import -n -p -f cplusplus/_build/html</code> as before to push the newly built HTML to the <code>gh-pages</code> branch.
+To update your online book, make changes to your book’s content on the main branch of your repository, re-build your book with
+
+<code>jupyter-book build stat/</code>
+
+and then use 
+
+<code>ghp-import -n -p -f stat/_build/html</code>
+
+as before to push the newly built HTML to the <code>gh-pages</code> branch.
+
+**Note:** By default, Jupyter Book will only build the HTML for pages that have been updated since the last time you built the book. Full re-build using:
+
+<code>jupyter-book build --all stat/</code>
 
 ## Publishing the website
 

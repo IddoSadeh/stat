@@ -20,3 +20,29 @@ parts:
   - file: nonpara/2ranksumtest.md
   - file: nonpara/3kruskaltest.md
   - file: nonpara/4permtest.md
+- caption: power
+  numbered: True
+  chapters:
+  - file: power/power.md
+- caption: Goodness-of-Fit
+  numbered: True
+  chapters:
+  - file: goodness/chi.md
+  - file: goodness/cont.md
+  - file: goodness/fisch.md
+  - file: goodness/dens.md
+  - file: goodness/probplot.md
+- caption: Bootstrap
+  numbered: True
+  chapters:
+  - file: bootstrap/intro.md
+  - file: bootstrap/hyp.md
+- caption: Design & ANOVA
+  numbered: True
+  chapters:
+  - file: Design/exp.md
+  - file: Design/anova.md
+  - file: Design/mul.md
+  - file: Design/two.md
+  - file: Design/ext.md
+  - file: Design/R.md
